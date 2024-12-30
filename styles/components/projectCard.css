@@ -3,4 +3,32 @@
     height: 400px;
     margin: 20px;
     outline: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+#project-title {
+    font-size: x-large;
+    margin: 0;
+    margin-top: 10px;
+}
+
+#project-affiliation {
+    font-size: large;
+    color: rgb(92, 92, 92);
+    margin-top: 5px;
+}
+
+#project-tags {
+    margin-top: 10px;
+}
+
+#project-links {
+    justify-content: flex-start;
+    column-gap: 15px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
 }
