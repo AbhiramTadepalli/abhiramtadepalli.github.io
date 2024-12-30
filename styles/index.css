@@ -26,7 +26,7 @@
     list-style: none;
 }
 
-#intro {
+#intro-section {
     height: 100vh;
     width: 100%;
 }
@@ -88,4 +88,5 @@ ul {
 #projects {
     justify-content: flex-start;
     flex-wrap: wrap;
+    margin-inline-start: 80px;
 }
