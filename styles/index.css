@@ -1,15 +1,34 @@
-.flex-container {
+.flex-container-row {
     /* We first create a flex layout context */
     display: flex;
-    
     flex-flow: row nowrap;
     
     /* Then we define how is distributed the remaining space */
     justify-content: space-between;
+    align-items: center;
     
     padding: 0;
     margin: 0;
     list-style: none;
+}
+
+.flex-container-col {
+    /* We first create a flex layout context */
+    display: flex;
+    flex-flow: column nowrap;
+    
+    /* Then we define how is distributed the remaining space */
+    justify-content: space-evenly;
+    align-items: center; 
+    
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#intro {
+    height: 100vh;
+    width: 100%;
 }
 
 #hero {
@@ -23,26 +42,50 @@
 
     width: 200px;
     padding: 0;
-    margin: 0;
+    margin-inline-start: 80px;
     list-style: none;
 }
 
 #blurb {
     width: 650px;
+    margin-inline-start: 10px;
 }
 
 #links {
-    margin: 0;
+    width: 650px;
+    margin-inline-start: 10px;
+    justify-content: flex-start;
     padding: 0;
 }
 
 #sidebar {
     flex-grow: 1;
     width: 10px;
+    margin-inline-end: 80px;
+    outline: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#utd-logo {
+    width: 55px;
+    height: 55px;
 }
 
 
 h1 {
     font-size: 80px;
     margin: 0;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    width: auto; /* or a specific width */
+    text-align: center;
+}
+
+#projects {
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }

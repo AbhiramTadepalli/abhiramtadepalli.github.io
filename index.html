@@ -5,32 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Basic HTML Website</title>
     <link rel="stylesheet" type="text/css" href="styles\index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
+<script src="components/projectCard.js"></script>
 <body>
     <header>
     </header>
 
     <main id="">
-        <section class="flex-container" id="intro">
+        <section class="flex-container-row" id="intro">
             <div id="hero">
                 <div id="name">
                     <h1>Abhiram Tadepalli</h1>
                 </div>
                 <div id="blurb">CS @ UTD | UTD Trends Project Lead | Technology enthusiast. Privacy advocate. Avid researcher. Attentive student. Has a passion for system design with a soft spot for cybersecurity.</div>
+                <ul class="flex-container-row" id="links">
+                    <img class="icon-logo" src="assets\brand-icons\github-logo.svg" alt="Link to my Github">
+                    <img class="icon-logo" src="assets\brand-icons\linkedIn-logo.png" alt="Link to my LinkedIn">
+                    <i class="material-icons">mail</i>
+                </ul>
                 <ul id="links">Github, LinkedIn, Instagram?, etc</ul>
             </div>
-            <div id="sidebar">
-                <ul>
-                    <div>Education</div>
-                    <div>The University of Texas at Dallas</div>
-                    <div>Bachelor’s in Computer Science '26</div>
-                    <div>GPA: 3.973/4.0</div>
-                    <div>Relevant Coursework: Linear Algebra, Discrete Mathematics, Data Structures and Algorithms, Computer Architecture, Automata Theory, Probability and Statistics, Advanced Algorithms, UNIX</div>
-                </ul>
-            </div>
+            <ul class="flex-container-col" id="sidebar">
+                <!-- <i class="material-icons">school</i> -->
+                    <img class="icon-logo" id="utd-logo" src="assets\brand-icons\UTD-logo.png" alt="Logo of the University of Texas at Dallas">
+                <div>The University of Texas at Dallas</div>
+                <div>Bachelor’s in Computer Science '26</div>
+                <div>GPA: 3.973/4.0</div>
+                <div>Relevant Coursework: Linear Algebra, Discrete Mathematics, Data Structures and Algorithms, Computer Architecture, Automata Theory, Probability and Statistics, Advanced Algorithms, UNIX</div>
+            </ul>
 
         </section>
-        <section id="projects">Here are my projects</section>
+        <div class="flex-container-row" id="projects">
+            <project-card preview="https://trends.utdnebula.com/" name="UTD Trends" org="Nebula Labs" description="As a project lead, spearheaded a UI redesign, designed new feature capabilities, and consumed APIs to display aggregate grade distributions and professor ratings for UT Dallas courses. Serving over 8000 users since the launch in October." link="https://trends.utdnebula.com/" github="https://github.com/UTDNebula/utd-trends" tags="NextJS, JavaScript, ReactJS, HTML, Tailwind CSS, and API" start="01-2024" end=""></project-card>
+            <project-card preview="" name="AIM F24" org="" description="" link="" github="" tags="" start="" end=""></project-card>
+            <project-card preview="" name="Haas Research" org="" description="" link="" github="" tags="" start="" end=""></project-card>
+            <project-card preview="" name="AI51" org="" description="Top secret AI stuff. Come back soon..!" link="" github="" tags="" start="" end=""></project-card>
+            <project-card preview="" name="CineFusion - Realtime Diffusion Project" org="AIS Mentorship Program (AIM)" description="Built the diffusion pipeline that takes live video, masks objects, and inserts images via inpainting real-time." link="" github="https://github.com/bluestarburst/CineFusion" tags="Python, StreamDiffusion, MobileSAM, YOLO-World" start="02-2024" end="05-2024"></project-card>
+            <project-card preview="" name="Gradus Grades - School Gradebook Android App" org="" description="Designed, coded, and tested an Android application that posts user credentials via Jsoup to fetch and parse gradebook HTML pages and display grade data." link="" github="" tags="Android Studio, Java, Jsoup" start="03-2022" end="09-2022"></project-card>
+            <project-card preview="" name="Cybersecurity: Phishing Simulation and Incident Response" org="Independent Study Final Product (ISM)" description="Simulated a real-world email phishing attack with malicious excel payload that connects to a remote Linux server. Followed NIST’s Incident Response Framework to secure the targeted user." link="" github="" tags="Ubuntu Linux, Excel Macros, Windows PowerShell, Linux, Anti-Phishing" start="01-2022" end="04-2022"></project-card>
+            <project-card preview="" name="Cybersecurity: Incidents and Vulnerabilities" org="Independent Study Original Work (ISM)" description="* to be added *" link="" github="" tags="Cybersecurity Incident Response, Research Skills" start="09-2021" end="12-2021"></project-card>
+            <project-card preview="" name="Assembly Language Car Sensor Simulation" org="CS 2340 - Computer Architecture" description="Designed a program in the MIPS Assembly language that uses branches to present warnings when given car sensor input data." link="" github="" tags="MIPS, Assembly" start="01-2024" end="05-2024"></project-card>
+            <project-card preview="" name="Theater Reservation and Ticketing Platform" org="CS 2337 - Computer Science II" description="Implemented a terminal interface for users to book tickets for multiple showings. Represented the theater layout in a 2D Array and LinkedList." link="" github="" tags="" start="08-2023" end="12-2023"></project-card>
+            <project-card preview="" name="Hackathon Projects" org="" description="" link="" github="" tags="" start="" end=""></project-card>
+            <project-card preview="" name="Upcoming Secret Project #1" org="" description="" link="" github="" tags="" start="" end=""></project-card>
+            <!-- <project-card preview="" name="" org="" description="" link="" github="" tags="" start="" end=""></project-card> -->
+        </div>
         <section id="timeline">Here is my work experience</section> <!-- work experience too -->
         <section id="extracurriculars">Here are my extracurriculars</section>
     </main>
