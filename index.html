@@ -6,6 +6,12 @@
     <title>My Basic HTML Website</title>
     <link rel="stylesheet" type="text/css" href="styles\index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script>
+        getListItemsFromList(list)
+        {
+            list.split(",").map((value) => <li>value</li>);
+        }
+    </script>
 </head>
 <script src="components/projectCard.js"></script>
 <body class="body">
@@ -32,34 +38,45 @@
                 <img class="icon-logo" id="sidebar1-utd-logo" src="assets\brand-icons\UTD-logo.png" alt="Logo of the University of Texas at Dallas">
                 <div id="sidebar1-school">The University of Texas at Dallas</div>
                 <div id="sidebar1-degree">Bachelor’s in Computer Science '26</div>
-                <div id="sidebar1-class-header">Relevant Classes:</div>
+                <h4 id="sidebar1-class-header">Relevant Classes:</h4>
                 <div id="sidebar1-classes">Linear Algebra, Discrete Mathematics, Data Structures and Algorithms, Computer Architecture, Automata Theory, Probability and Statistics, Advanced Algorithms, UNIX</div>
             </ul>
 
         </section>
         <section class="flex-container-row" id="experience-section">
             <div class="flex-container-row" id="projects">
-                <project-card preview="https://trends.utdnebula.com/" name="UTD Trends" org="Nebula Labs" description="As a project lead, spearheaded a UI redesign, designed new feature capabilities, and consumed APIs to display aggregate grade distributions and professor ratings for UT Dallas courses. Serving over 8000 users since the launch in October." link="https://trends.utdnebula.com/" github="https://github.com/UTDNebula/utd-trends" tags="NextJS, JavaScript, ReactJS, HTML, Tailwind CSS, and API" start="01-2024" end=""></project-card>
-                <project-card preview="" name="AIM F24" org="" description="" link="" github="" tags="" start="" end=""></project-card>
-                <project-card preview="" name="Haas Research" org="" description="" link="" github="" tags="" start="" end=""></project-card>
-                <project-card preview="" name="AI51" org="" description="Top secret AI stuff. Come back soon..!" link="" github="" tags="" start="" end=""></project-card>
-                <project-card preview="" name="CineFusion - Realtime Diffusion Project" org="AIS Mentorship Program (AIM)" description="Built the diffusion pipeline that takes live video, masks objects, and inserts images via inpainting real-time." link="" github="https://github.com/bluestarburst/CineFusion" tags="Python, StreamDiffusion, MobileSAM, YOLO-World" start="02-2024" end="05-2024"></project-card>
-                <project-card preview="" name="Gradus Grades - School Gradebook Android App" org="" description="Designed, coded, and tested an Android application that posts user credentials via Jsoup to fetch and parse gradebook HTML pages and display grade data." link="" github="" tags="Android Studio, Java, Jsoup" start="03-2022" end="09-2022"></project-card>
-                <project-card preview="" name="Cybersecurity: Phishing Simulation and Incident Response" org="Independent Study Final Product (ISM)" description="Simulated a real-world email phishing attack with malicious excel payload that connects to a remote Linux server. Followed NIST’s Incident Response Framework to secure the targeted user." link="" github="" tags="Ubuntu Linux, Excel Macros, Windows PowerShell, Linux, Anti-Phishing" start="01-2022" end="04-2022"></project-card>
-                <project-card preview="" name="Cybersecurity: Incidents and Vulnerabilities" org="Independent Study Original Work (ISM)" description="* to be added *" link="" github="" tags="Cybersecurity Incident Response, Research Skills" start="09-2021" end="12-2021"></project-card>
-                <project-card preview="" name="Assembly Language Car Sensor Simulation" org="CS 2340 - Computer Architecture" description="Designed a program in the MIPS Assembly language that uses branches to present warnings when given car sensor input data." link="" github="" tags="MIPS, Assembly" start="01-2024" end="05-2024"></project-card>
-                <project-card preview="" name="Theater Reservation and Ticketing Platform" org="CS 2337 - Computer Science II" description="Implemented a terminal interface for users to book tickets for multiple showings. Represented the theater layout in a 2D Array and LinkedList." link="" github="" tags="" start="08-2023" end="12-2023"></project-card>
-                <project-card preview="" name="Hackathon Projects" org="" description="" link="" github="" tags="" start="" end=""></project-card>
-                <project-card preview="" name="Upcoming Secret Project #1" org="" description="" link="" github="" tags="" start="" end=""></project-card>
+                <project-card preview="https://trends.utdnebula.com/" name="UTD Trends" org="Nebula Labs" role="Project Lead & Engineer" snippet="See and compare grade distributions and professor ratings (RMP) for every UTD course and professor. Serving over 8000 students. Make Better Choices." description="As a project lead, spearheaded a UI redesign, designed new feature capabilities, and consumed APIs to display aggregate grade distributions and professor ratings for UT Dallas courses. Serving over 8000 users since the launch in October." link="https://trends.utdnebula.com/" github="https://github.com/UTDNebula/utd-trends" tags="NextJS, JavaScript, ReactJS, HTML, Tailwind CSS, API" start="01-2024" end=""></project-card>
+                <project-card preview="" name="FlyInDemand" org="AI Society" role="Mentee (AIM)" snippet="Predict the expected volume of traffic and number of delays at any airport to manage airport staff loads. Our model considers historic economic data, TSA traffic, and flight delays." description="" link="" github="" tags="Python, Google Colab, Time Series, Machine Learning, LSTM" start="09-2024" end="12-2024"></project-card>
+                <!-- <project-card preview="" name="Haas Research" org="" role="Undergraduate Researcher" description="" link="" github="" tags="" start="" end=""></project-card> -->
+                <project-card preview="" name="AI51" org="AI Society" role="AI/ML Project Developer" snippet="Top secret AI stuff. Come back soon..!" description="Top secret AI stuff. Come back soon..!" link="" github="" tags="" start="09-2024" end=""></project-card>
+                <project-card preview="" name="CineFusion - Realtime Diffusion Project" org="AI Society" role="Mentee (AIM)" snippet="Replaces a real object with an AI-generated mask. In your webcam. Realtime." description="Built the diffusion pipeline that takes live video, masks objects, and inserts images via inpainting real-time." link="" github="https://github.com/bluestarburst/CineFusion" tags="Python, StreamDiffusion, MobileSAM, YOLO-World" start="02-2024" end="05-2024"></project-card>
+                <project-card preview="" name="Gradus Grades - School Gradebook Android App" org="Personal Project" role="" snippet="View your grades from the HAC gradebook. Complete with GPA predictions, grade adjustments, and notifications." description="Designed, coded, and tested an Android application that posts user credentials via Jsoup to fetch and parse gradebook HTML pages and display grade data." link="" github="" tags="Android Studio, Java, Jsoup" start="03-2022" end="09-2022"></project-card>
+                <project-card preview="" name="Cybersecurity: Phishing Simulation and Incident Response" org="Independent Study Final Product (ISM)" role="" snippet="An email phishing simulation (malicious Excel macros) that connects to a remote Ubuntu server. Performed incident response following NIST guidelines." description="Simulated a real-world email phishing attack with malicious excel payload that connects to a remote Linux server. Followed NIST’s Incident Response Framework to secure the targeted user." link="https://abhiramtadepalli22.wixsite.com/ism-original-work" github="" tags="Ubuntu Linux, Excel Macros, Windows PowerShell, Linux, Anti-Phishing" start="01-2022" end="04-2022"></project-card>
+                <project-card preview="" name="Cybersecurity: Incidents and Vulnerabilities" org="Independent Study Original Work (ISM)" role="" snippet="Analyzed 8 Cyber Incidents and CWE Vulnerabilities from 2021 to see what went wrong, who's at fault, and a proposal on how to fix the vulnerabilities." description="* to be added *" link="https://abhiramtadepalli22.wixsite.com/ism-original-work" github="" tags="Cybersecurity, Incident Response, Research" start="09-2021" end="12-2021"></project-card>
+                <project-card preview="" name="Assembly Language Car Sensor Simulation" org="CS 2340 - Computer Architecture" role="" snippet="Designed a program in the MIPS Assembly language that uses control branches to present warnings when given car sensor input data." description="Designed a program in the MIPS Assembly language that uses branches to present warnings when given car sensor input data." link="" github="" tags="MIPS, Assembly" start="01-2024" end="05-2024"></project-card>
+                <project-card preview="" name="Theater Reservation and Ticketing Platform" org="CS 2337 - Computer Science II" role="" snippet="Implemented a terminal interface for users to book tickets for multiple showings. Represented the theater layout in a 2D Array and LinkedList." description="Implemented a terminal interface for users to book tickets for multiple showings. Represented the theater layout in a 2D Array and LinkedList." link="" github="" tags="C++" start="08-2023" end="12-2023"></project-card>
+                <project-card preview="" name="Hackathon Projects" org="" role="" snippet="Competed in 3 hackathons over the course of 3 semesters in college. Results vary. (All of them were finance-related smh)" description="" link="" github="" tags="ReactJS, Python, HTML, JavaScript, TailwindCSS, AWS, OCR, Machine Learning, LLM" start="" end=""></project-card>
+                <project-card preview="" name="Upcoming Secret Project #1" org="" role="" snippet="Come back soon..." description="" link="" github="" tags="" start="" end=""></project-card>
                 <!-- <project-card preview="" name="" org="" description="" link="" github="" tags="" start="" end=""></project-card> -->
             </div>
             <ul class="flex-container-col" id="sidebar">
-                <!-- <i class="material-icons">school</i> -->
-                    <i class="material-icons">build</i>
-                <div>Programming Languages: Java, C++, Python, UIKit, HTML, CSS, JavaScript</div>
-                <div>Frameworks: ReactJS, NextJS</div>
-                <div>Platforms: Web, Android, iOS</div>
-                <div>Languages: English (fluent), Telugu (fluent), Sanskrit (conversational proficiency)</div>
+                <i id="sidebar2-icon" class="material-icons">build</i>
+                <div class="sidebar2-skills">
+                    <h4 class="sidebar2-header">Programming Languages:</h4>
+                    <ul class="sidebar2-skill-list"><li>Java</li><li>C++</li><li>Python</li><li>UIKit</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+                </div>
+                <div class="sidebar2-skills">
+                    <h4 class="sidebar2-header">Frameworks:</h4>
+                    <ul class="sidebar2-skill-list"><li>ReactJs</li><li>NextJS</li></ul>
+                </div>
+                <div class="sidebar2-skills">
+                    <h4 class="sidebar2-header">Platforms:</h4>
+                    <ul class="sidebar2-skill-list"><li>Web</li><li>Android</li><li>iOS</li></ul>
+                </div>
+                <div class="sidebar2-skills">
+                    <h4 class="sidebar2-header">Languages:</h4>
+                    <ul class="sidebar2-skill-list"><li>English (fluent)</li><li>Telugu (fluent)</li><li>Sanskrit (conversational proficiency)</li></ul>
+                </div>
             </ul>
         </section>
         <section id="timeline-section">Here is my work experience</section> <!-- work experience too -->
