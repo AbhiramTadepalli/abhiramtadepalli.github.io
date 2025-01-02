@@ -32,6 +32,17 @@
     list-style: none;
 }
 
+#nav-sidebar {
+    align-self: normal;
+    justify-content: flex-start;
+    top: 50vh;
+    max-height: 50vh;
+    width: 50px;
+    /* overflow-y: auto; */
+    position: -webkit-sticky;
+    position: sticky;
+}
+
 #intro-section {
     height: 100vh;
     width: 100%;
@@ -78,12 +89,20 @@
     /* flex-grow: 1; */
     flex-shrink: 0;
     width: 275px;
-    /* height: 400px; */
+    height: fit-content;
     margin-inline-end: 80px;
     outline: 2px solid lightblue;
     padding: 10px;
     border-radius: 10px;
     gap: 20px;
+
+    /* Sticky Scroll Properties */
+    align-self: normal;
+    top: 22vh;
+    max-height: 100vh;
+    /* overflow-y: auto; */
+    position: -webkit-sticky;
+    position: sticky;
 }
 
 #sidebar1-gpa {
