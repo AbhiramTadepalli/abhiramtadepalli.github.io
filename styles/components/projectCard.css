@@ -1,7 +1,7 @@
 #project-card {
     width: 255px;
     height: 400px;
-    margin: 20px;
+    /* margin: 20px; */
     outline: 2px solid black;
     border-radius: 20px;
     padding: 20px;
@@ -21,6 +21,10 @@
     margin-top: 5px;
 }
 
+.icon {
+    height: 20px;
+}
+
 #project-tags {
     margin-top: 10px;
     flex-wrap: wrap;
@@ -30,11 +34,16 @@
 
 .tag {
     outline: 1.5px solid rgb(129, 129, 129);
+    height: 20px;
     border-radius: 30px;
     padding: 3px;
     padding-inline: 7px;
     color: rgb(226, 226, 226);
     font-size: 15px;
+}
+
+.project-icon-logo {
+    color: white;
 }
 
 #project-links {
