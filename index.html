@@ -14,14 +14,15 @@
     </script>
 </head>
 <script src="components/projectCard.js"></script>
+<script src="scripts\index.js"></script>
 <body class="body">
     <header>
     </header>
 
     <main class="flex-container-row" id="main">
         <ul class="flex-container-col" id="nav-sidebar">
-            <li>Intro</li>
-            <li>Projects</li>
+            <li class="nav-sidebar-item">Intro</li>
+            <li class="nav-sidebar-item">Projects</li>
         </ul>
         <div id="content">
             <section class="flex-container-row" id="intro-section">
@@ -31,22 +32,43 @@
                     </div>
                     <div id="blurb">Technology enthusiast. Privacy advocate. Avid researcher. Attentive student. Has a passion for system design with a soft spot for cybersecurity.</div>
                     <ul class="flex-container-row" id="links">
-                        <svg class="icon-logo" alt="Link to my Github" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"/></svg>
-                        <!-- <img class="icon-logo" src="assets\brand-icons\github-logo.svg" alt="Link to my Github"> -->
-                        <svg class="icon-logo" alt="Link to my LinkedIn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="60px" height="60px"><path fill="currentColor" d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"/></svg>
-                        <i class="material-icons">mail</i>
+                        <a href="https://github.com/AbhiramTadepalli" target="_blank" rel="noopener"><svg class="icon-logo" alt="Link to my GitHub" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="60px" height="60px"><path fill="currentColor" d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z"/></svg></a>
+                        <a href="https://www.linkedin.com/in/abhiram-tadepalli/" target="_blank" rel="noopener"><svg class="icon-logo" alt="Link to my LinkedIn" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" width="60px" height="60px"><path fill="currentColor" d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.105,4,24,4z M10.954,22h-2.95 v-9.492h2.95V22z M9.449,11.151c-0.951,0-1.72-0.771-1.72-1.72c0-0.949,0.77-1.719,1.72-1.719c0.948,0,1.719,0.771,1.719,1.719 C11.168,10.38,10.397,11.151,9.449,11.151z M22.004,22h-2.948v-4.616c0-1.101-0.02-2.517-1.533-2.517 c-1.535,0-1.771,1.199-1.771,2.437V22h-2.948v-9.492h2.83v1.297h0.04c0.394-0.746,1.356-1.533,2.791-1.533 c2.987,0,3.539,1.966,3.539,4.522V22z"/></svg></a>
+                        <a id="email-address" href="#" target="_blank" rel="noopener"><svg class="icon-logo" alt="Email Me" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path fill="currentColor" d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg></a>
                     </ul>
                 </div>
-                <ul class="flex-container-col" id="sidebar">
-                    <div id="sidebar1-gpa">GPA: 3.973/4.0</div>
-                    <!-- <i class="material-icons">school</i> -->
-                    <img class="icon-logo" id="sidebar1-utd-logo" src="assets\brand-icons\UTD-logo.png" alt="Logo of the University of Texas at Dallas">
-                    <div id="sidebar1-school">The University of Texas at Dallas</div>
-                    <div id="sidebar1-degree">Bachelor’s in Computer Science '26</div>
-                    <h4 id="sidebar1-class-header">Relevant Classes:</h4>
-                    <div id="sidebar1-classes">Linear Algebra, Discrete Mathematics, Data Structures and Algorithms, Computer Architecture, Automata Theory, Probability and Statistics, Advanced Algorithms, UNIX</div>
-                </ul>
+                <div id="sidebar-container">
+                    <ul class="flex-container-col" id="sidebar">
+                        <div id="sidebar1-gpa">GPA: 3.973/4.0</div>
+                        <!-- <i class="material-icons">school</i> -->
+                        <img class="icon-logo" id="sidebar1-utd-logo" src="assets\brand-icons\UTD-logo.png" alt="Logo of the University of Texas at Dallas">
+                        <h3 id="sidebar1-school">The University of Texas at Dallas</h3>
+                        <div id="sidebar1-degree">Bachelor’s in Computer Science '26</div>
+                        <h4 id="sidebar1-class-header">Relevant Classes:</h4>
+                        <div id="sidebar1-classes">
+                            <div id="sidebar1-class-type">Mathematics</div>
+                            <div id="sidebar1-class-list">Linear Algebra, Probability and Statistics</div>
+                            <div id="sidebar1-class-type">Logic and Algorithms</div>
+                            <div id="sidebar1-class-list">Discrete Mathematics, Data Structures and Algorithms, Advanced Algorithms</div>
+                            <div id="sidebar1-class-type">Systems</div>
+                            <div id="sidebar1-class-list">Computer Architecture, UNIX</div>
+                            <div id="sidebar1-class-type">Computational Theory</div>
+                            <div id="sidebar1-class-list">Automata Theory, Programming Language Paradigms</div>
+                        </div>
+                        <button id="sidebar1-button">Transcript</button>
+                    </ul>
+                </div>
             </section>
+            <!-- <section class="flex-container-row" id="featured-section">
+                <div class="flex-container-row" id="featured1">
+                    <div>Pic</div>
+                    <div class="flex-container-col" id="featured-section-text">
+                        <div>Title</div>
+                        <div>Description</div>
+                    </div>
+                    <div class="flex-container-col">Links</div>
+                </div>
+            </section> -->
             <section class="flex-container-row" id="experience-section">
                 <div class="flex-container-row" id="projects">
                     <project-card preview="https://trends.utdnebula.com/" name="UTD Trends" org="Nebula Labs" role="Project Lead & Engineer" snippet="See and compare grade distributions and professor ratings (RMP) for every UTD course and professor. Serving over 8000 students. Make Better Choices." description="As a project lead, spearheaded a UI redesign, designed new feature capabilities, and consumed APIs to display aggregate grade distributions and professor ratings for UT Dallas courses. Serving over 8000 users since the launch in October." link="https://trends.utdnebula.com/" github="https://github.com/UTDNebula/utd-trends" tags="NextJS, JavaScript, ReactJS, HTML, Tailwind CSS, API" start="01-2024" end=""></project-card>
@@ -63,25 +85,27 @@
                     <project-card preview="" name="Upcoming Secret Project #1" org="" role="" snippet="Come back soon..." description="" link="" github="" tags="" start="" end=""></project-card>
                     <!-- <project-card preview="" name="" org="" description="" link="" github="" tags="" start="" end=""></project-card> -->
                 </div>
-                <ul class="flex-container-col" id="sidebar">
-                    <i id="sidebar2-icon" class="material-icons">build</i>
-                    <div class="sidebar2-skills">
-                        <h4 class="sidebar2-header">Programming Languages:</h4>
-                        <ul class="sidebar2-skill-list"><li>Java</li><li>C++</li><li>Python</li><li>UIKit</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-                    </div>
-                    <div class="sidebar2-skills">
-                        <h4 class="sidebar2-header">Frameworks:</h4>
-                        <ul class="sidebar2-skill-list"><li>ReactJs</li><li>NextJS</li></ul>
-                    </div>
-                    <div class="sidebar2-skills">
-                        <h4 class="sidebar2-header">Platforms:</h4>
-                        <ul class="sidebar2-skill-list"><li>Web</li><li>Android</li><li>iOS</li></ul>
-                    </div>
-                    <div class="sidebar2-skills">
-                        <h4 class="sidebar2-header">Languages:</h4>
-                        <ul class="sidebar2-skill-list"><li>English (fluent)</li><li>Telugu (fluent)</li><li>Sanskrit (conversational proficiency)</li></ul>
-                    </div>
-                </ul>
+                <div id="sidebar-container">
+                    <ul class="flex-container-col" id="sidebar">
+                        <i id="sidebar2-icon" class="material-icons">build</i>
+                        <div class="sidebar2-skills">
+                            <h4 class="sidebar2-header">Programming Languages:</h4>
+                            <ul class="sidebar2-skill-list"><li>Java</li><li>C++</li><li>Python</li><li>UIKit</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+                        </div>
+                        <div class="sidebar2-skills">
+                            <h4 class="sidebar2-header">Frameworks:</h4>
+                            <ul class="sidebar2-skill-list"><li>ReactJs</li><li>NextJS</li></ul>
+                        </div>
+                        <div class="sidebar2-skills">
+                            <h4 class="sidebar2-header">Platforms:</h4>
+                            <ul class="sidebar2-skill-list"><li>Web</li><li>Android</li><li>iOS</li></ul>
+                        </div>
+                        <div class="sidebar2-skills">
+                            <h4 class="sidebar2-header">Languages:</h4>
+                            <ul class="sidebar2-skill-list"><li>English (fluent)</li><li>Telugu (fluent)</li><li>Sanskrit (conversational proficiency)</li></ul>
+                        </div>
+                    </ul>
+                </div>
             </section>
             <section id="timeline-section">Here is my work experience</section> <!-- work experience too -->
             <section id="extracurriculars-section">Here are my extracurriculars</section>
