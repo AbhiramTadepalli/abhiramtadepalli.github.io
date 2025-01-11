@@ -183,18 +183,28 @@
 
 .sidebar2-skills {
     align-self: flex-start;
-    padding: 10px;
+    padding-inline: 10px;
+    align-content: start;
 }
 
-.sidebar2-header {
-    text-align: start;
-}
 
 .sidebar2-skill-list {
+    margin-top: 10px;
     flex-flow: column nowrap;
     list-style-type: '- ';
     text-align: start;
     margin-left: 15px;
+}
+
+#sidebar2-skill {
+    justify-content: flex-start;
+    align-items: start;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.sidebar2-header {
+    text-align: start;
 }
 
 h1 {
