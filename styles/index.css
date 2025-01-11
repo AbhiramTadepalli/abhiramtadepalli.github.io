@@ -36,6 +36,7 @@
 #nav-sidebar {
     align-self: normal;
     justify-content: flex-start;
+    align-items: flex-start;
     top: 50vh;
     max-height: 50vh;
     width: 50px;
@@ -45,12 +46,16 @@
 }
 
 .nav-sidebar-item {
-    color: black;
-    transition: color 0.3s, background-color 0.3s;
+    color: rgb(126, 201, 245);
+    text-align: left;
+    padding: 5px;
+    transition: all 0.3s ease-in-out, background-color 0.35s ease-in-out;
 }
 
 .nav-sidebar-item.active {
     color: white;
+    font-size: x-large;
+    background-color: rgba(75, 169, 220, 0.463);
 }
 
 #intro-section {
@@ -69,7 +74,7 @@
 
     width: 70%;
     padding: 0;
-    margin-inline-start: 80px;
+    margin-inline-start: 100px;
     list-style: none;
 }
 
@@ -98,13 +103,13 @@
 
 #sidebar-container {
     display: flex;
-    width: 30%;
+    width: 22%;
     justify-content: center; /* Center horizontally */
 
     /* Sticky Scroll Properties */
     align-self: normal;
     top: 9vh;
-    max-height: 80vh;
+    max-height: 91vh;
     /* overflow-y: auto; */
     position: -webkit-sticky;
     position: sticky;
@@ -114,17 +119,17 @@
     background-color: rgba(14, 18, 28, 0.83);
     /* flex-grow: 1; */
     flex-shrink: 0;
-    width: 275px;
+    width: 265px;
     height: fit-content;
     /* margin-inline-end: 80px; */
-    padding: 10px;
-    gap: 20px;
+    padding: 20px;
+    gap: 15px;
 }
 
 #sidebar1-gpa {
     align-self: flex-end;
-    margin-top: -10px ;
-    margin-right: -10px;
+    margin-top: -20px ;
+    margin-right: -20px;
     /* background-color: rgb(46, 55, 60); */
     background-color: rgba(75, 169, 220, 0.463);
     /* background-color: rgba(220, 119, 75, 0.463); */
@@ -144,26 +149,24 @@
 #sidebar1-degree {
     font-size: 18px;
     font-weight: 500;
-    margin-left: 8px;
-    margin-right: 8px;
     font-style: italic;
 }
 
 #sidebar1-class-header {
     margin-top: 10px;
-    margin-left: 8px;
-    margin-right: 8px;
     align-self: flex-start;
 }
 
 #sidebar1-classes {
     text-align: left;
+    margin-top: -10px;
     margin-left: 8px;
     margin-right: 8px;
 }
 
 #sidebar1-class-type {
     font-weight: bold;
+    margin-top: 7px;
 }
 
 #sidebar1-class-list {
@@ -187,13 +190,16 @@
     align-content: start;
 }
 
+.sidebar2-header {
+    text-align: start;
+}
 
 .sidebar2-skill-list {
     margin-top: 10px;
     flex-flow: column nowrap;
     list-style-type: '- ';
     text-align: start;
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 
 #sidebar2-skill {
@@ -201,10 +207,6 @@
     align-items: start;
     gap: 10px;
     margin-bottom: 5px;
-}
-
-.sidebar2-header {
-    text-align: start;
 }
 
 h1 {

@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   window.addEventListener('scroll', updateSidebarPosition);
   window.addEventListener('resize', updateSidebarPosition);
-  updateSidebarPosition();
+  updateSidebarPosition(); // first time
 
   function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
