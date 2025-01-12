@@ -46,6 +46,19 @@
     position: sticky;
 }
 
+#nav-sidebar {
+    align-self: normal;
+    justify-content: flex-start;
+    align-items: flex-start;
+    top: 50vh;
+    max-height: 50vh;
+    width: 10%;
+    min-width: 3.125rem;
+    /* overflow-y: auto; */
+    position: -webkit-sticky;
+    position: sticky;
+}
+
 .nav-sidebar-item {
     color: rgb(126, 201, 245);
     text-align: left;
@@ -76,12 +89,13 @@
 
     width: 70%;
     padding: 0;
-    margin-inline-start: 7%;
+    padding-inline-start: 4.4%;
     list-style: none;
 }
 
 #name {
     color: rgb(126, 201, 245);
+    margin-inline-start: 3%;
 }
 
 .icon-logo {
@@ -92,20 +106,20 @@
 
 #blurb {
     width: 37rem; /** rem depends on the user's root font size, which tracks with the <h1> name */
-    margin-inline-start: .3rem;
+    margin-inline-start: calc(3% + .3rem);
 }
 
 #links {
     margin-top: .6rem;
     width: max-content;
-    margin-inline-start: .3rem;
+    margin-inline-start: calc(3% + .3rem);
     justify-content: flex-start;
     gap: .625rem;
 }
 
 #sidebar-container {
     display: flex;
-    width: 22%;
+    width: 30%;
     justify-content: center; /* Center horizontally */
 
     /* Sticky Scroll Properties */
@@ -249,4 +263,10 @@ ul {
 #projects::after { 
     content: "";
     flex: auto;
+}
+
+@media screen and (max-width: 1135px) and (min-width: 1035px) {
+    .nav-sidebar-item.active {
+        font-size: large;
+    }
 }
