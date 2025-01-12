@@ -39,7 +39,8 @@
     align-items: flex-start;
     top: 50vh;
     max-height: 50vh;
-    width: 50px;
+    width: 10%;
+    min-width: 3.125rem;
     /* overflow-y: auto; */
     position: -webkit-sticky;
     position: sticky;
@@ -48,7 +49,8 @@
 .nav-sidebar-item {
     color: rgb(126, 201, 245);
     text-align: left;
-    padding: 5px;
+    font-size: medium;
+    padding: .3em;
     transition: all 0.3s ease-in-out, background-color 0.35s ease-in-out;
 }
 
@@ -59,7 +61,7 @@
 }
 
 #intro-section {
-    height: 100vh;
+    height: 100vh; /** Always takes up the entire screen on page landing */
     width: 100%;
 }
 
@@ -74,7 +76,7 @@
 
     width: 70%;
     padding: 0;
-    margin-inline-start: 100px;
+    margin-inline-start: 7%;
     list-style: none;
 }
 
@@ -84,21 +86,21 @@
 
 .icon-logo {
     color: rgb(126, 201, 245);
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 #blurb {
-    width: 600px;
-    margin-inline-start: 5px;
+    width: 37rem; /** rem depends on the user's root font size, which tracks with the <h1> name */
+    margin-inline-start: .3rem;
 }
 
 #links {
-    margin-top: 10px;
-    width: 650px;
-    margin-inline-start: 5px;
+    margin-top: .6rem;
+    width: max-content;
+    margin-inline-start: .3rem;
     justify-content: flex-start;
-    gap: 10px;
+    gap: .625rem;
 }
 
 #sidebar-container {
@@ -109,6 +111,7 @@
     /* Sticky Scroll Properties */
     align-self: normal;
     top: 9vh;
+    height: fit-content;
     max-height: 91vh;
     /* overflow-y: auto; */
     position: -webkit-sticky;
@@ -119,27 +122,28 @@
     background-color: rgba(14, 18, 28, 0.83);
     /* flex-grow: 1; */
     flex-shrink: 0;
-    width: 265px;
+    width: 80%;
+    max-width: 18rem;
     height: fit-content;
     /* margin-inline-end: 80px; */
-    padding: 20px;
-    gap: 15px;
+    padding: 1.25em;
+    gap: 2vh;
 }
 
 #sidebar1-gpa {
     align-self: flex-end;
-    margin-top: -20px ;
-    margin-right: -20px;
+    margin-top: -1.25em; /** #sidebar padding is done by rems */
+    margin-right: -1.25em;
     /* background-color: rgb(46, 55, 60); */
     background-color: rgba(75, 169, 220, 0.463);
     /* background-color: rgba(220, 119, 75, 0.463); */
-    padding: 5px;
-    border-bottom-left-radius: 10px;
+    padding: .3em;
+    border-bottom-left-radius: .625em;
 }
 
 #sidebar1-utd-logo {
-    width: 55px;
-    height: 55px;
+    width: 3.5rem;
+    height: 3.5rem;
 }
 
 #sidebar1-school {
@@ -147,30 +151,29 @@
 }
 
 #sidebar1-degree {
-    font-size: 18px;
+    font-size: 1.125em;
     font-weight: 500;
     font-style: italic;
 }
 
 #sidebar1-class-header {
-    margin-top: 10px;
+    margin-top: 1.25vh;
     align-self: flex-start;
 }
 
 #sidebar1-classes {
     text-align: left;
-    margin-top: -10px;
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-top: -1.25vh;
+    margin-inline: 3%;
 }
 
 #sidebar1-class-type {
     font-weight: bold;
-    margin-top: 7px;
+    margin-top: 1.2vh;
 }
 
 #sidebar1-class-list {
-    margin-inline-start: 10px;
+    margin-inline-start: 4%;
 }
 
 #sidebar1-button {
@@ -178,15 +181,15 @@
     background-color: rgba(0, 58, 124, 0);
     border: 2px solid rgb(167, 167, 167);
     color: white;
-    padding: 5px 10px;
+    padding: .3125em .625em;
     /* border-radius: 2px; */
     text-align: center;
-    font-size: 17px;
+    font-size: 1em;
 }
 
 .sidebar2-skills {
     align-self: flex-start;
-    padding-inline: 10px;
+    padding-inline: 3%;
     align-content: start;
 }
 
@@ -195,7 +198,7 @@
 }
 
 .sidebar2-skill-list {
-    margin-top: 10px;
+    margin-top: 1vh;
     flex-flow: column nowrap;
     list-style-type: '- ';
     text-align: start;
@@ -205,23 +208,23 @@
 #sidebar2-skill {
     justify-content: flex-start;
     align-items: start;
-    gap: 10px;
-    margin-bottom: 5px;
+    gap: .625rem;
+    margin-bottom: .5vh;
 }
 
 h1 {
-    font-size: 80px;
+    font-size: 5rem;
     margin: 0;
 }
 
 h3 {
-    font-size: 30px;
+    font-size: 1.875em;
     margin: 0;
     padding: 0;
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 1.125em;
     margin: 0;
     padding: 0;
 }
@@ -237,8 +240,8 @@ ul {
     width: 70%;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    margin-inline-start: 80px;
-    gap: 40px; /* row-gap column gap */
+    margin-inline-start: 4.4%;
+    gap: 5vh 2vw; /* row-gap column gap */
     flex-grow: 3;
 }
 
