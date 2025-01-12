@@ -110,9 +110,9 @@
 
     /* Sticky Scroll Properties */
     align-self: normal;
-    top: 9vh;
+    /* top: 0vh; */ /* done in index.js */
     height: fit-content;
-    max-height: 91vh;
+    max-height: 90vh;
     /* overflow-y: auto; */
     position: -webkit-sticky;
     position: sticky;
