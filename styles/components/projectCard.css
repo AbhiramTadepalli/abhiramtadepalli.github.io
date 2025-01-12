@@ -1,4 +1,4 @@
-#project-card {
+.project-card {
     width: 255px;
     height: 400px;
     /* margin: 20px; */
@@ -8,14 +8,14 @@
     background-color: rgb(29, 45, 67);
 }
 
-#project-title {
+.project-title {
     font-size: x-large;
     font-weight: bold;
     margin: 0;
     margin-top: 10px;
 }
 
-#project-affiliation {
+.project-affiliation {
     font-size: large;
     color: rgb(176, 176, 176);
     margin-top: 5px;
@@ -25,7 +25,7 @@
     height: 20px;
 }
 
-#project-tags {
+.project-tags {
     margin-top: 10px;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -47,7 +47,7 @@
     height: 35px;
 }
 
-#project-links {
+.project-links {
     justify-content: flex-start;
     column-gap: 5px;
 }

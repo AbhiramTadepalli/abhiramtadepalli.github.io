@@ -117,7 +117,7 @@
     gap: .625rem;
 }
 
-#sidebar-container {
+.sidebar-container {
     display: flex;
     width: 30%;
     justify-content: center; /* Center horizontally */
@@ -132,7 +132,7 @@
     position: sticky;
 }
 
-#sidebar {
+.sidebar {
     background-color: rgba(14, 18, 28, 0.83);
     /* flex-grow: 1; */
     flex-shrink: 0;
@@ -170,23 +170,23 @@
     font-style: italic;
 }
 
-#sidebar1-class-header {
+.sidebar1-class-header {
     margin-top: 1.25vh;
     align-self: flex-start;
 }
 
-#sidebar1-classes {
+.sidebar1-classes {
     text-align: left;
     margin-top: -1.25vh;
     margin-inline: 3%;
 }
 
-#sidebar1-class-type {
+.sidebar1-class-type {
     font-weight: bold;
     margin-top: 1.2vh;
 }
 
-#sidebar1-class-list {
+.sidebar1-class-list {
     margin-inline-start: 4%;
 }
 
@@ -219,7 +219,7 @@
     /* margin-left: 15px; */
 }
 
-#sidebar2-skill {
+.sidebar2-skill {
     justify-content: flex-start;
     align-items: start;
     gap: .625rem;

@@ -49,23 +49,23 @@
                         <a id="email-address" href="#" target="_blank" rel="noopener"><svg class="icon-logo" alt="Email Me" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path fill="currentColor" d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg></a>
                     </ul>
                 </div>
-                <div id="sidebar-container">
-                    <ul class="flex-container-col" id="sidebar">
+                <div class="sidebar-container">
+                    <ul class="flex-container-col sidebar">
                         <div id="sidebar1-gpa">GPA: 3.973/4.0</div>
                         <!-- <i class="material-icons">school</i> -->
                         <img class="icon-logo" id="sidebar1-utd-logo" src="assets\brand-icons\UTD-logo.png" alt="Logo of the University of Texas at Dallas">
                         <h3 id="sidebar1-school">The University of Texas at Dallas</h3>
                         <div id="sidebar1-degree">Bachelor’s in Computer Science '26</div>
-                        <h4 id="sidebar1-class-header">Relevant Classes:</h4>
-                        <div id="sidebar1-classes">
-                            <div id="sidebar1-class-type">Mathematics</div>
-                            <div id="sidebar1-class-list">Linear Algebra, Probability and Statistics</div>
-                            <div id="sidebar1-class-type">Logic and Algorithms</div>
-                            <div id="sidebar1-class-list">Discrete Mathematics, Data Structures and Algorithms, Advanced Algorithms</div>
-                            <div id="sidebar1-class-type">Systems</div>
-                            <div id="sidebar1-class-list">Computer Architecture, UNIX</div>
-                            <div id="sidebar1-class-type">Computational Theory</div>
-                            <div id="sidebar1-class-list">Automata Theory, Programming Language Paradigms</div>
+                        <h4 class="sidebar1-class-header">Relevant Classes:</h4>
+                        <div class="sidebar1-classes">
+                            <div class="sidebar1-class-type">Mathematics</div>
+                            <div class="sidebar1-class-list">Linear Algebra, Probability and Statistics</div>
+                            <div class="sidebar1-class-type">Logic and Algorithms</div>
+                            <div class="sidebar1-class-list">Discrete Mathematics, Data Structures and Algorithms, Advanced Algorithms</div>
+                            <div class="sidebar1-class-type">Systems</div>
+                            <div class="sidebar1-class-list">Computer Architecture, UNIX</div>
+                            <div class="sidebar1-class-type">Computational Theory</div>
+                            <div class="sidebar1-class-list">Automata Theory, Programming Language Paradigms</div>
                         </div>
                         <button id="sidebar1-button">Transcript</button>
                     </ul>
@@ -97,20 +97,20 @@
                     <project-card preview="" name="Upcoming Secret Project #1" org="" role="" snippet="Come back soon..." description="" link="" github="" tags="" start="" end=""></project-card>
                     <!-- <project-card preview="" name="" org="" description="" link="" github="" tags="" start="" end=""></project-card> -->
                 </div>
-                <div id="sidebar-container">
-                    <ul class="flex-container-col" id="sidebar">
+                <div class="sidebar-container">
+                    <ul class="flex-container-col sidebar">
                         <i id="sidebar2-icon" class="material-icons">build</i>
                         <div class="sidebar2-skills">
                             <h4 class="sidebar2-header">Programming Languages:</h4>
-                            <ul class="sidebar2-skill-list"><script>document.write("Java, C++, Python, UIKit, HTML, CSS, JavaScript".split(", ").map((value) => `<li class="flex-container-row" id="sidebar2-skill">${getTagIcon(value)}<div>${value}</div></li>`).join("\n"))</script></ul>
+                            <ul class="sidebar2-skill-list"><script>document.write("Java, C++, Python, UIKit, HTML, CSS, JavaScript".split(", ").map((value) => `<li class="flex-container-row sidebar2-skill">${getTagIcon(value)}<div>${value}</div></li>`).join("\n"))</script></ul>
                         </div>
                         <div class="sidebar2-skills">
                             <h4 class="sidebar2-header">Frameworks:</h4>
-                            <ul class="sidebar2-skill-list"><script>document.write("ReactJS, NextJS".split(", ").map((value) => `<li class="flex-container-row" id="sidebar2-skill">${getTagIcon(value)}<div>${value}</div></li>`).join("\n"))</script></ul>
+                            <ul class="sidebar2-skill-list"><script>document.write("ReactJS, NextJS".split(", ").map((value) => `<li class="flex-container-row sidebar2-skill">${getTagIcon(value)}<div>${value}</div></li>`).join("\n"))</script></ul>
                         </div>
                         <div class="sidebar2-skills">
                             <h4 class="sidebar2-header">Platforms:</h4>
-                            <ul class="sidebar2-skill-list"><script>document.write("Web, Android, iOS".split(", ").map((value) => `<li class="flex-container-row" id="sidebar2-skill">${getTagIcon(value)}<div>${value}</div></li>`).join("\n"))</script></ul>
+                            <ul class="sidebar2-skill-list"><script>document.write("Web, Android, iOS".split(", ").map((value) => `<li class="flex-container-row sidebar2-skill">${getTagIcon(value)}<div>${value}</div></li>`).join("\n"))</script></ul>
                         </div>
                         <div class="sidebar2-skills">
                             <h4 class="sidebar2-header">Languages:</h4>
@@ -124,8 +124,8 @@
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2024 My Basic HTML Website. All rights reserved.</p>
+    <footer class="flex-container-col">
+        <p>&copy; 2024 My Basic HTML Portfolio. All rights reserved. Abhiram Tadepalli.</p>
     </footer>
 </body>
 </html>

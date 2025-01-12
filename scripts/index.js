@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  const sidebars = document.querySelectorAll('#sidebar-container');
+  const sidebars = document.querySelectorAll('.sidebar-container');
   function updateStickySidebar() {
     sidebars.forEach((sidebar, index) => {
       const rect = sections[index].getBoundingClientRect();
