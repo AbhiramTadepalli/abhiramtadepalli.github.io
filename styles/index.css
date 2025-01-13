@@ -5,6 +5,10 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+#content {
+  width: 100%;
+}
+
 .flex-container-row {
     /* We first create a flex layout context */
     display: flex;
@@ -44,19 +48,7 @@
     /* overflow-y: auto; */
     position: -webkit-sticky;
     position: sticky;
-}
-
-#nav-sidebar {
-    align-self: normal;
-    justify-content: flex-start;
-    align-items: flex-start;
-    top: 50vh;
-    max-height: 50vh;
-    width: 10%;
-    min-width: 3.125rem;
-    /* overflow-y: auto; */
-    position: -webkit-sticky;
-    position: sticky;
+    flex-shrink: 17;
 }
 
 .nav-sidebar-item {
