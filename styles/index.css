@@ -122,6 +122,7 @@
     /* overflow-y: auto; */
     position: -webkit-sticky;
     position: sticky;
+    flex-shrink: 0;
 }
 
 .sidebar {
@@ -243,18 +244,14 @@ ul {
 }
 
 #projects {
+    display: grid;
     width: 70%;
     justify-content: space-evenly;
-    flex-wrap: wrap;
     margin-inline-start: 4.4%;
-    gap: 5vh 2vw; /* row-gap column gap */
-    flex-grow: 3;
-}
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    gap: 5vh 5vw; /* row-gap column gap */
+    /* flex-grow: 3; */
 
-/* adds a pseudo-element if the last row has less project-cards than the capacity */
-#projects::after { 
-    content: "";
-    flex: auto;
 }
 
 @media screen and (max-width: 1135px) and (min-width: 1035px) {
