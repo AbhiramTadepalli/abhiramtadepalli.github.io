@@ -5,6 +5,10 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+#content {
+  width: 100%;
+}
+
 .flex-container-row {
     /* We first create a flex layout context */
     display: flex;
@@ -44,19 +48,7 @@
     /* overflow-y: auto; */
     position: -webkit-sticky;
     position: sticky;
-}
-
-#nav-sidebar {
-    align-self: normal;
-    justify-content: flex-start;
-    align-items: flex-start;
-    top: 50vh;
-    max-height: 50vh;
-    width: 10%;
-    min-width: 3.125rem;
-    /* overflow-y: auto; */
-    position: -webkit-sticky;
-    position: sticky;
+    flex-shrink: 17;
 }
 
 .nav-sidebar-item {
@@ -117,7 +109,7 @@
     gap: .625rem;
 }
 
-#sidebar-container {
+.sidebar-container {
     display: flex;
     width: 30%;
     justify-content: center; /* Center horizontally */
@@ -130,9 +122,10 @@
     /* overflow-y: auto; */
     position: -webkit-sticky;
     position: sticky;
+    flex-shrink: 0;
 }
 
-#sidebar {
+.sidebar {
     background-color: rgba(14, 18, 28, 0.83);
     /* flex-grow: 1; */
     flex-shrink: 0;
@@ -170,23 +163,23 @@
     font-style: italic;
 }
 
-#sidebar1-class-header {
+.sidebar1-class-header {
     margin-top: 1.25vh;
     align-self: flex-start;
 }
 
-#sidebar1-classes {
+.sidebar1-classes {
     text-align: left;
     margin-top: -1.25vh;
     margin-inline: 3%;
 }
 
-#sidebar1-class-type {
+.sidebar1-class-type {
     font-weight: bold;
     margin-top: 1.2vh;
 }
 
-#sidebar1-class-list {
+.sidebar1-class-list {
     margin-inline-start: 4%;
 }
 
@@ -219,7 +212,7 @@
     /* margin-left: 15px; */
 }
 
-#sidebar2-skill {
+.sidebar2-skill {
     justify-content: flex-start;
     align-items: start;
     gap: .625rem;
@@ -251,18 +244,14 @@ ul {
 }
 
 #projects {
+    display: grid;
     width: 70%;
     justify-content: space-evenly;
-    flex-wrap: wrap;
     margin-inline-start: 4.4%;
-    gap: 5vh 2vw; /* row-gap column gap */
-    flex-grow: 3;
-}
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    gap: 5vh 5vw; /* row-gap column gap */
+    /* flex-grow: 3; */
 
-/* adds a pseudo-element if the last row has less project-cards than the capacity */
-#projects::after { 
-    content: "";
-    flex: auto;
 }
 
 @media screen and (max-width: 1135px) and (min-width: 1035px) {
