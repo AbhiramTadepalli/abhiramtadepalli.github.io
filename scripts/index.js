@@ -46,28 +46,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const sidebars = document.querySelectorAll('.sidebar-container');
   function updateStickySidebar() {
-    sidebars.forEach((sidebar, index) => {
-      const rect = sections[index].getBoundingClientRect();
-      const sidebarRect = sidebar.getBoundingClientRect();
-      const idealTop = window.innerHeight / 2 - sidebar.offsetHeight / 2;
-      const idealBottom = window.innerHeight / 2 + sidebar.offsetHeight / 2
+    if (window.innerWidth > 1034) { // disable for mobile
+      sidebars.forEach((sidebar, index) => {
+        const rect = sections[index].getBoundingClientRect();
+        const sidebarRect = sidebar.getBoundingClientRect();
+        const idealTop = window.innerHeight / 2 - sidebar.offsetHeight / 2;
+        const idealBottom = window.innerHeight / 2 + sidebar.offsetHeight / 2
 
-      if (rect.top >= idealTop && rect.top <= window.innerHeight) {
-        //move sidebar up/down with rect (pinned to top)
-        sidebar.style.top = '0vh';
-      }
-      else if (rect.top <= idealTop && rect.bottom >= idealBottom) {
-        //sticky sidebar in ideal position
-        sidebar.style.top = `${idealTop}px`;
-      }
-      else if (rect.bottom <= idealBottom && rect.bottom >= 0) { // I don't think this case is needed actually. Because of the `else` after case 1 covers it?
-        //move sidebar up/down with rect (pinned to bottom)
-        sidebar.style.top = '100vh'
-      }
-      else {
-        //stay in current state
-      }
-    });
+        if (rect.top >= idealTop && rect.top <= window.innerHeight) {
+          //move sidebar up/down with rect (pinned to top)
+          sidebar.style.top = '0vh';
+        }
+        else if (rect.top <= idealTop && rect.bottom >= idealBottom) {
+          //sticky sidebar in ideal position
+          sidebar.style.top = `${idealTop}px`;
+        }
+        else if (rect.bottom <= idealBottom && rect.bottom >= 0) { // I don't think this case is needed actually. Because of the `else` after case 1 covers it?
+          //move sidebar up/down with rect (pinned to bottom)
+          sidebar.style.top = '100vh'
+        }
+        else {
+          //stay in current state
+        }
+      });
+    }
   }
 
   window.addEventListener('scroll', updateStickySidebar);

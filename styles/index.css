@@ -153,6 +153,10 @@
     height: 3.5rem;
 }
 
+#sidebar1-header {
+    gap: inherit;
+}
+
 #sidebar1-school {
     font-weight: bold;
 }
@@ -257,5 +261,223 @@ ul {
 @media screen and (max-width: 1135px) and (min-width: 1035px) {
     .nav-sidebar-item.active {
         font-size: large;
+    }
+}
+
+@media screen and (max-width: 1034px) {    
+    #nav-sidebar {
+        display: none;
+    }
+
+    #intro-section {
+        flex-flow: column-reverse nowrap;
+        justify-content: center;
+        align-content: center;
+    }
+    
+    #hero {
+        display: flex;
+        flex-flow: column nowrap;
+        
+        /* Then we define how is distributed the remaining space */
+        justify-content: center;
+        
+        flex-grow: 3;
+    
+        width: 100%;
+        height: 70%;
+        padding: 0;
+        padding-inline-start: 4.4%;
+        list-style: none;
+    }
+    
+    #name {
+        color: rgb(126, 201, 245);
+        margin-inline-start: 3%;
+    }
+    
+    .icon-logo {
+        color: rgb(126, 201, 245);
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    #blurb {
+        width: 80%; /** rem depends on the user's root font size, which tracks with the <h1> name */
+        margin-inline-start: calc(3% + .3rem);
+    }
+    
+    #links {
+        margin-top: .6rem;
+        width: max-content;
+        margin-inline-start: calc(3% + .3rem);
+        justify-content: flex-start;
+        gap: .625rem;
+    }
+    
+    .sidebar-container {
+        align-self: center;
+        display: flex;
+        width: 85%;
+        height: 20%;
+        justify-content: flex-start; /* Center horizontally */
+        align-content: flex-end;
+        flex-shrink: 0;
+    }
+    
+    .sidebar {
+        align-self: center;
+        background-color: rgba(14, 18, 28, 0.83);
+        /* flex-grow: 1; */
+        flex-shrink: 0;
+        width: 100%;
+        height: 100%;
+        /* margin-inline-end: 80px; */
+        padding: 1em;
+        gap: 2vh;
+    }
+    
+    #sidebar1-container {
+        flex-flow: column;
+        margin-top: 10%;
+    }
+    
+    #sidebar1 {
+        flex-direction: column;
+        justify-items: start;
+        /* padding: 0; */
+    }
+
+    #sidebar1-gpa {
+        align-self: flex-end;
+        margin-top: -1.25em; /** #sidebar padding is done by rems */
+        margin-right: -1em;
+        /* background-color: rgb(46, 55, 60); */
+        background-color: rgba(75, 169, 220, 0.463);
+        /* background-color: rgba(220, 119, 75, 0.463); */
+        font-size: .87em;
+        padding: .3em;
+        border-bottom-left-radius: .625em;
+    }
+    
+    #sidebar1-utd-logo {
+        width: 35%;
+        height: auto;
+    }
+    
+    #sidebar1-header {
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        flex-shrink: 0;
+        gap: 0;
+    }
+
+    #sidebar1-school {
+        font-weight: bold;
+    }
+    
+    #sidebar1-degree {
+        font-size: 1.0625em;
+        font-weight: 500;
+        font-style: italic;
+    }
+    
+    .sidebar1-class-header {
+        display: none;
+        margin-top: 1.25vh;
+        align-self: flex-start;
+    }
+    
+    .sidebar1-classes {
+        display: none;
+        text-align: left;
+        margin-top: -1.25vh;
+        margin-inline: 3%;
+    }
+    
+    .sidebar1-class-type {
+        font-weight: bold;
+        margin-top: 1.2vh;
+    }
+    
+    .sidebar1-class-list {
+        margin-inline-start: 4%;
+    }
+    
+    #sidebar1-button {
+        display: none;
+        font-size: large;
+        background-color: rgba(0, 58, 124, 0);
+        border: 2px solid rgb(167, 167, 167);
+        color: white;
+        padding: .3125em .625em;
+        /* border-radius: 2px; */
+        text-align: center;
+        font-size: 1em;
+    }
+    
+    #experience-section {
+        display: none;
+    }
+
+    .sidebar2-skills {
+        align-self: flex-start;
+        padding-inline: 3%;
+        align-content: start;
+    }
+    
+    .sidebar2-header {
+        text-align: start;
+    }
+    
+    .sidebar2-skill-list {
+        margin-top: 1vh;
+        flex-flow: column nowrap;
+        list-style-type: '- ';
+        text-align: start;
+        /* margin-left: 15px; */
+    }
+    
+    .sidebar2-skill {
+        justify-content: flex-start;
+        align-items: start;
+        gap: .625rem;
+        margin-bottom: .5vh;
+    }
+    
+    h1 {
+        font-size: 4rem;
+        margin: 0;
+    }
+    
+    h3 {
+        font-size: 1.3em;
+        margin: 0;
+        padding: 0;
+    }
+    
+    h4 {
+        font-size: 1.125em;
+        margin: 0;
+        padding: 0;
+    }
+    
+    ul {
+        padding: 0;
+        margin: 0;
+        width: auto; /* or a specific width */
+        text-align: center;
+    }
+    
+    #projects {
+        display: grid;
+        width: 70%;
+        justify-content: space-evenly;
+        margin-inline-start: 4.4%;
+        grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+        gap: 5vh 5vw; /* row-gap column gap */
+        /* flex-grow: 3; */
+    
     }
 }
