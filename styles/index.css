@@ -1,8 +1,9 @@
 .body {
-    background-color: rgb(6, 23, 62);
-    /* color: rgb(126, 201, 245); */
-    color: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, #0a1628 0%, #0f2847 50%, #1a3a5c 100%);
+    color: #e8f4f8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 #content {
@@ -45,24 +46,34 @@
     max-height: 50vh;
     width: 10%;
     min-width: 3.125rem;
-    /* overflow-y: auto; */
     position: -webkit-sticky;
     position: sticky;
     flex-shrink: 17;
+    z-index: 100;
 }
 
 .nav-sidebar-item {
-    color: rgb(126, 201, 245);
+    color: #66b3ff;
     text-align: left;
-    font-size: medium;
-    padding: .3em;
-    transition: all 0.3s ease-in-out, background-color 0.35s ease-in-out;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.6em 1em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    letter-spacing: 0.5px;
+}
+
+.nav-sidebar-item:hover {
+    color: #ffffff;
+    border-left: 2px solid #3d99dc;
 }
 
 .nav-sidebar-item.active {
-    color: white;
-    font-size: x-large;
-    background-color: rgba(75, 169, 220, 0.463);
+    color: #ffffff;
+    font-size: 1.1rem;
+    border-left: 2px solid #3d99dc;
+    background: linear-gradient(90deg, rgba(61, 153, 220, 0.15) 0%, transparent 100%);
 }
 
 #intro-section {
@@ -86,19 +97,36 @@
 }
 
 #name {
-    color: rgb(126, 201, 245);
+    background: linear-gradient(135deg, #66d3fa 0%, #3d99dc 50%, #2565ae 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
     margin-inline-start: 3%;
+    letter-spacing: -1px;
 }
 
 .icon-logo {
     color: rgb(126, 201, 245);
     width: 2.5rem;
     height: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.icon-logo:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 #blurb {
     width: 37rem; /** rem depends on the user's root font size, which tracks with the <h1> name */
     margin-inline-start: calc(3% + .3rem);
+    color: #b8d9f0;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    font-weight: 400;
 }
 
 #links {
@@ -253,7 +281,7 @@ ul {
     justify-content: space-evenly;
     margin-inline-start: 4.4%;
     grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-    gap: 5vh 5vw; /* row-gap column gap */
+    gap: 5vh 2vw; /* row-gap column gap */
     /* flex-grow: 3; */
 
 }
