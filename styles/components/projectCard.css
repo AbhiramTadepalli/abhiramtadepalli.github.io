@@ -1,58 +1,124 @@
+/* Predictable sizing */
+* { box-sizing: border-box; } /* prevents padding from inflating card width [web:5] */
+
+/* Card */
 .project-card {
-    width: 255px;
-    height: 400px;
-    /* margin: 20px; */
-    outline: 2px solid black;
-    border-radius: 20px;
-    padding: 20px;
-    background-color: rgb(29, 45, 67);
+  width: 100%;
+  min-height: 420px;
+  background: rgba(29, 53, 87, 0.6); /* keep blue glass base [web:12] */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 179, 255, 0.2);
+  border-radius: 20px;
+
+  /* Spacing tuned to the tighter card */
+  padding: 16px; /* from 1.5rem → fixed, compact 16px [web:1] */
+
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Top gradient accent */
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0; /* top bar */
+  height: 3px;
+  background: linear-gradient(90deg, #2565ae 0%, #3d99dc 50%, #66d3fa 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+/* Hover affordance */
+.project-card:hover {
+  border-color: rgba(102, 179, 255, 0.5);
+  box-shadow: 0 12px 40px rgba(61, 153, 220, 0.25);
+  transform: translateY(-8px);
+}
+.project-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Title + meta spacing */
 .project-title {
-    font-size: x-large;
-    font-weight: bold;
-    margin: 0;
-    margin-top: 10px;
+  font-size: 1.5rem; /* matches original visual weight */
+  font-weight: 700;
+  margin: 0;
+  margin-top: 10px; /* from 1rem → 10px for tighter vertical rhythm [web:1] */
+  color: #ffffff;
+  letter-spacing: -0.5px;
 }
 
 .project-affiliation {
-    font-size: large;
-    color: rgb(176, 176, 176);
-    margin-top: 5px;
+  font-size: 1rem;
+  color: #8eb8d9;
+  margin-top: 6px; /* from 0.5rem → 6px for compactness [web:1] */
+  font-weight: 500;
 }
 
-.icon {
-    height: 20px;
+/* Body copy spacing */
+.project-snippet {
+  color: #b8d9f0;
+  line-height: 1.55; /* slightly tighter but readable [web:10] */
+  margin: 12px 0; /* from 1rem → 12px to echo compact scale [web:1] */
+  font-size: 0.95rem;
 }
 
+/* Tags block */
 .project-tags {
-    margin-top: 10px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 7px 5px;
+  margin-top: 10px; /* tighter like the second snippet */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 7px 6px; /* row 7px, column 6px as in “7px 5px” vibe, slightly balanced [web:7] */
 }
 
 .tag {
-    outline: 1.5px solid rgb(129, 129, 129);
-    height: 20px;
-    border-radius: 30px;
-    padding: 3px;
-    padding-inline: 7px;
-    color: rgb(226, 226, 226);
-    font-size: 15px;
+  background: rgba(61, 153, 220, 0.15);
+  border: 1px solid rgba(102, 179, 255, 0.3);
+  border-radius: 30px; /* pill look like the second snippet */
+  padding: 4px 8px; /* from 0.4rem 0.8rem → compact 4/8px [web:1] */
+  color: #66d3fa;
+  font-size: 0.9rem; /* close to 15px feel, scales better responsively [web:8] */
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.tag:hover {
+  background: rgba(61, 153, 220, 0.3);
+  border-color: rgba(102, 179, 255, 0.5);
 }
 
+/* Icons and links */
 .project-icon-logo {
-    color: rgb(126, 201, 245);
-    height: 35px;
+  color: #66d3fa; /* keep brand blue */
+  height: 35px;
+  width: 35px;
+  transition: all 0.3s ease;
+}
+.project-icon-logo:hover {
+  color: #ffffff;
+  transform: scale(1.1);
 }
 
+/* Link row spacing */
 .project-links {
-    justify-content: flex-start;
-    column-gap: 5px;
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 6px; /* from 1rem → 6px per second snippet style [web:1] */
+  margin-top: 12px; /* balanced spacing below tags/snippet [web:1] */
 }
 
+/* Action icons */
+.icon {
+  height: 20px; /* from 24px → 20px per second snippet */
+  width: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Reset list spacing to avoid browser defaults impacting rhythm */
 ul {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0; /* matches both snippets; prevents default margins [web:8] */
 }
