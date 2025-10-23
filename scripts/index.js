@@ -1,4 +1,4 @@
-// Make it harder for scrapers to get my email
+/** Make it harder for scrapers to get my email */
 document.addEventListener('DOMContentLoaded', function () {
   // obfuscate the email address
   var user = 'abhiram.tadepalli.7+portfolio'.split('').reverse().join('');
@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
       window.open('mailto:' + email, '_blank'); // open the mailto link in a new tab
     });
 
+  /** Sidebar Positioning */
   const sections = document.querySelectorAll('section');
   const nav_section_titles = document.querySelectorAll('.nav-sidebar-item');
 
