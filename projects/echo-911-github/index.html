@@ -16,14 +16,25 @@
       <!-- Title & Blurb -->
       <h1 class="project-title">Echo 9-1-1</h1>
       <p class="project-subtitle">
-        A crisp one-liner that explains the core value proposition and context of the project in one or two sentences for quick scanning.
+        An agent‐powered 911 dispatch system
       </p>
 
       <!-- Description -->
       <section class="section card" aria-labelledby="desc-title">
         <h3 id="desc-title">Description</h3>
         <p style="margin: 0; line-height: 1.7; color: #d7e9f7;">
-          Provide a concise overview of the problem, your approach, and the outcome. Call out any interesting constraints, data sources, or system design highlights.
+          Traditional 911 systems rely on manual assessment, causing slower response times during critical emergencies.
+          So we built an agentic pipeline integrating AWS Connect, Transcribe, Comprehend, and Bedrock to automate emergency call processing. The system performed real-time transcription → PII redaction → sentiment analysis → AI-generated action plans for first responders, all with sub-second latency.
+          
+          Technical Highlights:
+          Seamless AWS service integration for live call streaming,
+          HIPAA-compliant PII scrubbing using Comprehend,
+          Bedrock-powered agentic reasoning to generate contextual response plans,
+          Real-time processing pipeline optimized for time-critical decisions.
+
+        </p>
+        <p style="margin-top: 3; line-height: 1.7; color: #d7e9f7;">
+          Outcome: Reduced simulated response time by 1 minute and increased operational effectiveness 3x. Won 1st place among 150+ participants at AWS Breaking Barriers Hackathon, demonstrating how agentic AI can transform critical infrastructure while maintaining security and compliance standards.
         </p>
       </section>
 
@@ -63,9 +74,9 @@
       <section class="section card" aria-labelledby="links-title">
         <h3 id="links-title">Links</h3>
         <div class="links">
-          <a class="link-btn" href="https://github.com/youruser/yourproject" target="_blank" rel="noopener">GitHub</a>
-          <a class="link-btn" href="https://your-demo-url.com" target="_blank" rel="noopener">Live Demo</a>
-          <a class="link-btn" href="/assets/your-project-notes.pdf" target="_blank" rel="noopener">Write-up</a>
+          <a class="link-btn" href="https://github.com/aaryaamoharir/echo-911" target="_blank" rel="noopener">GitHub Coming Soon!..</a>
+          <!-- <a class="link-btn" href="https://your-demo-url.com" target="_blank" rel="noopener">Live Demo</a>
+          <a class="link-btn" href="/assets/your-project-notes.pdf" target="_blank" rel="noopener">Write-up</a> -->
         </div>
       </section>
 
