@@ -76,7 +76,7 @@
     background: linear-gradient(90deg, rgba(61, 153, 220, 0.15) 0%, transparent 100%);
 }
 
-#intro-section {
+#blog-section {
     height: 100vh; /** Always takes up the entire screen on page landing */
     width: 100%;
 }
@@ -275,13 +275,14 @@ ul {
     text-align: center;
 }
 
-#projects {
+#posts {
     display: grid;
-    width: 70%;
+    width: 100%;
     justify-content: space-evenly;
     margin-inline-start: 4.4%;
+    margin-inline-end: 4.4%;
     grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-    gap: 5vh 2vw; /* row-gap column gap */
+    gap: 3vh 1.5vw; /* row-gap column gap */
     /* flex-grow: 3; */
 
 }
@@ -297,7 +298,7 @@ ul {
         display: none;
     }
 
-    #intro-section {
+    #blog-section {
         flex-flow: column-reverse nowrap;
         justify-content: center;
         align-content: center;
@@ -445,7 +446,7 @@ ul {
         font-size: 1em;
     }
     
-    #experience-section {
+    #posts-section {
         display: none;
     }
 
@@ -498,7 +499,7 @@ ul {
         text-align: center;
     }
     
-    #projects {
+    #posts {
         display: grid;
         width: 70%;
         justify-content: space-evenly;
