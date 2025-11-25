@@ -43,16 +43,16 @@ class ProjectCard extends HTMLElement {
   function getTagIcon(tag)
   {
     switch (tag) {
-      case "C++" : return `<img class="icon" src="assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
-      case "CSS" : return `<img class="icon" src="assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
-      case "HTML" : return `<img class="icon" src="assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
-      case "Java" : return `<img class="icon" src="assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
-      case "JavaScript" : return `<img class="icon" src="assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
-      case "NextJS" : return `<img class="icon" src="assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
-      case "Python" : return `<img class="icon" src="assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
-      case "ReactJS" : return `<img class="icon" src="assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
-      case "UIKit" : return `<img class="icon" src="assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
-      case "Tailwind CSS" : return `<img class="icon" src="assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
+      case "C++" : return `<img class="icon" src="/assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
+      case "CSS" : return `<img class="icon" src="/assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
+      case "HTML" : return `<img class="icon" src="/assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
+      case "Java" : return `<img class="icon" src="/assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
+      case "JavaScript" : return `<img class="icon" src="/assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
+      case "NextJS" : return `<img class="icon" src="/assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
+      case "Python" : return `<img class="icon" src="/assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
+      case "ReactJS" : return `<img class="icon" src="/assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
+      case "UIKit" : return `<img class="icon" src="/assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
+      case "Tailwind CSS" : return `<img class="icon" src="/assets/tech-icons/` + getTagIconAddress(tag) +`"/>`;
       default : return ``;
     }
   }
