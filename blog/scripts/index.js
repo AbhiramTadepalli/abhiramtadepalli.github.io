@@ -16,17 +16,27 @@ document.addEventListener('DOMContentLoaded', function () {
   const home_section_ids = ["../../#intro-section", "../../#experience-section", "/blog"];
 
   nav_section_titles.forEach((navItem, index) => {
-    navItem.addEventListener('click', () => {
-      window.location.href = home_section_ids[index];
-    });
+    if (index == nav_section_titles.length - 1) { // blog
+      navItem.addEventListener('click', () => {
+        sections[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+    else {
+      navItem.addEventListener('click', () => {
+        window.location.href = home_section_ids[index];
+      });
+    }
   });
   
-  function updateSidebarPosition() {
+function updateSidebarPosition(isBlog = false) {
     sections.forEach((section, index) => {
       const rect = section.getBoundingClientRect();
       // console.log(rect);
       // console.log(window.innerHeight);
-      if (rect.bottom < window.innerHeight / 3 || rect.top > window.innerHeight / 3) {
+      if (
+        (!isBlog && (rect.bottom < window.innerHeight / 3 || rect.top > window.innerHeight / 3)) // check if section is out of focus
+        || (isBlog && index != nav_section_titles.length - 1) // but if blog is clicked, deactivate all others
+      ) {
         nav_section_titles[index].classList.remove('active');
       }
       else {
@@ -35,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  window.addEventListener('scroll', updateSidebarPosition);
-  window.addEventListener('resize', updateSidebarPosition);
-  updateSidebarPosition(); // first time
+  window.addEventListener('scroll', () => updateSidebarPosition(true));
+  window.addEventListener('resize', () => updateSidebarPosition(true));
+  updateSidebarPosition(true); // first time
 });
