@@ -98,7 +98,7 @@
     list-style: none;
 }
 
-#name {
+#title {
     background: linear-gradient(135deg, #66d3fa 0%, #3d99dc 50%, #2565ae 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -254,7 +254,7 @@ ul {
         list-style: none;
     }
     
-    #name {
+    #title {
         color: rgb(126, 201, 245);
         margin-inline-start: 3%;
     }
