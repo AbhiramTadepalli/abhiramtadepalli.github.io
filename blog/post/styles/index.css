@@ -132,6 +132,71 @@
     font-weight: 400;
 }
 
+/* Post content Stuff */
+
+#post-body-section {
+    width: 100%;
+    padding: 3rem 0;
+    gap: 2rem;
+}
+
+#post-paper {
+    width: 60%;
+    background: rgba(25, 25, 35, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(93, 173, 226, 0.15);
+    border-radius: 20px;
+    padding: 3rem 4rem;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(61, 153, 220, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#post-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(93, 173, 226, 0.3),
+        transparent
+    );
+}
+
+#post-paper:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.5),
+        0 4px 12px rgba(61, 153, 220, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+#post-content {
+    width: 100%;
+}
+
+#tldr {
+    position: sticky;
+    top: 20vh;
+    align-self: flex-start;
+    padding: 1.5rem;
+    background: rgba(20, 20, 30, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(93, 173, 226, 0.1);
+    min-width: 150px;
+    height: fit-content;
+}
+
+/* Styling */
+
 h1 {
     font-size: 5rem;
     margin: 0;
@@ -154,18 +219,6 @@ ul {
     margin: 0;
     width: auto; /* or a specific width */
     text-align: center;
-}
-
-#posts {
-    display: grid;
-    width: 100%;
-    justify-content: space-evenly;
-    margin-inline-start: 4.4%;
-    margin-inline-end: 4.4%;
-    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-    gap: 3vh 1.5vw; /* row-gap column gap */
-    /* flex-grow: 3; */
-
 }
 
 @media screen and (max-width: 1135px) and (min-width: 1035px) {
