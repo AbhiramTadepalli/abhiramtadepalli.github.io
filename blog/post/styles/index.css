@@ -215,8 +215,13 @@ h1 {
     margin: 0;
 }
 
+h2 {
+    font-size: 1.5rem;
+    padding: 0;
+}
+
 h3 {
-    font-size: 1.875em;
+    font-size: 1.25rem;
     margin: 0;
     padding: 0;
 }
