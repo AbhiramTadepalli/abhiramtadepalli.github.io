@@ -94,4 +94,17 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', updateStickySidebar);
   window.addEventListener('resize', updateStickySidebar);
   updateStickySidebar(); // first time
+
+  /** Mobile Navbar */
+  const hamburger = document.getElementById('mobile-nav-button');
+  const navMenu = document.getElementById('mobile-nav-menu');
+
+  hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      
+      // Update aria-expanded for accessibility
+      const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !isExpanded);
+  });
 });
