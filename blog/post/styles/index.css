@@ -8,6 +8,7 @@
 
 #content {
   width: 100%;
+  min-height: 100vh;
   margin-inline-start: -10%;
 }
 
@@ -37,6 +38,10 @@
     padding: 0;
     margin: 0;
     list-style: none;
+}
+
+#mobile-nav-button {
+    display: none;
 }
 
 #nav-sidebar {
@@ -100,6 +105,10 @@
     list-style: none;
 }
 
+#title-wrapper {
+    width: 100%;
+}
+
 #post-metadata {
     justify-content: center;
     align-items: center;
@@ -125,9 +134,9 @@
     background-clip: text;
     font-size: 4rem;
     font-weight: 700;
+    letter-spacing: -1px;
     margin: 0;
     margin-inline-start: 3%;
-    letter-spacing: -1px;
 }
 
 #header-divider {
@@ -245,10 +254,86 @@ ul {
     }
 }
 
-@media screen and (max-width: 1034px) {    
+@media screen and (max-width: 1034px) {   
+    #content {
+        margin-inline-start: 0%;
+    }
+
+    /* Nav */
+
     #nav-sidebar {
         display: none;
     }
+
+    #mobile-nav-button {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        position: fixed;
+        top: 2vh;
+        right: 2vw;
+        padding: 10px;
+        z-index: 100;
+    }
+
+    .bar {
+        width: 25px;
+        height: 3px;
+        background-color: #66b3ff;
+        margin: 3px 0;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-item {
+        text-decoration: none;
+        font-size: 1.2rem;
+        margin-top: 5vh;
+        font-weight: 600;
+    }
+
+    a {
+        all: unset;
+        cursor: pointer;
+    }
+
+    li {
+        list-style-type: none;
+        margin: 0;
+        padding: 0; 
+    }
+
+    #mobile-nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 40vw;
+        height: 100vh;
+        background: rgba(21, 21, 22, 0.95);
+        padding-top: 3vh;
+        z-index: 90;
+    }
+    
+    #mobile-nav-menu.active {
+        display: block;
+    }
+
+    /* Animate to X */
+    #mobile-nav-button.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    #mobile-nav-button.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    #mobile-nav-button.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -7.5px);
+    }
+
+    /* Content */
 
     #post-header-section {
         flex-flow: column-reverse nowrap;
@@ -258,7 +343,7 @@ ul {
     
     #hero {
         display: flex;
-        flex-flow: column nowrap;
+        flex-flow: column-reverse nowrap;
         
         /* Then we define how is distributed the remaining space */
         justify-content: center;
@@ -268,167 +353,27 @@ ul {
         width: 100%;
         height: 70%;
         padding: 0;
-        padding-inline-start: 4.4%;
         list-style: none;
     }
     
     #title {
-        color: rgb(126, 201, 245);
-        margin-inline-start: 3%;
-    }
-    
-    .icon-logo {
-        color: rgb(126, 201, 245);
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-    
-    #blurb {
-        width: 80%; /** rem depends on the user's root font size, which tracks with the <h1> name */
-        margin-inline-start: calc(3% + .3rem);
-    }
-    
-    #links {
-        margin-top: .6rem;
-        width: max-content;
-        margin-inline-start: calc(3% + .3rem);
-        justify-content: flex-start;
-        gap: .625rem;
-    }
-    
-    .sidebar-container {
-        align-self: center;
-        display: flex;
-        width: 85%;
-        height: 20%;
-        justify-content: flex-start; /* Center horizontally */
-        align-content: flex-end;
-        flex-shrink: 0;
-    }
-    
-    .sidebar {
-        align-self: center;
-        background-color: rgba(14, 18, 28, 0.83);
-        /* flex-grow: 1; */
-        flex-shrink: 0;
-        width: 100%;
-        height: 100%;
-        /* margin-inline-end: 80px; */
-        padding: 1em;
-        gap: 2vh;
-    }
-    
-    #sidebar1-container {
-        flex-flow: column;
-        margin-top: 10%;
-    }
-    
-    #sidebar1 {
-        flex-direction: column;
-        justify-items: start;
-        /* padding: 0; */
-    }
-
-    #sidebar1-gpa {
-        align-self: flex-end;
-        margin-top: -1.25em; /** #sidebar padding is done by rems */
-        margin-right: -1em;
-        /* background-color: rgb(46, 55, 60); */
-        background-color: rgba(75, 169, 220, 0.463);
-        /* background-color: rgba(220, 119, 75, 0.463); */
-        font-size: .87em;
-        padding: .3em;
-        border-bottom-left-radius: .625em;
-    }
-    
-    #sidebar1-utd-logo {
-        width: 35%;
-        height: auto;
-    }
-    
-    #sidebar1-header {
-        flex-direction: row;
-        justify-content: space-evenly;
-        width: 100%;
-        flex-shrink: 0;
-        gap: 0;
-    }
-
-    #sidebar1-school {
-        font-weight: bold;
-    }
-    
-    #sidebar1-degree {
-        font-size: 1.0625em;
-        font-weight: 500;
-        font-style: italic;
-    }
-    
-    .sidebar1-class-header {
-        display: none;
-        margin-top: 1.25vh;
-        align-self: flex-start;
-    }
-    
-    .sidebar1-classes {
-        display: none;
-        text-align: left;
-        margin-top: -1.25vh;
-        margin-inline: 3%;
-    }
-    
-    .sidebar1-class-type {
-        font-weight: bold;
-        margin-top: 1.2vh;
-    }
-    
-    .sidebar1-class-list {
-        margin-inline-start: 4%;
-    }
-    
-    #sidebar1-button {
-        display: none;
-        font-size: large;
-        background-color: rgba(0, 58, 124, 0);
-        border: 2px solid rgb(167, 167, 167);
-        color: white;
-        padding: .3125em .625em;
-        /* border-radius: 2px; */
+        margin-inline-start: 0;
+        font-size: 3em;
         text-align: center;
-        font-size: 1em;
     }
     
-    #posts-section {
-        display: none;
-    }
-
-    .sidebar2-skills {
-        align-self: flex-start;
-        padding-inline: 3%;
-        align-content: start;
+    #header-divider {
+        margin: 0 0;
     }
     
-    .sidebar2-header {
-        text-align: start;
+    #funny-antedote {
+        text-align: center;
+        font-size: 14px;
     }
     
-    .sidebar2-skill-list {
-        margin-top: 1vh;
-        flex-flow: column nowrap;
-        list-style-type: '- ';
-        text-align: start;
-        /* margin-left: 15px; */
-    }
-    
-    .sidebar2-skill {
-        justify-content: flex-start;
-        align-items: start;
-        gap: .625rem;
-        margin-bottom: .5vh;
-    }
     
     h1 {
-        font-size: 4rem;
+        font-size: 1rem;
         margin: 0;
     }
     
@@ -449,16 +394,5 @@ ul {
         margin: 0;
         width: auto; /* or a specific width */
         text-align: center;
-    }
-    
-    #posts {
-        display: grid;
-        width: 70%;
-        justify-content: space-evenly;
-        margin-inline-start: 4.4%;
-        grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-        gap: 5vh 5vw; /* row-gap column gap */
-        /* flex-grow: 3; */
-    
     }
 }
