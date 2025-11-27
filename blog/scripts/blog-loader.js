@@ -3,8 +3,6 @@ async function loadBlogPosts() {
     const response = await fetch('data/posts.json');
     const posts = await response.json();
     const postEntries = Object.entries(posts);
-    console.log("jadlk", posts)
-    console.log(postEntries)
     
     if (posts) {
         document.getElementById('posts').innerHTML = postEntries.map(([key, post]) => `<post-card preview="" title="${post.title}" org="${post.affiliation}" snippet="${post.snippet}" tags="${post.tags}" date="${post.date}"></post-card>`).reduce((prev, curr) => prev + "\n" + curr);
