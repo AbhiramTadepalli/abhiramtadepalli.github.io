@@ -43,6 +43,9 @@
 #mobile-nav-button {
     display: none;
 }
+#mobile-nav-menu {
+    display: none;
+}
 
 #nav-sidebar {
     align-self: normal;
