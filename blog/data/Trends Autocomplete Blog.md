@@ -47,7 +47,7 @@ Let’s jump to the end and work our way backwards. The distance between the use
 
 The reason we didn’t just use a pre-built library like *autocomplete-js* or *Typeahead.js* is because the domain of courses (each with a name, prefix, and number) allows us to be more personal with the results if done right. For example, we wanted to support queries like “Machine Learning CS” to give autocomplete results like **CS 4375** (“Introduction to Machine Learning”), instead of **OPRE 6343** (“Applied Machine Learning”) through the `prefixPriority` metric. Conversely, the `smartNumberMatch` metric, though seldom used, can help rank undergrad level classes (4xxx) higher than a graduate class (6xxx). Instead, `smartNumberMatch` works best in a fuzzy-search setting as a spellchecker; it can help suggest a course like **CS 4390** if I mistype it as **CS 4490**. That’s really cool!
 
-```
+```ts_Helper_Functions
 /** Checks if the query word is/partially a prefix and @returns potential prefix matches */
 function isPotentialPrefix(query: string): string[] {
   const prefixMatch = query.match(/^[A-Za-z]+/);
@@ -138,7 +138,25 @@ Now how is each metric calculated? Well,
 
 checks first how many of the digits match in sequence, so CS CS 433x ranks higher than CS 43x3. This makes sense for our domain because a lot of courses have the same first 2 digits, and misspellings tend to occur in the latter 2 digits (because they are harder to remember). After this, the overall similarity is found through their edit distances in `findSimilarity`.
 
-Code
+```ts_smartNumberMatch_code
+const smartNumberMatch =
+  courseNumbers
+    .map((number) => {
+      if (result.number) {
+        const prefixScore = longestCommonPrefix(number, result.number); // show numbers that differ by the last digit higher
+        const similarity = findSimilarity(number, result.number);
+        if (similarity > 0.9) {
+          return -10 * similarity - prefixScore;
+        } else if (similarity > 0.7) {
+          return -8 * similarity - prefixScore;
+        } else if (similarity > 0.5) {
+          return -3 * similarity - prefixScore;
+        }
+      }
+      return 0;
+    })
+    .sort((a, b) => b - a)[0] ?? 0;
+```
 
 I over-emphasize higher similarity scores in a piecewise-function coupled with the prefix match to help show those results higher in the autocomplete. 
 
