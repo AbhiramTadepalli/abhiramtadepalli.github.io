@@ -31,8 +31,8 @@ function markdownToHTML(md) {
 
   // Step 1: Extract and protect fenced code blocks (``````)
   const codeBlocks = [];
-  html = html.replace(/``````/g, (match, lang, code) => {
-    const placeholder = `___CODE_BLOCK_${codeBlocks.length}___`;
+  html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
+    const placeholder = `~~CODE~BLOCK_${codeBlocks.length}~~`;
     codeBlocks.push({ lang, code: code.trim() });
     return placeholder;
   });
@@ -99,6 +99,9 @@ function markdownToHTML(md) {
     return `<ol>\n${items}\n</ol>`;
     });
 
+  // Step 7: Inline code `code`
+  html = html.replace(/`(.+?)`/g, "<code>$1</code>");
+
   // Step 11: Paragraphs (wrap remaining non-HTML lines)
   html = html.replace(/^(?!<[a-z]|___CODE)(.+)$/gm, (match) => {
     if (!match.trim()) return match;
@@ -112,9 +115,6 @@ function markdownToHTML(md) {
     html = html.replace(/\*(.+?)\*/g, "<em>$1</em>");
     html = html.replace(/_(.+?)_/g, "<em>$1</em>");
 
-  // Step 7: Inline code `code`
-  html = html.replace(/`(.+?)`/g, "<code>$1</code>");
-
   // Step 8: Links [text](url)
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
 
@@ -122,7 +122,7 @@ function markdownToHTML(md) {
   codeBlocks.forEach((block, i) => {
     const langAttr = block.lang ? ` class="language-${block.lang}"` : "";
     const codeHtml = `<pre><code${langAttr}>${block.code}</code></pre>`;
-    html = html.replace(`___CODE_BLOCK_${i}___`, codeHtml);
+    html = html.replace(`~~CODE~BLOCK_${i}~~`, codeHtml);
   });
 
   return html;

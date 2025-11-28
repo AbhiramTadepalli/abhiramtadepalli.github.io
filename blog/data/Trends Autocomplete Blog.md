@@ -46,7 +46,90 @@ Let’s jump to the end and work our way backwards. The distance between the use
 
 The reason we didn’t just use a pre-built library like *autocomplete-js* or *Typeahead.js* is because the domain of courses (each with a name, prefix, and number) allows us to be more personal with the results if done right. For example, we wanted to support queries like “Machine Learning CS” to give autocomplete results like **CS 4375** (“Introduction to Machine Learning”), instead of **OPRE 6343** (“Applied Machine Learning”) through the `prefixPriority` metric. Conversely, the `smartNumberMatch` metric, though seldom used, can help rank undergrad level classes (4xxx) higher than a graduate class (6xxx). Instead, `smartNumberMatch` works best in a fuzzy-search setting as a spellchecker; it can help suggest a course like **CS 4390** if I mistype it as **CS 4490**. That’s really cool!
 
-Some Functions
+```
+/** Checks if the query word is/partially a prefix and @returns potential prefix matches */
+function isPotentialPrefix(query: string): string[] {
+  const prefixMatch = query.match(/^[A-Za-z]+/);
+  if (!prefixMatch) return [];
+  const extractedPrefix = prefixMatch[0];
+
+  return coursePrefixes.filter((prefix) =>
+    prefix.toLowerCase().startsWith(extractedPrefix.toLowerCase()),
+  );
+}
+
+/** Checks if query word is 1-4 digits and @returns the exctracted 4 digits if valid or a blank string */
+function isPotentialCourseNumber(query: string): string {
+  // Extract numeric part with optional 'v' in second position (digits at the end or standalone)
+  const numberMatch = query.match(/\d+[vV]?\d*$/);
+  if (!numberMatch) return '';
+  const extractedNumber = numberMatch[0];
+
+  // Check if it's 1-4 characters and follows the pattern: digit + optional 'v' + digits
+  // Valid patterns: 1-4 digits OR digit + v + 1-2 digits
+  const isValid = /^(\d{1,4}|\d[vV]\d{1,2})$/.test(extractedNumber);
+
+  return isValid ? extractedNumber : '';
+}
+
+/** @returns length of the longest common substring between the 2 strings that starts at the beginning of str1 */
+function longestCommonPrefix(str1: string, str2: string): number {
+  let count = 0;
+  const minLength = Math.min(str1.length, str2.length);
+
+  for (let i = 0; i < minLength; i++) {
+    if (str1.toLowerCase()[i] === str2.toLowerCase()[i]) {
+      count++;
+    } else {
+      break; // Stop at first mismatch
+    }
+  }
+
+  return count;
+}
+
+// Edit distance between 2 strings
+function editDistance(a: string, b: string) {
+  const dp = Array.from({ length: a.length + 1 }, () =>
+    Array(b.length + 1).fill(0),
+  );
+  for (let i = 0; i <= a.length; i++) dp[i][0] = i;
+  for (let j = 0; j <= b.length; j++) dp[0][j] = j;
+
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      if (a[i - 1] === b[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = Math.min(
+          dp[i - 1][j] + 1, // deletion
+          dp[i][j - 1] + 1, // insertion
+          dp[i - 1][j - 1] + 1, // substitution
+        );
+      }
+    }
+  }
+  return dp[a.length][b.length];
+}
+
+/** @returns the distance to the closest query word to one title word
+ * @param queries - array of query words
+ * @param word - a single word from the course title
+ */
+function minEditDistance(queries: string[], word: string) {
+  return queries.length > 0 && word.length > 0
+    ? Math.min(...queries.map((query) => editDistance(query, word)))
+    : 10000;
+}
+
+/** Fuzzy matches word with target by using editDistance */
+function findSimilarity(word: string, target: string): number {
+  // Fuzzy matching for typos
+  const distance = editDistance(word.toLowerCase(), target.toLowerCase());
+  const maxLen = Math.max(word.length, target.length);
+  return 1 - distance / maxLen;
+}
+```
 
 Now how is each metric calculated? Well, 
 
