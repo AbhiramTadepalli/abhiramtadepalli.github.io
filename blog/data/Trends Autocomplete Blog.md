@@ -27,7 +27,7 @@ But then Tyler* went ahead and brute forced it. So I got mad and spent a couple 
 
 [Tyler’s Attempt](https://github.com/UTDNebula/utd-trends/pull/456)
 
-> _*Tyler Hill was our VP and an insane engineer. Take a look at how much code and commits he has contributed to each of our projects. He’s now the Nebula Labs President :-)_
+> _*Tyler Hill was our VP and an insane engineer. [Take a look at how much code and commits he has contributed](https://github.com/UTDNebula/utd-trends/graphs/contributors) to each of our projects. He’s now the Nebula Labs President :-)_
 
 
 ## Solution
@@ -283,3 +283,5 @@ We’re addressing these in our ongoing issue for [improvements to the autocompl
 This was a fun project to work on during the summer. I guess this whole post was about my learning, but I really did have to research how Google used to pagerank, read some papers, and play around with weights. Sometimes the results got worse before they got better, and I had to pick a lot of representative benchmark queries to measure performance. What we have now is acceptable, and it works if the user knows how to use it. Improvements are necessary though, so I’ll let you know when we get to that.
 
 But first, we need to refactor the Planner page…
+
+> [Back to Abhiram's Blog](/blog/)
