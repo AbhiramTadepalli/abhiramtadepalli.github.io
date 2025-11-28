@@ -139,6 +139,7 @@ Now how is each metric calculated? Well,
 checks first how many of the digits match in sequence, so CS CS 433x ranks higher than CS 43x3. This makes sense for our domain because a lot of courses have the same first 2 digits, and misspellings tend to occur in the latter 2 digits (because they are harder to remember). After this, the overall similarity is found through their edit distances in `findSimilarity`.
 
 ```ts_smartNumberMatch_code
+// boosts it if the course number matches (fuzzy - allows spelling mistakes)
 const smartNumberMatch =
   courseNumbers
     .map((number) => {
@@ -166,7 +167,18 @@ The most consistent metric is the
 
 because it measures how far off the user’s query is from each title. For each word in the course name, it records the distance to the closest query word. A breakthrough in increasing the quality of ranking came by discounting words with further edit distances:
 
-Code
+```ts_editDistance_code
+//for each word in the course name, find the word in the query that is most similar
+const distances = titleWords.map((word) => minEditDistance(inputArr, word));
+// edit distance between the course title and query words, with a discounted weight on more distant words
+const distanceMetric = 
+  distances
+    .sort((a, b) => a - b)
+    .reduce(
+      (partialSum, dist, i) => partialSum + Math.pow(0.7, i) * dist, // discount weight by 0.7^i
+      0,
+    );
+```
 
 This helps in cases like when the user searches for “Machine Learning” expecting “Introduction to Machine Learning.” I’d reckon most searches are looking for the undergrad version of the CS class, instead of **OPRE 6364** (“Applied Machine Learning”). Without the discount factor, the “Introduction” edit distance would be penalized too much. This is still not perfect, which is why we include 
 
@@ -174,11 +186,48 @@ This helps in cases like when the user searches for “Machine Learning” expec
 
 matching title to each query. For each query word, it marks the highest similarity to any title word and returns the `bestScore` for that query word via a piecewise. 100% word captures are ranked the highest.
 
-Code
+```ts_smartWordCapture_code
+// How much of the query is captured by the title words
+const smartWordCapture = 
+  inputArr
+    .map((word) => {
+      let bestScore = 0;
+
+      titleWords.forEach((tw) => {
+        // For each title word
+        // Exact inclusion (original behavior)
+        if (tw.includes(word)) {
+          bestScore = Math.min(bestScore, -10);
+          return;
+        }
+
+        const similarity = findSimilarity(word, tw);
+        if (similarity > 0.7) {
+          bestScore = Math.min(bestScore, -8 * similarity);
+        }
+        if (similarity > 0.5) {
+          bestScore = Math.min(bestScore, -3 * similarity);
+        }
+      });
+
+      return bestScore;
+    })
+    .reduce((a, b) => a + b, 0);
+```
 
 ### Combining it all together
 
-Code  
+```ts_Distance_Score
+return {
+  distance:
+    (smartNumberMatch < 0 ? 0 : distanceMetric) + // if checking course number, ignore distance metric
+    2 * smartWordCapture + // double weight for word capture
+    prefixPriority +
+    smartNumberMatch,
+  title: title,
+  result: result,
+};
+```
 The code above shows how all the metrics come together into 1 distance number for each course name. *More negative is better*. Let me spell out the logic:
 
 - If there is a non-zero match for a course number, then ignore the `distanceMetric` (prioritize the `smartNumberMatch` higher in our courses domain)  
@@ -195,7 +244,22 @@ A simple static cutoff number won’t cut it. Also autocomplete or searching in 
 
 It was at this moment that I remembered all of my struggles in AP Stats and CS 3341; one word came to my mind: Standard Deviation.
 
-Code
+```ts_SD_Cutoff
+// calculate cutoff for 1 standard deviation
+const cut = results[Math.floor(0)].distance;
+const variance =
+  results.reduce((sum, d) => sum + Math.pow(d.distance - cut, 2), 0) /
+  results.length; // Calculate variance
+const stdDev = Math.sqrt(variance); // Calculate standard deviation
+const oneStdCutoff = cut + 1 * stdDev; // 1 standard deviation cutoff
+const resultsWithoutDistance: Result[] = 
+  results
+    .filter((r) => r.distance <= oneStdCutoff)
+    .map((result) => ({
+      title: result.title,
+      result: result.result,
+    }));
+```
 
 I calculate the cutoff of 1SD centered on the first result’s score. Reasoning for this is that we want all our results to be similar in quality to the best one.
 
