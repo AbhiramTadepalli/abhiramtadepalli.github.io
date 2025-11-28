@@ -235,7 +235,7 @@ summary {
     color: #3e76b7;
     margin-bottom: -20px;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
 }
 
 .code-block {
@@ -307,6 +307,8 @@ h2::after {
 h3 {
     font-size: 1.3rem;
     margin: 0;
+    margin-top: 1.3rem;
+    margin-bottom: -1rem;
     padding: 0;
     color: white;
 }
