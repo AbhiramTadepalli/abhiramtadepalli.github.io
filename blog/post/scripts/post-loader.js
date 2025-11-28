@@ -121,7 +121,7 @@ function markdownToHTML(md) {
   // Step 12: Restore code blocks
   codeBlocks.forEach((block, i) => {
     const langAttr = block.lang ? ` class="language-${block.lang}"` : "";
-    const codeHtml = `<pre><code${langAttr}>${block.code}</code></pre>`;
+    const codeHtml = `<div class="code-block"><pre><code${langAttr}>${block.code}</code></pre></div>`;
     html = html.replace(`~~CODE~BLOCK_${i}~~`, codeHtml);
   });
 
