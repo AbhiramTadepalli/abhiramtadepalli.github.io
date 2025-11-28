@@ -1,0 +1,119 @@
+## The Status Quo
+
+*UTD Trends* is an open-source platform that makes course scheduling easier by providing historical grade data and ratings for courses and professors at the university. The primary engine the users use to interact with this data is the search bar.
+
+The *Trends* search bar is an intricate component chock-full of logic to match queries with courses and professors, and optimizations to improve speed of suggestions.
+
+At a high level, we work with a list of professors and a list of courses offered by the university. 
+
+The autocomplete system first checks if the query matches any courses. If not, then it switches over and tries to find professors that match.
+
+The autocomplete graph is generated so that all possible user queries that could result in a course prefix, number or professor name are nodes in a radix tree. This leaves no room for fuzzy matching, and – if I want to modify autocomplete results – requires either a complex restructuring of the graph generation, or a separate solution. I chose the latter.
+
+## Goal
+
+One of the most requested features that we heard back in October (when we launched Trends 2.0) was the ability to search for a class by its name. For example, Linear Algebra’s course number is MATH 2418. It’s much more intuitive to search for “Linear Algebra” than to remember what the course number is for that class. We planned to address this in the Spring, but we knew that it would be a complex feature to implement.
+
+For starters, we would need a way to detect that the user is searching for a course name. Since course number and professor name searches were already working well, we don’t want to interfere with those.
+
+Next, storing entire course names in an autocomplete graph takes up space, and a few megabytes can really impact performance (even if we cache it) because of the graph traversals. Typing and edits occur really quickly and the autocomplete should be just as fast if not faster than the user.
+
+Finally, the actual text matching is complex. Sure we could use a library, but where’s the fun in that? Additionally, the text students will search for has shared characteristics – we can make assumptions on behalf of the user to optimize and return better/more-accurate results the way users intend.
+
+As project lead, I always maintained that we first brainstorm ideas without thinking of constraints or obstacles. What is the ideal version of Trends? If it includes user reviews, smart syllabus analysis, and (in this case) course name search, then we should use those ideals as a north star as we navigate any obstacles in the way.  
+Therefore, my goal was to lay down the foundation for searching by course name – accounting for edge cases, fuzzy searches, and the logic of the search – over the summer. If we could devise a theoretical algorithm to suggest autocomplete course names, then Trends Engineers could implement it in the fall.
+
+But then Tyler went ahead and brute forced it. So I got mad and spent a couple weeks on this:
+
+_*Tyler Hill was our VP and an insane engineer. Take a look at how much code and commits he has contributed to each of our projects. He’s now the Nebula Labs President :-)_
+
+[Tyler’s Attempt](https://github.com/UTDNebula/utd-trends/pull/456)
+
+## Solution
+
+[Here’s the Pull Request](https://github.com/UTDNebula/utd-trends/pull/456)
+
+To address the graph generation, Tyler’s attempt gave way to the possibility of using two dictionaries (one mapping course number to name, and the other mapping name to possible course numbers) in conjunction with word matching. The dictionary table generation & modifying the autocomplete endpoint were trivial compared to the actual ranking process.
+
+Let’s jump to the end and work our way backwards. The distance between the user’s query and each autocomplete result is calculated using the following metrics:
+
+1) Course Number match (`smartNumberMatch`)  
+2) Edit Distance between the course name and user’s query words (`distanceMetric`)  
+3) How much of the *query* is captured by the title words (`smartWordCapture`)  
+4) Course Prefix match (`prefixPriority`)
+
+`distanceMetric` and `smartWordCapture` are contradictory because the former sees how close each course name and the query, whereas the latter measures how close the query is to each course name.
+
+The reason we didn’t just use a pre-built library like *autocomplete-js* or *Typeahead.js* is because the domain of courses (each with a name, prefix, and number) allows us to be more personal with the results if done right. For example, we wanted to support queries like “Machine Learning CS” to give autocomplete results like **CS 4375** (“Introduction to Machine Learning”), instead of **OPRE 6343** (“Applied Machine Learning”) through the `prefixPriority` metric. Conversely, the `smartNumberMatch` metric, though seldom used, can help rank undergrad level classes (4xxx) higher than a graduate class (6xxx). Instead, `smartNumberMatch` works best in a fuzzy-search setting as a spellchecker; it can help suggest a course like **CS 4390** if I mistype it as **CS 4490**. That’s really cool!
+
+Some Functions
+
+Now how is each metric calculated? Well, 
+
+### Course Number Match
+
+checks first how many of the digits match in sequence, so CS CS 433x ranks higher than CS 43x3. This makes sense for our domain because a lot of courses have the same first 2 digits, and misspellings tend to occur in the latter 2 digits (because they are harder to remember). After this, the overall similarity is found through their edit distances in `findSimilarity`.
+
+Code
+
+I over-emphasize higher similarity scores in a piecewise-function coupled with the prefix match to help show those results higher in the autocomplete. 
+
+The most consistent metric is the 
+
+### Edit Distance
+
+because it measures how far off the user’s query is from each title. For each word in the course name, it records the distance to the closest query word. A breakthrough in increasing the quality of ranking came by discounting words with further edit distances:
+
+Code
+
+This helps in cases like when the user searches for “Machine Learning” expecting “Introduction to Machine Learning.” I’d reckon most searches are looking for the undergrad version of the CS class, instead of **OPRE 6364** (“Applied Machine Learning”). Without the discount factor, the “Introduction” edit distance would be penalized too much. This is still not perfect, which is why we include 
+
+### Word Capture
+
+matching title to each query. For each query word, it marks the highest similarity to any title word and returns the `bestScore` for that query word via a piecewise. 100% word captures are ranked the highest.
+
+Code
+
+### Combining it all together
+
+Code  
+The code above shows how all the metrics come together into 1 distance number for each course name. *More negative is better*. Let me spell out the logic:
+
+- If there is a non-zero match for a course number, then ignore the `distanceMetric` (prioritize the `smartNumberMatch` higher in our courses domain)  
+- Double the weight for `smartWordCapture` because it’s actually a really strong metric for our domain  
+- Just add `prefixPriority` and `smartNumberMatch` :)
+
+And there you have it!
+
+### Ranking
+
+Ranking itself is self explanatory. One quirk is that we wanted to limit how many results are shown, because as you scroll the quality gets comically worse. Especially when you are searching for courses with short names.
+
+A simple static cutoff number won’t cut it. Also autocomplete or searching in search engines like Google tend to narrow the suggestions as your query gets closer to a match.
+
+It was at this moment that I remembered all of my struggles in AP Stats and CS 3341; one word came to my mind: Standard Deviation.
+
+Code
+
+I calculate the cutoff of 1SD centered on the first result’s score. Reasoning for this is that we want all our results to be similar in quality to the best one.
+
+And that’s that.
+
+## Areas of improvement
+
+That’s not that.
+
+There are some problems in terms of the quality of autocompletion. These are caused by the tradeoff between accuracy (suggesting courses based on the query) and context (what the user actually wants). Here are some examples:
+
+- Our favorite “Machine Learning” query does not even show “Introduction to Machine Learning.” The classes it does show (the graduate “Machine Learning”, “Applied Machine Learning”, and “Statistical Machine Learning” are taken less frequently. Some fixes to address this can include:  
+  - Add a metric based on how many students have taken the course (Trends has this data)  
+  - Prioritize undergrad courses slightly higher (need to look at the actual distance scores to see how much to weight this)  
+- For “Operating Systems,” there are a lot of different prefixes for the same course (CS, CE, EE, etc). These can be functionally grouped in terms of the cutoff so more unique courses can be included. The UI for this could also be cleaner.
+
+We’re addressing these in our ongoing issue for [improvements to the autocomplete](https://github.com/UTDNebula/utd-trends/issues/517).
+
+## So what did we learn
+
+This was a fun project to work on during the summer. I guess this whole post was about my learning, but I really did have to research how Google used to pagerank, read some papers, and play around with weights. Sometimes the results got worse before they got better, and I had to pick a lot of representative benchmark queries to measure performance. What we have now is acceptable, and it works if the user knows how to use it. Improvements are necessary though, so I’ll let you know when we get to that.
+
+But first, we need to refactor the Planner page…
