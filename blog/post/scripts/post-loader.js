@@ -10,6 +10,7 @@ async function loadBlogPost() {
     if (post) {
         document.getElementById('title').textContent = post.title;
         document.getElementById('post-content').innerHTML = await loadContents(post.content);
+        attachDetailsListeners();
     } else {
         document.getElementById('post-content').innerHTML = '<h1>Post not found</h1>';
     }
@@ -131,5 +132,39 @@ function markdownToHTML(md) {
 
   return html;
 }
+
+/** For collapsible code chunks, scrolls into view on close */
+function attachDetailsListeners() {
+    const detailsElements = document.querySelectorAll('details');
+    
+    detailsElements.forEach(details => {
+        const codeContainer = details.querySelector('.code-container');
+        details.addEventListener('toggle', (event) => {
+            if (!details.open) { // If closing (not opening)
+                // Scroll summary into view
+                const summary = details.querySelector('summary');
+                // Check if summary is already in viewport
+                const rect = summary.getBoundingClientRect();
+                const isInViewport = (
+                    rect.top >= 0 &&
+                    rect.bottom <= window.innerHeight &&
+                    rect.left >= 0 &&
+                    rect.right <= window.innerWidth
+                );
+                
+                // Only scroll if not already visible
+                if (!isInViewport) {
+                    // Scroll with offset using window.scrollTo
+                    const position = summary.getBoundingClientRect();
+                    window.scrollTo({
+                        top: position.top + window.scrollY - window.innerHeight * 0.5, // 100px above
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+}
+
 
 loadBlogPost();

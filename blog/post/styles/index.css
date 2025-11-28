@@ -223,14 +223,20 @@ details {
 .code-container {
   max-height: 0;
   opacity: 0;
+  transform: translateY(-20px);
   overflow: hidden;
-  transition: max-height 0.7s ease, opacity 0.7s ease;
+  max-height: 0;
+  transition: 
+        max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* When details is open, expand the container */
 details[open] .code-container {
-  max-height: fit-content; /* big enough for your content */
   opacity: 1;
+  transform: translateY(0);
+  max-height: 5000px;
 }
 
 summary {
@@ -238,6 +244,15 @@ summary {
     margin-bottom: -20px;
     font-weight: 600;
     font-size: 1.0rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 0.5rem 0.5rem;
+}
+
+details[open] summary {
+    backdrop-filter: blur(10px);
+    background: #14141a
 }
 
 .code-block {

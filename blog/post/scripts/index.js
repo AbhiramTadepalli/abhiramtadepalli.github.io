@@ -10,20 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
   //     window.open('mailto:' + email, '_blank'); // open the mailto link in a new tab
   //   });
 
-  /** Collapsible Code Segments */
-  const  collapses = document.getElementsByClassName("collapsible");
-  collapses.forEach((coll) => {
-    coll.addEventListener("click", () => {
-      this.classList.toggle("active");
-      const content = this.nextElementSibling;
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-    });
-  });
-
   /** Left Sidebar Dynamic Highlighting */
   const sections = document.querySelectorAll('section');
   const nav_section_titles = document.querySelectorAll('.nav-sidebar-item');
