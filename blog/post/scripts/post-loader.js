@@ -43,8 +43,8 @@ function markdownToHTML(md) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 
-  // Step 3: Blockquotes (lines starting with >)
-  html = html.replace(/^> (.+)$/gm, "<blockquote>$1</blockquote>");
+    // Step 3: Blockquotes (lines starting with >)
+    html = html.replace(/^&gt; (.+)$/gm, "<blockquote>$1</blockquote>");
 
   // Step 4: Headings
   html = html

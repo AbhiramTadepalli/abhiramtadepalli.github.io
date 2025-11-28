@@ -233,6 +233,14 @@
     color: #66d3fa;
 }
 
+blockquote {
+    padding: 2rem 2rem;
+    background: rgba(102, 211, 250, 0.05);
+    border-left: 4px solid #66d3fa;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
 #tldr {
     position: sticky;
     top: 20vh;

@@ -23,15 +23,14 @@ Finally, the actual text matching is complex. Sure we could use a library, but w
 As project lead, I always maintained that we first brainstorm ideas without thinking of constraints or obstacles. What is the ideal version of Trends? If it includes user reviews, smart syllabus analysis, and (in this case) course name search, then we should use those ideals as a north star as we navigate any obstacles in the way.  
 Therefore, my goal was to lay down the foundation for searching by course name – accounting for edge cases, fuzzy searches, and the logic of the search – over the summer. If we could devise a theoretical algorithm to suggest autocomplete course names, then Trends Engineers could implement it in the fall.
 
-But then Tyler went ahead and brute forced it. So I got mad and spent a couple weeks on this:
-
-_*Tyler Hill was our VP and an insane engineer. Take a look at how much code and commits he has contributed to each of our projects. He’s now the Nebula Labs President :-)_
+But then Tyler* went ahead and brute forced it. So I got mad and spent a couple weeks on this:
 
 [Tyler’s Attempt](https://github.com/UTDNebula/utd-trends/pull/456)
 
-## Solution
+> _*Tyler Hill was our VP and an insane engineer. Take a look at how much code and commits he has contributed to each of our projects. He’s now the Nebula Labs President :-)_
 
-[Here’s the Pull Request](https://github.com/UTDNebula/utd-trends/pull/456)
+
+## Solution
 
 To address the graph generation, Tyler’s attempt gave way to the possibility of using two dictionaries (one mapping course number to name, and the other mapping name to possible course numbers) in conjunction with word matching. The dictionary table generation & modifying the autocomplete endpoint were trivial compared to the actual ranking process.
 
@@ -43,6 +42,8 @@ Let’s jump to the end and work our way backwards. The distance between the use
 4) Course Prefix match (`prefixPriority`)
 
 `distanceMetric` and `smartWordCapture` are contradictory because the former sees how close each course name and the query, whereas the latter measures how close the query is to each course name.
+
+> [Here’s the Pull Request](https://github.com/UTDNebula/utd-trends/pull/456)
 
 The reason we didn’t just use a pre-built library like *autocomplete-js* or *Typeahead.js* is because the domain of courses (each with a name, prefix, and number) allows us to be more personal with the results if done right. For example, we wanted to support queries like “Machine Learning CS” to give autocomplete results like **CS 4375** (“Introduction to Machine Learning”), instead of **OPRE 6343** (“Applied Machine Learning”) through the `prefixPriority` metric. Conversely, the `smartNumberMatch` metric, though seldom used, can help rank undergrad level classes (4xxx) higher than a graduate class (6xxx). Instead, `smartNumberMatch` works best in a fuzzy-search setting as a spellchecker; it can help suggest a course like **CS 4390** if I mistype it as **CS 4490**. That’s really cool!
 
