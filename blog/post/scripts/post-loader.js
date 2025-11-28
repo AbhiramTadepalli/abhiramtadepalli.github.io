@@ -150,7 +150,7 @@ function attachDetailsListeners() {
                 // Scroll summary into view
                 // Check if summary is already in viewport
                 const rect = summary.getBoundingClientRect();
-                const targetScrollTop = details.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.5;
+                const targetScrollTop = details.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.3;
                 const isInViewport = (
                     rect.top >= 0 &&
                     rect.bottom <= window.innerHeight &&
