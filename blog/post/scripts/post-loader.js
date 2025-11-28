@@ -116,7 +116,7 @@ function markdownToHTML(md) {
   html = html.replace(/`(.+?)`/g, "<code>$1</code>");
 
   // Step 8: Links [text](url)
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
 
   // Step 12: Restore code blocks
   codeBlocks.forEach((block, i) => {
