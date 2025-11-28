@@ -221,11 +221,8 @@ details {
 }
 
 .code-container {
-  max-height: 0;
   opacity: 0;
-  transform: translateY(-20px);
   overflow: hidden;
-  max-height: 0;
   transition: 
         max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
         opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
@@ -235,8 +232,12 @@ details {
 /* When details is open, expand the container */
 details[open] .code-container {
   opacity: 1;
-  transform: translateY(0);
-  max-height: 5000px;
+}
+
+details.closing .code-container {
+    max-height: 0 !important;
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
 summary {

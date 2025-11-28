@@ -139,12 +139,18 @@ function attachDetailsListeners() {
     
     detailsElements.forEach(details => {
         const codeContainer = details.querySelector('.code-container');
-        details.addEventListener('toggle', (event) => {
-            if (!details.open) { // If closing (not opening)
+        const summary = details.querySelector('summary');
+
+        summary.addEventListener('click', (e) => {
+            // Check if details is currently open
+            if (details.hasAttribute('open')) {
+                // Prevent the default close behavior
+                e.preventDefault();
+
                 // Scroll summary into view
-                const summary = details.querySelector('summary');
                 // Check if summary is already in viewport
                 const rect = summary.getBoundingClientRect();
+                const targetScrollTop = details.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.5;
                 const isInViewport = (
                     rect.top >= 0 &&
                     rect.bottom <= window.innerHeight &&
@@ -155,12 +161,38 @@ function attachDetailsListeners() {
                 // Only scroll if not already visible
                 if (!isInViewport) {
                     // Scroll with offset using window.scrollTo
-                    const position = summary.getBoundingClientRect();
                     window.scrollTo({
-                        top: position.top + window.scrollY - window.innerHeight * 0.5, // 100px above
+                        top: targetScrollTop,
                         behavior: 'smooth'
                     });
                 }
+                
+                // Add closing class for animation
+                details.classList.add('closing');
+                
+                // Wait for animation to complete, then actually close
+                setTimeout(() => {
+                    details.removeAttribute('open');
+                    details.classList.remove('closing');
+                }, 500); // Match your CSS transition duration
+            } else {
+                // Opening
+                // First, temporarily remove max-height to measure
+                codeContainer.style.transition = 'none';
+                codeContainer.style.maxHeight = 'none';
+                const height = codeContainer.scrollHeight;
+                
+                // Reset to 0
+                codeContainer.style.maxHeight = '0';
+                
+                // Force browser reflow
+                codeContainer.offsetHeight;
+                
+                // Re-enable transition and animate
+                codeContainer.style.transition = '';
+                setTimeout(() => {
+                    codeContainer.style.maxHeight = height + 'px';
+                }, 10);
             }
         });
     });
