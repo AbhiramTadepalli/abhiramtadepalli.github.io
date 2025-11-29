@@ -1,7 +1,13 @@
 async function loadBlogPost() {
-    // Get slug from URL: blog-post.html?slug=course-name-search
-    const urlParams = new URLSearchParams(window.location.search);
-    const slug = urlParams.get('slug');
+    let slug = ''
+    if (windows.location.pathname.indexOf("?post=") > 0) // Get slug from URL: blog/post/?post=course-name-search
+    {
+        const urlParams = new URLSearchParams(window.location.search);
+        slug = urlParams.get('post');
+    }
+    else { // Get slug from URL: blog/post/course-name-search
+        slug = windows.location.pathname.substring(windows.location.pathname.indexOf("?post=") + 6);
+    }
     // Fetch posts data
     const response = await fetch('../data/posts.json');
     const posts = await response.json();
