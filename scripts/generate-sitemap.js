@@ -17,6 +17,7 @@ let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <priority>0.9</priority>
   </url>`;
 
+// Add Blog posts
 Object.keys(posts).forEach(slug => {
   const post = posts[slug];
   sitemap += `
@@ -27,7 +28,32 @@ Object.keys(posts).forEach(slug => {
   </url>`;
 });
 
+// Add project, org, and cert pages
+const pagesFromDirs = getPagesFromDirs("projects").concat(getPagesFromDirs("organizations")).concat(getPagesFromDirs("certifications"));
+
+pagesFromDirs.forEach(page => {
+  sitemap += `
+  <url>
+    <loc>${baseUrl}/${page}/</loc>
+    <lastmod>${today}</lastmod>
+    <priority>0.8</priority>
+  </url>`;
+});
+
 sitemap += '\n</urlset>';
 
 fs.writeFileSync('sitemap.xml', sitemap);
 console.log('Sitemap generated!');
+
+
+function getPagesFromDirs(path) {
+  try {
+    const entries = fs.readdirSync(path, { withFileTypes: true });
+    return entries
+      .filter(entry => entry.isDirectory())
+      .map(entry => path + "/" + entry.name);
+  } catch (err) {
+    console.warn('Could not read projects directory:', err);
+    return [];
+  }
+}
