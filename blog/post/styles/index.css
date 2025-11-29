@@ -1,3 +1,6 @@
+html {
+    background-color: #0a0a0a;
+}
 .body {
     background: linear-gradient(135deg, #141414 0%, #0a0a0a 100%);
     color: #e8f4f8;

@@ -2,11 +2,11 @@
 <html>
 <head>
     <script>
-        // Redirect /blog/post/slug to /blog/post/template.html with path preserved
+        // Redirect /blog/post/slug to /blog/post/index.html with path preserved
         const path = window.location.pathname;
         
         if (path.startsWith('/blog/post/') && path !== '/blog/post/index.html') {
-            window.location.replace('/blog/post/template.html');
+            window.location.replace('/blog/post/index.html');
         }
     </script>
 </head>
