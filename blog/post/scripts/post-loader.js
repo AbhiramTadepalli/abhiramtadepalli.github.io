@@ -1,7 +1,7 @@
 async function loadBlogPost() {
     // Get slug from URL: blog/post/?post=course-name-search
     const urlParams = new URLSearchParams(window.location.search);
-    const slug = urlParams.get('slug');
+    const slug = urlParams.get('post');
     // Fetch posts data
     const response = await fetch('../data/posts.json');
     const posts = await response.json();
