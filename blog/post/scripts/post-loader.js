@@ -1,26 +1,17 @@
 async function loadBlogPost() {
-    let slug = ''
-    console.log("hi", sessionStorage.getItem("redirectPath"))
-    let fullPath = sessionStorage.getItem("redirectPath") || window.location.href;
-    console.log(fullPath, window.location.search)
-    sessionStorage.removeItem('redirectPath'); // clean it
-    if (fullPath.indexOf("?post=") > 0) // Get slug from URL: blog/post/?post=course-name-search
-    {
-        const urlParams = new URLSearchParams(window.location.search);
-        slug = urlParams.get('post');
-        console.log("slug way")
-    }
-    else { // Get slug from URL: blog/post/course-name-search
-        slug = fullPath.substring(fullPath.indexOf("post/") + 5);
-        console.log("404 way")
-    }
-    console.log(slug)
+    // Get slug from URL: blog/post/?post=course-name-search
+    const urlParams = new URLSearchParams(window.location.search);
+    const slug = urlParams.get('slug');
     // Fetch posts data
     const response = await fetch('../data/posts.json');
     const posts = await response.json();
     const post = posts[slug];
     
     if (post) {
+        document.getElementById('date').textContent = post.date;
+        document.getElementById('affiliation').textContent = post.affiliation;
+        document.getElementById('funny-antedote').textContent = post.antedote;
+        // document.getElementById('tldr').textContent = post.summary;
         document.getElementById('title').textContent = post.title;
         document.getElementById('post-content').innerHTML = await loadContents(post.content);
         attachDetailsListeners();
