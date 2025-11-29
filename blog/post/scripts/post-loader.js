@@ -1,15 +1,17 @@
 async function loadBlogPost() {
     let slug = ''
     console.log("hi")
-    console.log(window.location.href, window.location.search)
-    if (window.location.href.indexOf("?post=") > 0) // Get slug from URL: blog/post/?post=course-name-search
+    let fullPath = sessionStorage.getItem("redirectPath") || window.location.href;
+    console.log(fullPath, window.location.search)
+    sessionStorage.removeItem('redirectPath'); // clean it
+    if (fullPath.indexOf("?post=") > 0) // Get slug from URL: blog/post/?post=course-name-search
     {
         const urlParams = new URLSearchParams(window.location.search);
         slug = urlParams.get('post');
         console.log("slug way")
     }
     else { // Get slug from URL: blog/post/course-name-search
-        slug = window.location.href.substring(window.location.href.indexOf("?post=") + 6);
+        slug = fullPath.substring(fullPath.indexOf("?post=") + 6);
         console.log("404 way")
     }
     console.log(slug)
