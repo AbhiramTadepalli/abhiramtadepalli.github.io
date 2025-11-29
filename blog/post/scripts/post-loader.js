@@ -28,8 +28,7 @@ async function generateBlogPosts() {
     console.log(`Generating ${slug}...`);
     
     // Read markdown content
-    const mdPath = path.join('blog/data/', post.content);
-    const markdown = fs.readFileSync(mdPath, 'utf-8');
+    const markdown = loadMarkdown(post.content);
     
     // Convert to HTML
     const htmlContent = markdownToHTML(markdown);
@@ -48,10 +47,20 @@ async function generateBlogPosts() {
     fs.writeFileSync(outputPath, fullHTML);
     
     console.log(`✓ Generated ${outputPath}`);
+
+    generatePreviewImage(post, slugDir)
   }
   
   console.log('\nAll posts generated successfully!');
 }
+
+function loadMarkdown(filepath)
+{
+    const mdPath = path.join('blog/data/', filepath);
+    const markdown = fs.readFileSync(mdPath, 'utf-8');
+    return markdown;
+}
+
 /** Injects headers, meta, and post content */
 function generateHTML(post, content, slug)
 {
@@ -86,6 +95,41 @@ function generateHTML(post, content, slug)
             .replace(/(<article id="post-content">)[\s\S]*?(<\/article>)/, `$1<h1>Post not found</h1>$2`);
     }
     return html;
+}
+
+async function generatePreviewImage(post, outputPath) {
+  // Read template & fill it in
+  let html = fs.readFileSync('blog/post/preview-template.html', 'utf8');
+  html = html.replace('{{TITLE}}', post.title);
+  html = html.replace('{{AFFILIATION}}', post.affiliation);
+  html = html.replace('{{AUTHOR}}', "Abhiram Tadepalli");
+  const time = Math.floor(loadMarkdown(post.content).trim().split(/\s+/).length * 0.66 / 300);
+  html = html.replace('{{TIME}}', time > 1 ? `${time} min read` : '1 min read');
+
+  // Write preview.html inside the slug folder
+  fs.writeFileSync(path.join(outputPath, 'preview.html'), html);
+  
+  // Launch browser
+  const puppeteer = require('puppeteer');
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  
+  // Set viewport to OG image dimensions
+  await page.setViewport({ width: 1200, height: 630 });
+  
+  // Load HTML content
+  await page.goto(`file://${path.resolve(outputPath, 'preview.html')}`, {
+  waitUntil: 'networkidle0'
+});
+
+  // Take screenshot
+  await page.screenshot({ path: path.join(outputPath, 'preview.png') });
+  
+  // delete preview.html
+  fs.unlinkSync(path.join(outputPath, 'preview.html'));
+
+  await browser.close();
+  console.log(`Generated: ${outputPath}`);
 }
 
 function markdownToHTML(md) {
