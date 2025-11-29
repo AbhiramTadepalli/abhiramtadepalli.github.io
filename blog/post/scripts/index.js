@@ -16,16 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const home_section_ids = ["../../#intro-section", "../../#experience-section", "/blog"];
 
   nav_section_titles.forEach((navItem, index) => {
-    if (index == nav_section_titles.length - 1) { // blog
-      navItem.addEventListener('click', () => {
-        sections[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    }
-    else {
       navItem.addEventListener('click', () => {
         window.location.href = home_section_ids[index];
       });
-    }
   });
   
 function updateSidebarPosition(isBlog = false) {
