@@ -58,7 +58,23 @@ function generateHTML(post, content, slug)
     const template = fs.readFileSync('blog/post/index.html', 'utf-8');
     let html = null;
     if (post) {
+        // Generate meta tags section
+        const metaTags = `
+            <!-- Default meta tags (will be updated by JavaScript) -->
+            <title>${post.title} | Abhiram's Blog</title>
+            <meta property="og:title" content="${post.title}" id="og-title">
+            <meta property="og:description" content="${post.antedote || 'Check out Abhiram\'s Blog'}" id="og-description">
+            <meta property="og:url" content="https://abhiramtadepalli.github.io/blog/post/${slug}" id="og-url">
+            <meta property="og:type" content="article">
+            
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="${post.title}" id="twitter-title">
+            <meta name="twitter:description" content="${post.antedote || 'Check out Abhiram\'s Blog'}" id="twitter-description">
+            <!-- End of meta tags -->
+        `;
+        
         html = template
+            .replace(/<!-- Default meta tags[\s\S]*?<!-- End of meta tags -->/, metaTags)
             .replace(/(<div id="date">)[\s\S]*?(<\/div>)/, `$1${post.date}$2`)
             .replace(/(<div id="affiliation">)[\s\S]*?(<\/div>)/, `$1${post.affiliation}$2`)
             .replace(/(<div id="funny-antedote">)[\s\S]*?(<\/div>)/, `$1${post.antedote}$2`)
