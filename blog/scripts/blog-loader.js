@@ -5,7 +5,7 @@ async function loadBlogPosts() {
     const postEntries = Object.entries(posts);
     
     if (posts) {
-        document.getElementById('posts').innerHTML = postEntries.map(([key, post]) => `<post-card preview="" title="${post.title}" org="${post.affiliation}" snippet="${post.snippet}" tags="${post.tags}" date="${post.date}"></post-card>`).reduce((prev, curr) => prev + "\n" + curr);
+        document.getElementById('posts').innerHTML = postEntries.map(([key, post]) => `<post-card preview="" key=${key} title="${post.title}" org="${post.affiliation}" snippet="${post.snippet}" tags="${post.tags}" date="${post.date}"></post-card>`).reduce((prev, curr) => prev + "\n" + curr);
     } else {
         document.getElementById('posts').innerHTML = '<div>check back soon for more posts</div>';
     }

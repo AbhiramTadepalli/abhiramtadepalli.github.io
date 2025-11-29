@@ -2,19 +2,20 @@ class PostCard extends HTMLElement {
 
     connectedCallback() {
         // attributes
+        const key = this.getAttribute('key');
         const title = this.getAttribute('title');
         const affiliation = this.getAttribute('org');
         //categories, like frontend, but also hackathons vs personal (can use org affiliation)
         const snippet = this.getAttribute('snippet');
         const tags = this.getAttribute('tags');
         const date = this.getAttribute('date');
-        this.render(title, affiliation, snippet, tags, date);
+        this.render(key, title, affiliation, snippet, tags, date);
     }
 
-    render(title, affiliation, snippet, tags, date) {
+    render(key, title, affiliation, snippet, tags, date) {
       this.innerHTML = `
         <link rel="stylesheet" href="styles/components/postCard.css">
-        <div class="post-card">
+        <div class="post-card" onclick="window.location.href='/blog/post/?post=${key}'">
           <div class="post-header flex-container-row">
             <div class="post-affiliation">${affiliation}</div>
             <div class="post-date">${date}</div>
