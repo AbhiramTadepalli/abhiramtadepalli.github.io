@@ -15,7 +15,7 @@ class PostCard extends HTMLElement {
     render(key, title, affiliation, snippet, tags, date) {
       this.innerHTML = `
         <link rel="stylesheet" href="styles/components/postCard.css">
-        <div class="post-card" onclick="window.location.href='/blog/post/?post=${key}'">
+        <div class="post-card" onclick="window.location.href='/blog/post/${key}'">
           <div class="post-header flex-container-row">
             <div class="post-affiliation">${affiliation}</div>
             <div class="post-date">${date}</div>
