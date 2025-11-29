@@ -21,7 +21,7 @@ Object.keys(posts).forEach(slug => {
   const post = posts[slug];
   sitemap += `
   <url>
-    <loc>${baseUrl}/blog/post/?post=${slug}</loc>
+    <loc>${baseUrl}/blog/post/${slug}</loc>
     <lastmod>${post.date || today}</lastmod>
     <priority>0.8</priority>
   </url>`;
