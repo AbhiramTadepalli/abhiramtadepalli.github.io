@@ -1,6 +1,6 @@
 async function loadBlogPost() {
     let slug = ''
-    console.log("hi")
+    console.log("hi", sessionStorage.getItem("redirectPath"))
     let fullPath = sessionStorage.getItem("redirectPath") || window.location.href;
     console.log(fullPath, window.location.search)
     sessionStorage.removeItem('redirectPath'); // clean it
@@ -11,7 +11,7 @@ async function loadBlogPost() {
         console.log("slug way")
     }
     else { // Get slug from URL: blog/post/course-name-search
-        slug = fullPath.substring(fullPath.indexOf("?post=") + 6);
+        slug = fullPath.substring(fullPath.indexOf("post/") + 5);
         console.log("404 way")
     }
     console.log(slug)
