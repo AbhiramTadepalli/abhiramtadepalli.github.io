@@ -386,7 +386,8 @@ a {
         text-decoration: none;
         font-size: 1.2rem;
         margin-top: 5vh;
-        font-weight: 600;
+        font-weight: 700;
+        line-height: normal;
     }
 
     #mobile-nav-menu {
@@ -399,6 +400,24 @@ a {
         background: rgba(21, 21, 22, 0.95);
         padding-top: 3vh;
         z-index: 90;
+    }
+
+    #mobile-nav-menu ul {
+        padding: 0;
+        margin: 0;
+        width: auto; /* or a specific width */
+        text-align: center;
+    }
+
+    #mobile-nav-menu li {
+        list-style-type: none;
+        margin-left: 0;
+        padding: 0;
+    }
+
+    #mobile-nav-menu a {
+        all: unset;
+        cursor: pointer;
     }
     
     #mobile-nav-menu.active {
