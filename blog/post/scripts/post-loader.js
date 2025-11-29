@@ -63,7 +63,7 @@ function generateHTML(post, content, slug)
             <!-- Default meta tags (will be updated by JavaScript) -->
             <title>${post.title} | Abhiram's Blog</title>
             <meta property="og:title" content="${post.title}" id="og-title">
-            <meta property="og:description" content="${post.antedote || 'Check out Abhiram\'s Blog'}" id="og-description">
+            <meta property="og:description" content="${post.affiliation + " &bull; " + post.snippet || 'Check out Abhiram\'s Blog'}" id="og-description">
             <meta property="og:url" content="https://abhiramtadepalli.github.io/blog/post/${slug}" id="og-url">
             <meta property="og:type" content="article">
             
