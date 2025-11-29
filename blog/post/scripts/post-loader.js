@@ -182,7 +182,9 @@ function attachDetailsListeners() {
             } else {
                 // Opening
                 requestAnimationFrame(() => {
-                    codeContainer.style.maxHeight = codeContainer.scrollHeight + 'px';
+                    requestAnimationFrame(() => {
+                        codeContainer.style.maxHeight = codeContainer.scrollHeight + 'px';
+                    });
                 }); // to fix safari bug
                 // First, temporarily remove max-height to measure
                 codeContainer.style.transition = 'none';
