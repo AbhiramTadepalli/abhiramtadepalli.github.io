@@ -425,7 +425,7 @@ ul {
         align-self: center;
         display: flex;
         width: 85%;
-        height: 20%;
+        height: fit-content;
         justify-content: flex-start; /* Center horizontally */
         align-content: flex-end;
         flex-shrink: 0;
@@ -457,7 +457,7 @@ ul {
     #sidebar1-gpa {
         align-self: flex-end;
         margin-top: -1.25em; /** #sidebar padding is done by rems */
-        margin-right: -1em;
+        margin-right: -1.1em;
         /* background-color: rgb(46, 55, 60); */
         background-color: rgba(75, 169, 220, 0.463);
         /* background-color: rgba(220, 119, 75, 0.463); */
