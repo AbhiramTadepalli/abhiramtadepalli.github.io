@@ -1,0 +1,16 @@
+{
+  "course-name-search": {
+    "title": "The One where I build a Course Name Search",
+    "affiliation": "Nebula Labs",
+    "date": "01-22-2024",
+    "snippet": "I don't know what CS 4375 is, but I do know how to type &quot;Machine Learning&quot;",
+    "tags": ["NextJS", "JavaScript", "ReactJS"],
+    "content": "Trends Autocomplete Blog.md"
+  },
+  "fly-in-demand": {
+    "title": "FlyInDemand",
+    "org": "AI Society",
+    "date": "09-2024",
+    "content": "<h2>Project Overview</h2><p>...</p>"
+  }
+}

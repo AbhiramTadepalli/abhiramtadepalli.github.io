@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhiram Tadepalli's Portfolio</title>
+    <link rel="stylesheet" type="text/css" href="styles\index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script>
+        getListItemsFromList(list)
+        {
+            list.split(",").map((value) => <li>value</li>);
+        }
+    </script>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9D2M3N62N4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9D2M3N62N4');
+</script>
+
+<script src="components/postCard.js"></script>
+<script src="scripts\index.js"></script>
+<body class="body">
+    <header>
+        <!-- Hamburger button -->
+        <button id="mobile-nav-button" aria-label="Toggle menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Navigation menu -->
+        <nav class="flex-container-col" id="mobile-nav-menu">
+            <ul>
+                <li class="mobile-nav-item"><a href="/">Intro</a></li>
+                <li class="mobile-nav-item"><a href="/#experience-section">Projects</a></li>
+                <li class="mobile-nav-item"><a href="/blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="flex-container-row" id="main">
+        <ul class="flex-container-col" id="nav-sidebar">
+            <li class="nav-sidebar-item">Intro</li>
+            <li class="nav-sidebar-item">Projects</li>
+            <!-- <li class="nav-sidebar-item">Work Experience</li>
+            <li class="nav-sidebar-item">Extracurriculars</li> -->
+            <li class="nav-sidebar-item">Blog</li>
+        </ul>
+        <div id="content">
+            <section id="dummy-intro-section"></section>
+            <section id="dummy-experience-section"></section>
+            <section class="flex-container-row" id="blog-section">
+                <div id="hero">
+                    <div id="name">
+                        <h1>Blog</h1>
+                    </div>
+                    <div id="blurb">Some of my thoughts, a bit about my projects, and fun stuff if I have time (you know I don't)</div>
+                </div>
+            </section>
+            <section class="flex-container-row" id="posts-section">
+                <div class="flex-container-row" id="posts">
+                    <post-card preview="" title="The One where I build a Course Name Search" org="Nebula Labs" snippet="I don't know what CS 4375 is, but I do know how to type &quot;Machine Learning&quot;" tags="NextJS, JavaScript, ReactJS, HTML, Tailwind CSS, API" date="01-22-2024"></post-card>
+                    <post-card preview="" name="FlyInDemand" org="AI Society" role="Mentee (AIM)" snippet="Predict the expected volume of traffic and number of delays at any airport to manage airport staff loads. Our model considers historic economic data, TSA traffic, and flight delays." description="" link="" github="" tags="Python, Google Colab, Time Series, Machine Learning, LSTM" start="09-2024" end="12-2024"></post-card>
+                    <!-- <post-card preview="" name="Haas Research" org="" role="Undergraduate Researcher" description="" link="" github="" tags="" start="" end=""></post-card> -->
+                    <post-card preview="" name="AI51" org="AI Society" role="AI/ML Project Developer" snippet="Top secret AI stuff. Come back soon..!" description="Top secret AI stuff. Come back soon..!" link="" github="" tags="" start="09-2024" end=""></post-card>
+                    <post-card preview="" name="CineFusion - Realtime Diffusion Project" org="AI Society" role="Mentee (AIM)" snippet="Replaces a real object with an AI-generated mask. In your webcam. Realtime." description="Built the diffusion pipeline that takes live video, masks objects, and inserts images via inpainting real-time." link="" github="https://github.com/bluestarburst/CineFusion" tags="Python, StreamDiffusion, MobileSAM, YOLO-World" start="02-2024" end="05-2024"></post-card>
+                    <post-card preview="" name="Gradus Grades - School Gradebook Android App" org="Personal Project" role="" snippet="View your grades from the HAC gradebook. Complete with GPA predictions, grade adjustments, and notifications." description="Designed, coded, and tested an Android application that posts user credentials via Jsoup to fetch and parse gradebook HTML pages and display grade data." link="" github="" tags="Android Studio, Java, Jsoup" start="03-2022" end="09-2022"></post-card>
+                    <post-card preview="" name="Cybersecurity: Phishing Simulation and Incident Response" org="Independent Study Final Product (ISM)" role="" snippet="An email phishing simulation (malicious macros) that connects to a remote Ubuntu server. Performed incident response following NIST guidelines." description="Simulated a real-world email phishing attack with malicious excel payload that connects to a remote Linux server. Followed NIST’s Incident Response Framework to secure the targeted user." link="https://abhiramtadepalli22.wixsite.com/ism-original-work" github="" tags="Ubuntu Linux, Excel Macros, Windows PowerShell, Linux, Anti-Phishing" start="01-2022" end="04-2022"></post-card>
+                    <post-card preview="" name="Cybersecurity: Incidents and Vulnerabilities" org="Independent Study Original Work (ISM)" role="" snippet="Analyzed 8 Cyber Incidents and CWE Vulnerabilities from 2021 to see what went wrong, who's at fault, and a proposal on how to fix the vulnerabilities." description="* to be added *" link="https://abhiramtadepalli22.wixsite.com/ism-original-work" github="" tags="Cybersecurity, Incident Response, Research" start="09-2021" end="12-2021"></post-card>
+                    <post-card preview="" name="Assembly Language Car Sensor Simulation" org="CS 2340 - Computer Architecture" role="" snippet="Designed a program in the MIPS Assembly language that uses control branches to present warnings when given car sensor input data." description="Designed a program in the MIPS Assembly language that uses branches to present warnings when given car sensor input data." link="" github="" tags="MIPS, Assembly" start="01-2024" end="05-2024"></post-card>
+                    <post-card preview="" name="Theater Reservation and Ticketing Platform" org="CS 2337 - Computer Science II" role="" snippet="Implemented a terminal interface for users to book tickets for multiple showings. Represented the theater layout in a 2D Array and LinkedList." description="Implemented a terminal interface for users to book tickets for multiple showings. Represented the theater layout in a 2D Array and LinkedList." link="" github="" tags="C++" start="08-2023" end="12-2023"></post-card>
+                    <post-card preview="" name="Hackathon Projects" org="" role="" snippet="Competed in 3 hackathons over the course of 3 semesters in college. Results vary. (All of them were finance-related smh)" description="" link="" github="" tags="ReactJS, Python, HTML, JavaScript, TailwindCSS, AWS, OCR, Machine Learning, LLM" start="" end=""></post-card>
+                    <post-card preview="" name="Upcoming Secret Project #1" org="" role="" snippet="Come back soon..." description="" link="" github="" tags="" start="" end=""></post-card>
+                    <!-- <post-card preview="" name="" org="" description="" link="" github="" tags="" start="" end=""></post-card> -->
+                </div>
+                <script src="scripts/blog-loader.js"></script>
+            </section>
+            <!-- <section id="timeline-section">Here is my work experience</section> --> <!-- project/school experience too -->
+            <!-- <section id="extracurriculars-section">Here are my extracurriculars</section> -->
+        </div>
+    </main>
+
+    <footer class="flex-container-col">
+        <p>&copy; 2024 My Basic HTML Portfolio. All rights reserved. Abhiram Tadepalli.</p>
+    </footer>
+</body>
+</html>

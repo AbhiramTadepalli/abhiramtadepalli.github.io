@@ -1,0 +1,49 @@
+/** Make it harder for scrapers to get my email */
+document.addEventListener('DOMContentLoaded', function () {
+  /** Left Sidebar Dynamic Highlighting */
+  const sections = document.querySelectorAll('section');
+  const nav_section_titles = document.querySelectorAll('.nav-sidebar-item');
+  const home_section_ids = ["../../#intro-section", "../../#experience-section", "/blog"];
+
+  nav_section_titles.forEach((navItem, index) => {
+    if (index == nav_section_titles.length - 1) { // blog
+      navItem.addEventListener('click', () => {
+        sections[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+    else {
+      navItem.addEventListener('click', () => {
+        window.location.href = home_section_ids[index];
+      });
+    }
+  });
+  
+function updateSidebarPosition(isBlog = false) {
+    nav_section_titles.forEach((section, index) => {
+      if (index != nav_section_titles.length - 1)
+      {
+        nav_section_titles[index].classList.remove('active');
+      }
+      else {
+        nav_section_titles[index].classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => updateSidebarPosition(true));
+  window.addEventListener('resize', () => updateSidebarPosition(true));
+  updateSidebarPosition(true); // first time
+
+  /** Mobile Navbar */
+  const hamburger = document.getElementById('mobile-nav-button');
+  const navMenu = document.getElementById('mobile-nav-menu');
+
+  hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      
+      // Update aria-expanded for accessibility
+      const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !isExpanded);
+  });
+});

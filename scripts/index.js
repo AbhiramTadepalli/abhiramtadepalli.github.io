@@ -1,5 +1,17 @@
 /** Make it harder for scrapers to get my email */
 document.addEventListener('DOMContentLoaded', function () {
+  /** When coming back to home page with a section hash, remove it from the URL */
+  window.addEventListener('load', () => {
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      // Remove the hash from URL after scrolling
+      history.replaceState(null, document.title, window.location.pathname);
+    }
+  });
+
   // obfuscate the email address
   var user = 'abhiram.tadepalli.7+portfolio'.split('').reverse().join('');
   var domain = 'gmail.com'.split('').reverse().join('');
@@ -10,22 +22,34 @@ document.addEventListener('DOMContentLoaded', function () {
       window.open('mailto:' + email, '_blank'); // open the mailto link in a new tab
     });
 
-  /** Sidebar Positioning */
+  /** Left Sidebar Dynamic Highlighting */
   const sections = document.querySelectorAll('section');
   const nav_section_titles = document.querySelectorAll('.nav-sidebar-item');
 
   nav_section_titles.forEach((navItem, index) => {
-    navItem.addEventListener('click', () => {
-      sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+    if (index == nav_section_titles.length - 1) {// blog
+      navItem.addEventListener('click', () => {
+        updateSidebarPosition(true)
+        window.location.href = '/blog'; // Go to blog page
+      });
+    }
+    else {
+      navItem.addEventListener('click', () => {
+        updateSidebarPosition(false)
+        sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
   });
   
-  function updateSidebarPosition() {
+  function updateSidebarPosition(isBlog = false) {
     sections.forEach((section, index) => {
       const rect = section.getBoundingClientRect();
       // console.log(rect);
       // console.log(window.innerHeight);
-      if (rect.bottom < window.innerHeight / 3 || rect.top > window.innerHeight / 3) {
+      if (
+        (!isBlog && (rect.bottom < window.innerHeight / 3 || rect.top > window.innerHeight / 3)) // check if section is out of focus
+        || (isBlog && index != nav_section_titles.length - 1) // but if blog is clicked, deactivate all others
+      ) {
         nav_section_titles[index].classList.remove('active');
       }
       else {
@@ -34,17 +58,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  window.addEventListener('scroll', updateSidebarPosition);
-  window.addEventListener('resize', updateSidebarPosition);
-  updateSidebarPosition(); // first time
+  window.addEventListener('scroll', () => updateSidebarPosition(false));
+  window.addEventListener('resize', () => updateSidebarPosition(false));
+  updateSidebarPosition(false); // first time
 
-  function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
+  /** Right Sidebar Sticky Positioning */
   const sidebars = document.querySelectorAll('.sidebar-container');
   function updateStickySidebar() {
     if (window.innerWidth > 1034) { // disable for mobile
@@ -76,4 +94,17 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', updateStickySidebar);
   window.addEventListener('resize', updateStickySidebar);
   updateStickySidebar(); // first time
+
+  /** Mobile Navbar */
+  const hamburger = document.getElementById('mobile-nav-button');
+  const navMenu = document.getElementById('mobile-nav-menu');
+
+  hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      
+      // Update aria-expanded for accessibility
+      const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !isExpanded);
+  });
 });

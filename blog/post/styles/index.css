@@ -1,0 +1,521 @@
+.body {
+    background: linear-gradient(135deg, #141414 0%, #0a0a0a 100%);
+    color: #e8f4f8;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#content {
+  width: 100%;
+  min-height: 100vh;
+  margin-inline-start: -10%;
+}
+
+.flex-container-row {
+    /* We first create a flex layout context */
+    display: flex;
+    flex-flow: row nowrap;
+    
+    /* Then we define how is distributed the remaining space */
+    justify-content: space-around;
+    align-items: center;
+    
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.flex-container-col {
+    /* We first create a flex layout context */
+    display: flex;
+    flex-flow: column nowrap;
+    
+    /* Then we define how is distributed the remaining space */
+    justify-content: space-evenly;
+    align-items: center; 
+    
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#mobile-nav-button {
+    display: none;
+}
+#mobile-nav-menu {
+    display: none;
+}
+
+#nav-sidebar {
+    align-self: normal;
+    justify-content: flex-start;
+    align-items: flex-start;
+    top: 50vh;
+    max-height: 50vh;
+    width: 10%;
+    min-width: 3.125rem;
+    position: -webkit-sticky;
+    position: sticky;
+    flex-shrink: 17;
+    z-index: 100;
+}
+
+.nav-sidebar-item {
+    color: #66b3ff;
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.6em 1em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    letter-spacing: 0.5px;
+}
+
+.nav-sidebar-item:hover {
+    color: #ffffff;
+    border-left: 2px solid #3d99dc;
+}
+
+.nav-sidebar-item.active {
+    color: #ffffff;
+    font-size: 1.1rem;
+    border-left: 2px solid #3d99dc;
+    background: linear-gradient(90deg, rgba(61, 153, 220, 0.15) 0%, transparent 100%);
+}
+
+/* Post Header Section */
+
+#post-header-section {
+    height: fit-content;
+    margin-top: 20vh;
+    width: 100%;
+}
+
+#hero {
+    display: flex;
+    flex-flow: column nowrap;
+    
+    /* Then we define how is distributed the remaining space */
+    justify-content: center;
+    align-items: center;
+    
+    flex-grow: 3;
+
+    width: 70%;
+    padding: 0;
+    list-style: none;
+}
+
+#title-wrapper {
+    width: 100%;
+}
+
+#post-metadata {
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #8eb8d9;
+    margin-bottom: 0.5rem;
+}
+
+#funny-antedote {
+    color: #b8d9f0;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: -0.2rem;
+}
+
+#title {
+    background: linear-gradient(135deg, #66d3fa 0%, #3d99dc 50%, #2565ae 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+#header-divider {
+    width: 85%;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        #5dade2 20%,
+        #3498db 50%,
+        #5dade2 80%,
+        transparent 100%
+    );
+    margin: 1rem 0;
+    box-shadow: 0 0 10px rgba(93, 173, 226, 0.5);
+}
+
+/* Post content Stuff */
+
+#post-body-section {
+    width: 100%;
+    padding: 3rem 0;
+    gap: 2rem;
+}
+
+#post-paper {
+    width: 50%;
+    background: rgba(25, 25, 35, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(93, 173, 226, 0.15);
+    border-radius: 2px;
+    padding: 3rem 6rem;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(61, 153, 220, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    align-items: center;
+    justify-content: center;
+}
+
+#post-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(93, 173, 226, 0.3),
+        transparent
+    );
+}
+
+#post-paper:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.5),
+        0 4px 12px rgba(61, 153, 220, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+#post-content {
+    width: 100%;
+    color: #c0e1ed;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+details {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.code-container {
+  opacity: 0;
+  overflow: hidden;
+  transition: 
+        max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When details is open, expand the container */
+details[open] .code-container {
+  opacity: 1;
+}
+
+details.closing .code-container {
+    max-height: 0 !important;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+summary {
+    color: #3e76b7;
+    margin-bottom: -20px;
+    font-weight: 600;
+    font-size: 1.0rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 0.5rem 0.5rem;
+}
+
+details[open] summary {
+    backdrop-filter: blur(10px);
+    background: #14141a
+}
+
+.code-block {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(93, 173, 226, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+}
+
+.code-block pre {
+    margin: 0;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.7rem;
+    line-height: 1.6;
+}
+
+.code-block code {
+    color: #66d3fa;
+    text-wrap: wrap;
+}
+
+blockquote {
+    padding: 1.5rem 2rem;
+    background: rgba(102, 211, 250, 0.05);
+    border-left: 4px solid #66d3fa;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+#tldr {
+    align-self: center;
+    padding: 1.5rem;
+    background: rgba(20, 20, 30, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(93, 173, 226, 0.1);
+    width: 90%;
+    height: fit-content;
+}
+
+/* Styling */
+
+h1 {
+    font-size: 5rem;
+    margin: 0;
+}
+
+h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
+    font-size: 1.7rem;
+    color: white;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 120%;
+    height: 3px;
+    background: linear-gradient(90deg, #66d3fa, transparent);
+    border-radius: 2px;
+}
+
+h3 {
+    font-size: 1.3rem;
+    margin: 0;
+    margin-top: 1.3rem;
+    margin-bottom: -1rem;
+    padding: 0;
+    color: white;
+}
+
+h4 {
+    font-size: 1.125em;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    all: unset;
+    cursor: pointer;
+    color: #3d99dc;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1135px) and (min-width: 1035px) {
+    .nav-sidebar-item.active {
+        font-size: large;
+    }
+}
+
+@media screen and (max-width: 1034px) {   
+    #content {
+        margin-inline-start: 0%;
+    }
+
+    /* Nav */
+
+    #nav-sidebar {
+        display: none;
+    }
+
+    #mobile-nav-button {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        position: fixed;
+        top: 2vh;
+        right: 2vw;
+        padding: 10px;
+        z-index: 100;
+    }
+
+    .bar {
+        width: 25px;
+        height: 3px;
+        background-color: #66b3ff;
+        margin: 3px 0;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-item {
+        text-decoration: none;
+        font-size: 1.2rem;
+        margin-top: 5vh;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    #mobile-nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 40vw;
+        height: 100vh;
+        background: rgba(21, 21, 22, 0.95);
+        padding-top: 3vh;
+        z-index: 90;
+    }
+
+    #mobile-nav-menu ul {
+        padding: 0;
+        margin: 0;
+        width: auto; /* or a specific width */
+        text-align: center;
+    }
+
+    #mobile-nav-menu li {
+        list-style-type: none;
+        margin-left: 0;
+        padding: 0;
+    }
+
+    #mobile-nav-menu a {
+        all: unset;
+        cursor: pointer;
+    }
+    
+    #mobile-nav-menu.active {
+        display: block;
+    }
+
+    /* Animate to X */
+    #mobile-nav-button.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    #mobile-nav-button.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    #mobile-nav-button.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -7.5px);
+    }
+
+    /* Content */
+
+    #post-header-section {
+        flex-flow: column-reverse nowrap;
+        justify-content: center;
+        align-content: center;
+    }
+    
+    #hero {
+        display: flex;
+        flex-flow: column-reverse nowrap;
+        
+        /* Then we define how is distributed the remaining space */
+        justify-content: center;
+        
+        flex-grow: 3;
+    
+        width: 100%;
+        height: 70%;
+        padding: 0;
+        list-style: none;
+    }
+    
+    #title {
+        margin-inline-start: 0;
+        font-size: 3em;
+        line-height: normal;
+        text-align: center;
+    }
+    
+    #header-divider {
+        margin: 0 0;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+    
+    #funny-antedote {
+        text-align: center;
+        font-size: 14px;
+    }
+    
+    #post-paper {
+        width: 70%;
+        padding: 3rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    blockquote {
+        padding: 1rem 2rem;
+    }
+    
+    /* Styling */
+
+    h1 {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        padding-bottom: 0.2rem;
+        margin-bottom: 0rem;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+        margin: 0;
+        margin-bottom: -1rem;
+        padding: 0;
+    }
+    
+    h4 {
+        font-size: 1.125em;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        margin-top: -0.7rem;
+        margin-left: -0.8rem;
+    }
+}
