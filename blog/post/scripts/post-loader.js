@@ -31,24 +31,25 @@ async function generateBlogPosts() {
     const markdown = loadMarkdown(post.content);
     
     // Convert to HTML
-    const htmlContent = markdownToHTML(markdown);
-    
-    // Generate complete HTML page
-    const fullHTML = generateHTML(post, htmlContent, slug);
-    
+    const htmlContent = markdownToHTML(markdown);    
 
     // Create folder for the slug
     const slugDir = path.join(baseDir, slug);
     if (!fs.existsSync(slugDir)) {
       fs.mkdirSync(slugDir, { recursive: true });
     }
+
+    // Generate Link Preview Image
+    generatePreviewImage(post, slugDir)
+
+    // Generate complete HTML page
+    const fullHTML = generateHTML(post, htmlContent, slug);
+
     // Write index.html inside the slug folder
     const outputPath = path.join(slugDir, 'index.html');
     fs.writeFileSync(outputPath, fullHTML);
     
     console.log(`✓ Generated ${outputPath}`);
-
-    generatePreviewImage(post, slugDir)
   }
   
   console.log('\nAll posts generated successfully!');
@@ -73,10 +74,12 @@ function generateHTML(post, content, slug)
             <title>${post.title} | Abhiram's Blog</title>
             <meta property="og:title" content="${post.title}" id="og-title">
             <meta property="og:description" content="${post.affiliation + " &bull; " + post.snippet || 'Check out Abhiram\'s Blog'}" id="og-description">
+            <meta property="og:image" content="https://abhiramtadepalli.github.io/blog/post/${slug}/preview.png" />
             <meta property="og:url" content="https://abhiramtadepalli.github.io/blog/post/${slug}" id="og-url">
             <meta property="og:type" content="article">
             
             <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:image" content="https://abhiramtadepalli.github.io/blog/post/${slug}/preview.png" />
             <meta name="twitter:title" content="${post.title}" id="twitter-title">
             <meta name="twitter:description" content="${post.antedote || 'Check out Abhiram\'s Blog'}" id="twitter-description">
             <!-- End of meta tags -->
