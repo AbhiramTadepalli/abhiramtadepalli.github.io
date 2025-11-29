@@ -95,7 +95,7 @@ html {
 
 #post-header-section {
     height: fit-content;
-    margin-top: 20vh;
+    margin-top: 7vh;
     width: 100%;
 }
 
@@ -446,6 +446,7 @@ a {
         flex-flow: column-reverse nowrap;
         justify-content: center;
         align-content: center;
+        margin-top: 10vh;
     }
     
     #hero {
