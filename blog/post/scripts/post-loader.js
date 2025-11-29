@@ -181,6 +181,9 @@ function attachDetailsListeners() {
                 }, 500); // Match your CSS transition duration
             } else {
                 // Opening
+                requestAnimationFrame(() => {
+                    codeContainer.style.maxHeight = codeContainer.scrollHeight + 'px';
+                }); // to fix safari bug
                 // First, temporarily remove max-height to measure
                 codeContainer.style.transition = 'none';
                 codeContainer.style.maxHeight = 'none';
