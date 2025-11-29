@@ -1,13 +1,18 @@
 async function loadBlogPost() {
     let slug = ''
-    if (window.location.pathname.indexOf("?post=") > 0) // Get slug from URL: blog/post/?post=course-name-search
+    console.log("hi")
+    console.log(window.location.href, window.location.search)
+    if (window.location.href.indexOf("?post=") > 0) // Get slug from URL: blog/post/?post=course-name-search
     {
         const urlParams = new URLSearchParams(window.location.search);
         slug = urlParams.get('post');
+        console.log("slug way")
     }
     else { // Get slug from URL: blog/post/course-name-search
-        slug = window.location.pathname.substring(window.location.pathname.indexOf("?post=") + 6);
+        slug = window.location.href.substring(window.location.href.indexOf("?post=") + 6);
+        console.log("404 way")
     }
+    console.log(slug)
     // Fetch posts data
     const response = await fetch('../data/posts.json');
     const posts = await response.json();
