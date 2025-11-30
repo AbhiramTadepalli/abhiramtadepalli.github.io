@@ -3,6 +3,7 @@
     "title": "The One where I build a Course Name Search",
     "affiliation": "Nebula Labs",
     "date": "08-25-2025",
+    "mod": "11-29-2025",
     "snippet": "I don't know what CS 4375 is, but I do know how to type &quot;Machine Learning&quot;",
     "antedote": "yes, I use em dashes. no, I did not have an LLM write this.",
     "tags": ["NextJS", "JavaScript", "ReactJS"],
@@ -12,6 +13,7 @@
     "title": "FlyInDemand",
     "org": "AI Society",
     "date": "09-2024",
+    "mod": "11-28-2025",
     "content": "Trends Autocomplete Blog.md"
   }
 }
