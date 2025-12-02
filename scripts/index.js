@@ -107,4 +107,12 @@ document.addEventListener('DOMContentLoaded', function () {
       const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
       hamburger.setAttribute('aria-expanded', !isExpanded);
   });
+  // close menu when clicking outside the nav menu
+  document.addEventListener('click', (event) => {
+    if (!navMenu.classList.contains('active') || hamburger.contains(event.target) || navMenu.contains(event.target)) return; // Do nothing if menu is already closed, click is on X, or click is inside menu
+    // else, close the menu
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
 });
