@@ -146,7 +146,7 @@
 
 <p>The reason we didn’t just use a pre-built library like <em>autocomplete-js</em> or <em>Typeahead.js</em> is because the domain of courses (each with a name, prefix, and number) allows us to be more personal with the results if done right. For example, we wanted to support queries like “Machine Learning CS” to give autocomplete results like <strong>CS 4375</strong> (“Introduction to Machine Learning”), instead of <strong>OPRE 6343</strong> (“Applied Machine Learning”) through the <code class="inline-code">prefixPriority</code> metric. Conversely, the <code class="inline-code">smartNumberMatch</code> metric, though seldom used, can help rank undergrad level classes (4xxx) higher than a graduate class (6xxx). Instead, <code class="inline-code">smartNumberMatch</code> works best in a fuzzy-search setting as a spellchecker; it can help suggest a course like <strong>CS 4390</strong> if I mistype it as <strong>CS 4490</strong>. That’s really cool!</p>
 
-<p><details class="collapsible"><summary>Helper Functions</summary><div class="code-container"><div class="code-block"><pre><code class="language-ts">/** Checks if the query word is/partially a prefix and @returns potential prefix matches */
+<p><details class="collapsible"><summary>Helper Functions</summary><div class="code-container"><div class="code-block"><div class="code-lang">TS</div><pre><code class="language-ts">/** Checks if the query word is/partially a prefix and @returns potential prefix matches */
 function isPotentialPrefix(query: string): string[] {
   const prefixMatch = query.match(/^[A-Za-z]+/);
   if (!prefixMatch) return [];
@@ -235,7 +235,7 @@ function findSimilarity(word: string, target: string): number {
 
 <p>checks first how many of the digits match in sequence, so CS CS 433x ranks higher than CS 43x3. This makes sense for our domain because a lot of courses have the same first 2 digits, and misspellings tend to occur in the latter 2 digits (because they are harder to remember). After this, the overall similarity is found through their edit distances in <code class="inline-code">findSimilarity</code>.</p>
 
-<p><details class="collapsible"><summary>smartNumberMatch code</summary><div class="code-container"><div class="code-block"><pre><code class="language-ts">// boosts it if the course number matches (fuzzy - allows spelling mistakes)
+<p><details class="collapsible"><summary>smartNumberMatch code</summary><div class="code-container"><div class="code-block"><div class="code-lang">TS</div><pre><code class="language-ts">// boosts it if the course number matches (fuzzy - allows spelling mistakes)
 const smartNumberMatch =
   courseNumbers
     .map((number) =&gt; {
@@ -262,7 +262,7 @@ const smartNumberMatch =
 
 <p>because it measures how far off the user’s query is from each title. For each word in the course name, it records the distance to the closest query word. A breakthrough in increasing the quality of ranking came by discounting words with further edit distances:</p>
 
-<p><details class="collapsible"><summary>editDistance code</summary><div class="code-container"><div class="code-block"><pre><code class="language-ts">//for each word in the course name, find the word in the query that is most similar
+<p><details class="collapsible"><summary>editDistance code</summary><div class="code-container"><div class="code-block"><div class="code-lang">TS</div><pre><code class="language-ts">//for each word in the course name, find the word in the query that is most similar
 const distances = titleWords.map((word) =&gt; minEditDistance(inputArr, word));
 // edit distance between the course title and query words, with a discounted weight on more distant words
 const distanceMetric = 
@@ -279,7 +279,7 @@ const distanceMetric =
 
 <p>matching title to each query. For each query word, it marks the highest similarity to any title word and returns the <code class="inline-code">bestScore</code> for that query word via a piecewise. 100% word captures are ranked the highest.</p>
 
-<p><details class="collapsible"><summary>smartWordCapture code</summary><div class="code-container"><div class="code-block"><pre><code class="language-ts">// How much of the query is captured by the title words
+<p><details class="collapsible"><summary>smartWordCapture code</summary><div class="code-container"><div class="code-block"><div class="code-lang">TS</div><pre><code class="language-ts">// How much of the query is captured by the title words
 const smartWordCapture = 
   inputArr
     .map((word) =&gt; {
@@ -308,7 +308,7 @@ const smartWordCapture =
 
 <h3>Combining it all together</h3>
 
-<p><details class="collapsible"><summary>Distance Score</summary><div class="code-container"><div class="code-block"><pre><code class="language-ts">return {
+<p><details class="collapsible"><summary>Distance Score</summary><div class="code-container"><div class="code-block"><div class="code-lang">TS</div><pre><code class="language-ts">return {
   distance:
     (smartNumberMatch &lt; 0 ? 0 : distanceMetric) + // if checking course number, ignore distance metric
     2 * smartWordCapture + // double weight for word capture
@@ -334,7 +334,7 @@ const smartWordCapture =
 
 <p>It was at this moment that I remembered all of my struggles in AP Stats and CS 3341; one word came to my mind: Standard Deviation.</p>
 
-<p><details class="collapsible"><summary>SD Cutoff</summary><div class="code-container"><div class="code-block"><pre><code class="language-ts">// calculate cutoff for 1 standard deviation
+<p><details class="collapsible"><summary>SD Cutoff</summary><div class="code-container"><div class="code-block"><div class="code-lang">TS</div><pre><code class="language-ts">// calculate cutoff for 1 standard deviation
 const cut = results[Math.floor(0)].distance;
 const variance =
   results.reduce((sum, d) =&gt; sum + Math.pow(d.distance - cut, 2), 0) /

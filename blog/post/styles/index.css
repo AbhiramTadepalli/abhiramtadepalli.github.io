@@ -255,7 +255,20 @@ summary {
 
 details[open] summary {
     backdrop-filter: blur(10px);
-    background: #14141a
+    background: #14141bc0
+}
+
+.code-lang {
+    position: relative;
+    top: -1.5rem;
+    left: -1.5rem;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    margin-bottom: -1rem;
+    border-bottom-right-radius: 10px;
+    width: fit-content;
+    text-align: right;
+    background: rgba(93, 173, 226, 0.15);
 }
 
 .code-block {

@@ -238,8 +238,9 @@ function markdownToHTML(md) {
 
   // Step 12: Restore code blocks
   codeBlocks.forEach((block, i) => {
-    const langAttr = block.lang ? ` class="language-${block.lang.substring(0, block.lang.indexOf("_"))}"` : "";
-    const codeHtml = `<details class="collapsible"><summary>${block.lang.substring(block.lang.indexOf("_") + 1).replaceAll("_", " ").trim()}</summary><div class="code-container"><div class="code-block"><pre><code${langAttr}>${cleanSpecialCharacters(block.code)}</code></pre></div></div></details>`;
+    const lang = block.lang ? block.lang.substring(0, block.lang.indexOf("_")) : "";
+    const langAttr = lang.length > 0 ? ` class="language-${lang}"` : "";
+    const codeHtml = `<details class="collapsible"><summary>${block.lang.substring(block.lang.indexOf("_") + 1).replaceAll("_", " ").trim()}</summary><div class="code-container"><div class="code-block">${lang.length > 0 ? `<div class="code-lang">${lang.toUpperCase()}</div>` : ``}<pre><code${langAttr}>${cleanSpecialCharacters(block.code)}</code></pre></div></div></details>`;
     html = html.replace(`~~CODE~BLOCK_${i}~~`, codeHtml);
   });
 
