@@ -10,19 +10,19 @@
 - Voilà (if you ignore the data redundancy)
 ~~SUMMARY~~^^
 This past week I worked on getting my blog page up and running. Because my website is pure HTML & CSS (with a handful of JS), I hypothesized that I'd need an HTML file per post. I didn't like the idea of having to format my writing into HTML, so I tried to look for alternatives. What I settled on was 
-## Dyanmic Post Loading (via JS)
+## Dynamic Post Loading (via JS)
 and this is why it didn't work.
 
 The pipeline I was working with was:
 1) Write a markdown file
-2) Link it's path in a `posts.json` file
-3) Use the json file to dynamically populate the blog page with posts
+2) Link its path in a `posts.json` file
+3) Use the JSON file to dynamically populate the blog page with posts
 4) On click, dynamically (a) convert `md -> html` and (b) fill in a template HTML file with
 
-Steps 3 and 4b are where our `post-loader.js` file comes in play.
+Steps 3 and 4b are where our `post-loader.js` file comes into play.
 
 ## How it works
-The `blog/index.html` file has a section where I want to populate a card for each post. This is simple enough to do through `blog-loader.js` where I fetch the json and map through each post. In `index.html`, I just need to include a `<script src="scripts/blog-loader.js"></script>`.
+The `blog/index.html` file has a section where I want to populate a card for each post. This is simple enough to do through `blog-loader.js` where I fetch the JSON and map through each post. In `index.html`, I just need to include a `<script src="scripts/blog-loader.js"></script>`.
 
 Similar logic for `post-loader.js`:
 1) Get the post from the url slug
@@ -41,7 +41,7 @@ html = template
 
 So a url like `/blog/post/?post=post1` would route to the `index.html` template and then `post-loader.js` would fill in the details.
 
-Perfect right?
+Perfect, right?
 ## NO
 The issue came because I wanted to scope-creep and make
 ## Dynamic Link Previews
@@ -60,7 +60,7 @@ When Twitter or iMessages generates a link preview for a url, it looks at the [O
 <meta name="twitter:description" content="Check out Abhiram's Blog" id="twitter-description">
 ```
 These generators run the HTML without JS. So my method of loading post content cannot help here. This means I have 2 options: (1) make a general set of meta tags that statically represent a blog post. But where's the fun in that So we go with:
- (2) Find a way *(this options requires a bit of explaining)*
+ (2) Find a way *(this option requires a bit of explaining)*
 
 ## The Way
 If I want a different link preview for each post, I *need* a different .html file for each post.
@@ -71,9 +71,9 @@ Re-architecting the code itself was pretty simple. My new workflow makes me run 
 ## Images
 Scope-creep again. Of course.
 
-Most platforms that render a link preview also include an image attached to it. I had the bright idea of making the preview image the title of the blog in the same font I use on my Blog.
+Most platforms that render a link preview also include an image attached to it. I had the bright idea of making the preview image display the blog title in the same font I use.
 
-I worked on this before in [UTD Trends](https://trends.utdnebula.com/) but never actually got around to implementing it. [This feature](https://github.com/UTDNebula/utd-trends/pull/525/files) developed by one of our engineers, however, gave me inspiration. In it, the library [html2canvas](https://html2canvas.hertzen.com/) loads the HTML and takes a screenshot. I've done something similar using [Puppeteer](https://pptr.dev/), so I installed that library and played around.
+I worked on this before in [UTD Trends](https://trends.utdnebula.com/) but never actually got around to implementing it. However, [a feature](https://github.com/UTDNebula/utd-trends/pull/525/files) developed by one of our engineers gave me inspiration. In it, the library [html2canvas](https://html2canvas.hertzen.com/) loads the HTML and takes a screenshot. I've done something similar using [Puppeteer](https://pptr.dev/), so I installed that library and played around.
 
 ```js_Puppeteer_Screenshot
 // Load HTML content
@@ -108,12 +108,12 @@ The final part was actually including this in `post-loader.js`. I generate an HT
 All I have to do now is every time I create a new post, just run the script locally before committing to GitHub.
 
 
-If you look at my [source files](https://github.com/AbhiramTadepalli/abhiramtadepalli.github.io), you'll now see  `blog/post/index.html` & `blog/post/preview-template.html` templates and `blog/post/{name}/index.html` & `blog/post/{name}/preview.png` under each post folder. Neat!
+If you look at my [source files](https://github.com/AbhiramTadepalli/abhiramtadepalli.github.io), you'll now see `blog/post/index.html` & `blog/post/preview-template.html` templates and `blog/post/{name}/index.html` & `blog/post/{name}/preview.png` under each post folder. Neat!
 
 ## Why I did this
 I'm a completionist and I wanted a fully functional Blog Page before I made [this post](https://abhiramtadepalli.github.io/blog/post/course-name-search/) public on LinkedIn (my first post!). I'll probably get around to that tomorrow. As I am writing this, however, I just noticed that I never specifically added meta tags for my home and `/blog` pages. Let me get working on that...
 
-And if you got to this page without seeing a link preview, here's how it looks:
+And if you reached this page without seeing a link preview, here’s what it looks like:
 
 <img src="/blog/post/how-to-blog-a-blog/preview.png" style="width: 30rem; max-width: 100%; margin-top: 1rem;" alt="This post's link preview image"></img>
 
