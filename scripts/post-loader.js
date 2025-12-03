@@ -202,10 +202,13 @@ function markdownToHTML(md) {
     const items = match
         .trim()
         .split("\n")
-        .map((line) =>
-        line.replace(/^(?:\(\d+\)|\d+[.)]) /, "").trim()
-        )
-        .map((item) => `  <li>${item}</li>`)
+        .map((line) => {
+          const numMatch = line.match(/^(?:\((\d+)\)|(\d+)[.)])\s*/);
+          const num = numMatch ? (numMatch[1] || numMatch[2]) : null;
+          const newLine = line.replace(/^(?:\(\d+\)|\d+[.)]) /, "").trim();
+          return {num, newLine};;
+        })
+        .map(({num, newLine}) => `  <li ${num ? 'value="' + num + '"' : ""}>${newLine}</li>`)
         .join("\n");
     return `<ol>\n${items}\n</ol>`;
     });
