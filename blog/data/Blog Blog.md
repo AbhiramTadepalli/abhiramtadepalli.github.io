@@ -34,6 +34,7 @@ Perfect right?
 ## NO
 The issue came because I wanted to scope-creep and make
 ## Dynamic Link Previews
+<img src="/blog/data/images/Blog Blog Link Preview Example.png" style="width: 22rem; max-width: 100%; margin-top: 1rem;" alt="Example of a link preview for this website"></img>
 When Twitter or iMessages generates a link preview for a url, it looks at the [OpenGraph Meta Tags](https://ogp.me/) (or *[Twitter Meta Tags](https://developer.x.com/en/docs/x-for-websites/cards/overview/markup)*) in the HTML like this:
 
 ```html_Meta_tags
@@ -105,6 +106,6 @@ I'm a completionist and I wanted a fully functional Blog Page before I made [thi
 
 And if you got to this page without seeing a link preview, here's how it looks:
 
-<img src="/blog/post/how-to-blog-a-blog/preview.png" style="width: 30rem; margin-top: 1rem;"></img>
+<img src="/blog/post/how-to-blog-a-blog/preview.png" style="width: 30rem; max-width: 100%; margin-top: 1rem;" alt="This post's link preview image"></img>
 
 Neat, right!
