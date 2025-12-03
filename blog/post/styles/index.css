@@ -279,6 +279,14 @@ details[open] summary {
     text-wrap: wrap;
 }
 
+.inline-code {
+    background: rgba(102, 211, 250, 0.1);
+    color: #66d3fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
 blockquote {
     padding: 1.5rem 2rem;
     background: rgba(102, 211, 250, 0.05);

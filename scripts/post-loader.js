@@ -214,7 +214,7 @@ function markdownToHTML(md) {
     });
 
   // Step 7: Inline code `code`
-  html = html.replace(/`(.+?)`/g, "<code>$1</code>");
+  html = html.replace(/`(.+?)`/g, '<code class="inline-code">$1</code>');
 
   // Step 11: Paragraphs (wrap remaining non-HTML lines)
   html = html.replace(/^(?!<[a-z]|___CODE)(.+)$/gm, (match) => {

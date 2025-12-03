@@ -135,16 +135,16 @@
 <p>Let’s jump to the end and work our way backwards. The distance between the user’s query and each autocomplete result is calculated using the following metrics:</p>
 
 <ol>
-<p>  <li value="1">Course Number match (<code>smartNumberMatch</code>)</li></p>
-<p>  <li value="2">Edit Distance between the course name and user’s query words (<code>distanceMetric</code>)</li></p>
-<p>  <li value="3">How much of the <em>query</em> is captured by the title words (<code>smartWordCapture</code>)</li></p>
-<p>  <li value="4">Course Prefix match (<code>prefixPriority</code>)</li></p>
+<p>  <li value="1">Course Number match (<code class="inline-code">smartNumberMatch</code>)</li></p>
+<p>  <li value="2">Edit Distance between the course name and user’s query words (<code class="inline-code">distanceMetric</code>)</li></p>
+<p>  <li value="3">How much of the <em>query</em> is captured by the title words (<code class="inline-code">smartWordCapture</code>)</li></p>
+<p>  <li value="4">Course Prefix match (<code class="inline-code">prefixPriority</code>)</li></p>
 <p></ol></p>
-<code>distanceMetric</code> and <code>smartWordCapture</code> are contradictory because the former sees how close each course name and the query, whereas the latter measures how close the query is to each course name.
+<code class="inline-code">distanceMetric</code> and <code class="inline-code">smartWordCapture</code> are contradictory because the former sees how close each course name and the query, whereas the latter measures how close the query is to each course name.
 
 <blockquote><a href="https://github.com/UTDNebula/utd-trends/pull/456" target="_blank">Here’s the Pull Request</a></blockquote>
 
-<p>The reason we didn’t just use a pre-built library like <em>autocomplete-js</em> or <em>Typeahead.js</em> is because the domain of courses (each with a name, prefix, and number) allows us to be more personal with the results if done right. For example, we wanted to support queries like “Machine Learning CS” to give autocomplete results like <strong>CS 4375</strong> (“Introduction to Machine Learning”), instead of <strong>OPRE 6343</strong> (“Applied Machine Learning”) through the <code>prefixPriority</code> metric. Conversely, the <code>smartNumberMatch</code> metric, though seldom used, can help rank undergrad level classes (4xxx) higher than a graduate class (6xxx). Instead, <code>smartNumberMatch</code> works best in a fuzzy-search setting as a spellchecker; it can help suggest a course like <strong>CS 4390</strong> if I mistype it as <strong>CS 4490</strong>. That’s really cool!</p>
+<p>The reason we didn’t just use a pre-built library like <em>autocomplete-js</em> or <em>Typeahead.js</em> is because the domain of courses (each with a name, prefix, and number) allows us to be more personal with the results if done right. For example, we wanted to support queries like “Machine Learning CS” to give autocomplete results like <strong>CS 4375</strong> (“Introduction to Machine Learning”), instead of <strong>OPRE 6343</strong> (“Applied Machine Learning”) through the <code class="inline-code">prefixPriority</code> metric. Conversely, the <code class="inline-code">smartNumberMatch</code> metric, though seldom used, can help rank undergrad level classes (4xxx) higher than a graduate class (6xxx). Instead, <code class="inline-code">smartNumberMatch</code> works best in a fuzzy-search setting as a spellchecker; it can help suggest a course like <strong>CS 4390</strong> if I mistype it as <strong>CS 4490</strong>. That’s really cool!</p>
 
 <p><details class="collapsible"><summary>Helper Functions</summary><div class="code-container"><div class="code-block"><pre><code class="language-ts">/** Checks if the query word is/partially a prefix and @returns potential prefix matches */
 function isPotentialPrefix(query: string): string[] {
@@ -233,7 +233,7 @@ function findSimilarity(word: string, target: string): number {
 
 <h3>Course Number Match</h3>
 
-<p>checks first how many of the digits match in sequence, so CS CS 433x ranks higher than CS 43x3. This makes sense for our domain because a lot of courses have the same first 2 digits, and misspellings tend to occur in the latter 2 digits (because they are harder to remember). After this, the overall similarity is found through their edit distances in <code>findSimilarity</code>.</p>
+<p>checks first how many of the digits match in sequence, so CS CS 433x ranks higher than CS 43x3. This makes sense for our domain because a lot of courses have the same first 2 digits, and misspellings tend to occur in the latter 2 digits (because they are harder to remember). After this, the overall similarity is found through their edit distances in <code class="inline-code">findSimilarity</code>.</p>
 
 <p><details class="collapsible"><summary>smartNumberMatch code</summary><div class="code-container"><div class="code-block"><pre><code class="language-ts">// boosts it if the course number matches (fuzzy - allows spelling mistakes)
 const smartNumberMatch =
@@ -277,7 +277,7 @@ const distanceMetric =
 
 <h3>Word Capture</h3>
 
-<p>matching title to each query. For each query word, it marks the highest similarity to any title word and returns the <code>bestScore</code> for that query word via a piecewise. 100% word captures are ranked the highest.</p>
+<p>matching title to each query. For each query word, it marks the highest similarity to any title word and returns the <code class="inline-code">bestScore</code> for that query word via a piecewise. 100% word captures are ranked the highest.</p>
 
 <p><details class="collapsible"><summary>smartWordCapture code</summary><div class="code-container"><div class="code-block"><pre><code class="language-ts">// How much of the query is captured by the title words
 const smartWordCapture = 
@@ -320,9 +320,9 @@ const smartWordCapture =
 <p>The code above shows how all the metrics come together into 1 distance number for each course name. <em>More negative is better</em>. Let me spell out the logic:</p>
 
 <ul>
-<p>  <li>If there is a non-zero match for a course number, then ignore the <code>distanceMetric</code> (prioritize the <code>smartNumberMatch</code> higher in our courses domain)</li></p>
-<p>  <li>Double the weight for <code>smartWordCapture</code> because it’s actually a really strong metric for our domain</li></p>
-<p>  <li>Just add <code>prefixPriority</code> and <code>smartNumberMatch</code> :)</li></p>
+<p>  <li>If there is a non-zero match for a course number, then ignore the <code class="inline-code">distanceMetric</code> (prioritize the <code class="inline-code">smartNumberMatch</code> higher in our courses domain)</li></p>
+<p>  <li>Double the weight for <code class="inline-code">smartWordCapture</code> because it’s actually a really strong metric for our domain</li></p>
+<p>  <li>Just add <code class="inline-code">prefixPriority</code> and <code class="inline-code">smartNumberMatch</code> :)</li></p>
 <p></ul></p>
 <p>And there you have it!</p>
 
