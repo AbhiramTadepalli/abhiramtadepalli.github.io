@@ -1,5 +1,5 @@
 {
-  "blog-0": {
+  "0": {
     "title": "So what are we...",
     "affiliation": "Personal",
     "date": "06-22-2025",
@@ -7,7 +7,7 @@
     "snippet": "A picture is worth a thousand words. So why am I not pasting 2 pictures in and calling it a day?",
     "antedote": "Welcome to my Blog.",
     "tags": [],
-    "content": "1-Trends Autocomplete Blog.md"
+    "content": "0-Intro Blog.md"
   },
   "course-name-search": {
     "title": "The One where I build a Course Name Search",
