@@ -148,6 +148,13 @@ function markdownToHTML(md) {
     return placeholder;
   });
 
+  // Step 1.5: Extract and protect images
+  const images = [];
+  html = html.replace(/<img[^>]*>.*?<\/img>/g, (match) => {
+    const placeholder = `~~IMAGE_${images.length}~~`;
+    images.push(match);
+    return placeholder;
+  });
   // Step 2: Basic HTML escaping (for text outside code blocks)
   html = html
     .replace(/&/g, "&amp;")
@@ -235,6 +242,11 @@ function markdownToHTML(md) {
             ? `<a href="${url}">${text}</a>`
             : `<a href="${url}" target="_blank">${text}</a>`;
     });
+
+  // Step 11.5: Restore images
+  images.forEach((image, i) => {
+    html = html.replace(`~~IMAGE_${i}~~`, image);
+  });
 
   // Step 12: Restore code blocks
   codeBlocks.forEach((block, i) => {
