@@ -122,6 +122,9 @@ window.addEventListener('load', function() {
         if (charIndex === Math.floor(originalTexts[nodeIndex].length / 2)) {
             typeWriter(nodeIndex + 1, 0);
         }
+        else if (charIndex >= originalTexts[nodeIndex].length) {
+            textNodes[nodeIndex].parentElement.style.height = 'fit-content' // set to fit-content after animation (during animation, it uses a calculated px height)
+        }
     }
     
     typeWriter(1, 0); // skip header

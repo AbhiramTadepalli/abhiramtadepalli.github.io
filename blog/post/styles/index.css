@@ -379,7 +379,7 @@ h2::after {
 
 #tldr h2 {
     margin-inline-start: 0.6rem;
-    margin-top: 1rem;
+    margin-top: 0.6rem;
 }
 
 h3 {
@@ -557,6 +557,9 @@ a {
         margin-top: 1rem;
         padding: 1.5rem 1.5rem;
         width: 100%;
+    }
+    #tldr h2 {
+        margin-inline-start: 0rem;
     }
 
     .code-block code {
