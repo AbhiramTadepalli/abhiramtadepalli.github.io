@@ -172,7 +172,8 @@ html {
 }
 
 #post-paper {
-    width: 50%;
+    box-sizing: border-box;
+    width: 63%;
     background: rgba(25, 25, 35, 0.6);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -547,7 +548,7 @@ a {
     }
     
     #post-paper {
-        width: 80%;
+        width: 93%;
         padding: 1.5rem 1.8rem;
         font-size: 0.9rem;
     }
