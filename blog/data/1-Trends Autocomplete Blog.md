@@ -1,5 +1,7 @@
 ## The Status Quo
 
+<img src="/blog/data/images/1-Trends ML Autocomplete.png" style="width: 30rem; max-width: 100%; margin-top: 1rem;" alt="Search Autocomplete on UTD Trends for the query 'machine learning cs'"></img>
+
 *UTD Trends* is an open-source platform that makes course scheduling easier by providing historical grade data and ratings for courses and professors at the university. The primary engine the users use to interact with this data is the search bar.
 
 The *Trends* search bar is an intricate component chock-full of logic to match queries with courses and professors, and optimizations to improve speed of suggestions.

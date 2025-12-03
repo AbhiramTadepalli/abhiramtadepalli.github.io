@@ -1,4 +1,14 @@
 {
+  "blog-0": {
+    "title": "So what are we...",
+    "affiliation": "Personal",
+    "date": "06-22-2025",
+    "mod": "12-3-2025",
+    "snippet": "A picture is worth a thousand words. So why am I not pasting 2 pictures in and calling it a day?",
+    "antedote": "Welcome to my Blog.",
+    "tags": [],
+    "content": "1-Trends Autocomplete Blog.md"
+  },
   "course-name-search": {
     "title": "The One where I build a Course Name Search",
     "affiliation": "Nebula Labs",
@@ -7,23 +17,16 @@
     "snippet": "I don't know what CS 4375 is, but I do know how to type &quot;Machine Learning&quot;",
     "antedote": "yes, I use em dashes. no, I did not have an LLM write this.",
     "tags": ["NextJS", "JavaScript", "ReactJS"],
-    "content": "Trends Autocomplete Blog.md"
-  },
-  "fly-in-demand": {
-    "title": "FlyInDemand",
-    "org": "AI Society",
-    "date": "09-2024",
-    "mod": "11-28-2025",
-    "content": "Trends Autocomplete Blog.md"
+    "content": "1-Trends Autocomplete Blog.md"
   },
   "how-to-blog-a-blog": {
     "title": "I made a blog and so should you",
     "affiliation": "Web Dev",
     "date": "12-02-2025",
     "mod": "12-03-2025",
-    "snippet": "Link Previews galore! How a simple dynamic blog post generator worked — until it didn't.",
+    "snippet": "Link Previews galore! The story of how a simple dynamic blog post generator worked — until it didn't.",
     "antedote": "Tag, you're it!",
     "tags": ["HTML", "CSS", "JavaScript"],
-    "content": "Blog Blog.md"
+    "content": "2-Blog Blog.md"
   }
 }
