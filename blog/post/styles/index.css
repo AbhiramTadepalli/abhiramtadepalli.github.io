@@ -613,3 +613,13 @@ a {
         font-size: 0.7rem;
     }
 }
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

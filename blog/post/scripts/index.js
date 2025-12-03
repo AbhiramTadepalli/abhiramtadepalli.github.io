@@ -61,6 +61,72 @@ function updateSidebarPosition(isBlog = false) {
   });
 });
 
+/** tl;dr typing animation */
+window.addEventListener('load', function() {
+    const tldr = document.querySelector('#tldr');
+    const speed = 5;
+    
+    function getTextNodes(node) {
+        const textNodes = [];
+        function traverse(n) {
+            if (n.nodeType === Node.TEXT_NODE && n.textContent.trim()) {
+                textNodes.push(n);
+            } else {
+                n.childNodes.forEach(traverse);
+            }
+        }
+        traverse(node);
+        return textNodes;
+    }
+    
+    const textNodes = getTextNodes(tldr);
+    const originalTexts = textNodes.map(node => node.textContent);
+    const parentOffsetHeights = textNodes.map(node => node.parentElement.offsetHeight);
+    // Clear all text
+    textNodes.forEach((node, i) => {
+        if (i != 0) {
+            node.textContent = '';
+            node.parentElement.style.display = 'none';
+        }
+    });
+    
+    
+    function typeWriter(nodeIndex, charIndex) {
+        if (nodeIndex >= textNodes.length)
+            return;
+        if (charIndex === 0) {
+            const parent = textNodes[nodeIndex].parentElement;
+        
+            // Measure height
+            parent.style.display = parent.tagName === 'LI' ? 'list-item' : 'block';
+            const fullHeight = parentOffsetHeights[nodeIndex];
+            
+            // Start from 0 height and animate
+            parent.style.height = '0px';
+            parent.style.transition = 'height 0.3s ease-out';
+            
+            // Trigger height animation
+            setTimeout(() => {
+                parent.style.height = fullHeight + 'px';
+            }, speed*20);
+        }
+        if (charIndex < originalTexts[nodeIndex].length) {
+            const span = document.createElement('span');
+            span.textContent = originalTexts[nodeIndex].charAt(charIndex);
+            span.style.opacity = '0';
+            span.style.animation = 'fadeIn 0.3s ease-in forwards';
+            // textNodes[nodeIndex].textContent += ;
+            textNodes[nodeIndex].parentElement.appendChild(span);
+            setTimeout(() => typeWriter(nodeIndex, charIndex + 1), speed);
+        } 
+        if (charIndex === Math.floor(originalTexts[nodeIndex].length / 2)) {
+            typeWriter(nodeIndex + 1, 0);
+        }
+    }
+    
+    typeWriter(1, 0); // skip header
+});
+
 /** For collapsible code chunks, scrolls into view on close */
 function attachDetailsListeners() {
     const detailsElements = document.querySelectorAll('details');
