@@ -1,5 +1,5 @@
 ## tl;dr -- because who's got time like that?
-- Want to implement searching for a course by name
+- Wanted to implement searching for a course by name
 - UTD Trends's search engine requires selecting an existing course to proceed
   - Input validation ensures that either a valid course or professor is typed in the search bar
 - Built graphs mapping course number to name
@@ -25,7 +25,7 @@ One of the most requested features that we heard back in October (when we launch
 
 For starters, we would need a way to detect that the user is searching for a course name. Since course number and professor name searches were already working well, we don’t want to interfere with those.
 
-Next, storing entire course names in an autocomplete graph takes up space, and a few megabytes can really impact performance (even if we cache it) because of the graph traversals. Typing and edits occur really quickly and the autocomplete should be just as fast if not faster than the user.
+Next, storing entire course names in an autocomplete graph takes up space, and a few megabytes can really impact performance (even if we cache it) because of the graph traversals. Typing and edits occur really quickly and the autocomplete should be just as fast — if not faster — than the user.
 
 Finally, the actual text matching is complex. Sure we could use a library, but where’s the fun in that? Additionally, the text students will search for has shared characteristics – we can make assumptions on behalf of the user to optimize and return better/more-accurate results the way users intend.
 
@@ -145,7 +145,7 @@ Now how is each metric calculated? Well,
 
 ### Course Number Match
 
-checks first how many of the digits match in sequence, so CS CS 433x ranks higher than CS 43x3. This makes sense for our domain because a lot of courses have the same first 2 digits, and misspellings tend to occur in the latter 2 digits (because they are harder to remember). After this, the overall similarity is found through their edit distances in `findSimilarity`.
+checks first how many of the digits match in sequence, so CS 433x ranks higher than CS 43x3. This makes sense for our domain because a lot of courses have the same first 2 digits, and misspellings tend to occur in the latter 2 digits (because they are harder to remember). After this, the overall similarity is found through their edit distances in `findSimilarity`.
 
 ```ts_smartNumberMatch_code
 // boosts it if the course number matches (fuzzy - allows spelling mistakes)
@@ -193,7 +193,7 @@ This helps in cases like when the user searches for “Machine Learning” expec
 
 ### Word Capture
 
-matching title to each query. For each query word, it marks the highest similarity to any title word and returns the `bestScore` for that query word via a piecewise. 100% word captures are ranked the highest.
+matching title to each query. For each query word, it finds the most similar title word and assigns a `bestScore` using a piecewise scale. 100% word captures are ranked the highest.
 
 ```ts_smartWordCapture_code
 // How much of the query is captured by the title words
@@ -237,7 +237,7 @@ return {
   result: result,
 };
 ```
-The code above shows how all the metrics come together into 1 distance number for each course name. *More negative is better*. Let me spell out the logic:
+The code above shows how all the metrics come together into one distance number for each course name. *More negative is better*. Let me spell out the logic:
 
 - If there is a non-zero match for a course number, then ignore the `distanceMetric` (prioritize the `smartNumberMatch` higher in our courses domain)  
 - Double the weight for `smartWordCapture` because it’s actually a really strong metric for our domain  
@@ -249,9 +249,9 @@ And there you have it!
 
 Ranking itself is self explanatory. One quirk is that we wanted to limit how many results are shown, because as you scroll the quality gets comically worse. Especially when you are searching for courses with short names.
 
-A simple static cutoff number won’t cut it. Also autocomplete or searching in search engines like Google tend to narrow the suggestions as your query gets closer to a match.
+A fixed numerical cutoff doesn't scale well. Also autocomplete or searching in search engines like Google tend to narrow the suggestions as your query gets closer to a match.
 
-It was at this moment that I remembered all of my struggles in AP Stats and CS 3341; one word came to my mind: Standard Deviation.
+It was at this moment that I remembered all of my struggles in AP Stats and CS 3341. One word came to my mind: Standard Deviation.
 
 ```ts_SD_Cutoff
 // calculate cutoff for 1 standard deviation
@@ -287,7 +287,7 @@ There are some problems in terms of the quality of autocompletion. These are cau
 
 We’re addressing these in our ongoing issue for [improvements to the autocomplete](https://github.com/UTDNebula/utd-trends/issues/517).
 
-## So what did we learn
+## So what did we learn?
 
 This was a fun project to work on during the summer. I guess this whole post was about my learning, but I really did have to research how Google used to pagerank, read some papers, and play around with weights. Sometimes the results got worse before they got better, and I had to pick a lot of representative benchmark queries to measure performance. What we have now is acceptable, and it works if the user knows how to use it. Improvements are necessary though, so I’ll let you know when we get to that.
 
