@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+            <!-- Default meta tags (will be updated by JavaScript) -->
+            <title>I made a blog and so should you | Abhiram's Blog</title>
+            <meta property="og:title" content="I made a blog and so should you" id="og-title">
+            <meta property="og:description" content="Web Dev &bull; Link Previews galore! How a simple dynamic blog post generator worked — until it didn't." id="og-description">
+            <meta property="og:image" content="https://abhiramtadepalli.github.io/blog/post/how-to-blog-a-blog/preview.png" />
+            <meta property="og:url" content="https://abhiramtadepalli.github.io/blog/post/how-to-blog-a-blog" id="og-url">
+            <meta property="og:type" content="article">
+            
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:image" content="https://abhiramtadepalli.github.io/blog/post/how-to-blog-a-blog/preview.png" />
+            <meta name="twitter:title" content="I made a blog and so should you" id="twitter-title">
+            <meta name="twitter:description" content="Tag, you're it!" id="twitter-description">
+            <!-- End of meta tags -->
+        
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" type="text/css" href="..\styles\index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9D2M3N62N4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9D2M3N62N4');
+</script>
+
+<script src="..\scripts\index.js"></script>
+<body class="body">
+    <header>
+        <!-- Hamburger button -->
+        <button id="mobile-nav-button" aria-label="Toggle menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Navigation menu -->
+        <nav class="flex-container-col" id="mobile-nav-menu">
+            <ul>
+                <li class="mobile-nav-item"><a href="/">Intro</a></li>
+                <li class="mobile-nav-item"><a href="/#experience-section">Projects</a></li>
+                <li class="mobile-nav-item"><a href="/blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="flex-container-row" id="main">
+        <ul class="flex-container-col" id="nav-sidebar">
+            <li class="nav-sidebar-item">Intro</li>
+            <li class="nav-sidebar-item">Projects</li>
+            <!-- <li class="nav-sidebar-item">Work Experience</li>
+            <li class="nav-sidebar-item">Extracurriculars</li> -->
+            <li class="nav-sidebar-item">Blog</li>
+        </ul>
+        <div id="content">
+            <section id="dummy-intro-section"></section>
+            <section id="dummy-experience-section"></section>
+            <section class="flex-container-row" id="post-header-section">
+                <div class="flex-container-col" id="hero">
+                    <div class="flex-container-col">
+                        <div class="flex-container-row" id="post-metadata">
+                            <div id="date">12-02-2025</div>
+                            <div>&bull;</div>
+                            <div id="author">Abhiram Tadepalli</div>
+                            <div>&bull;</div>
+                            <div id="affiliation">Web Dev</div>
+                        </div>
+                        <div id="funny-antedote">Tag, you're it!</div>
+                    </div>
+                    <div class="flex-container-col" id="title-wrapper">
+                        <div id="title">
+                            <h1>I made a blog and so should you</h1>
+                        </div>
+                        <hr id="header-divider"/>
+                    </div>
+                </div>
+            </section>
+            <section class="flex-container-row" id="post-body-section">
+                <div id="post-paper">
+                    <div id="tldr">
+                        <h3>How'd you end up here</h3>
+                        <div id="tldr-content"></div>
+                    </div>
+                    <article id="post-content"><p>This past week I worked on getting my blog page up and running. Because my website is pure HTML &amp; CSS (with a handful of JS), I hypothesized that I'd need an HTML file per post. I didn't like the idea of having to format my writing into HTML, so I tried to look for alternatives. What I settled on was </p>
+<h2>Dyanmic Post Loading (via JS)</h2>
+<p>and this is why it didn't work.</p>
+
+<p>The pipeline I was working with was:</p>
+<ol>
+<p>  <li value="1">Write a markdown file</li></p>
+<p>  <li value="2">Link it's path in a <code class="inline-code">posts.json</code> file</li></p>
+<p>  <li value="3">Use the json file to dynamically populate the blog page with posts</li></p>
+<p>  <li value="4">On click, dynamically (a) convert <code class="inline-code">md -&gt; html</code> and (b) fill in a template HTML file with</li></p>
+<p></ol></p>
+<p>Steps 3 and 4b are where our <code class="inline-code">post-loader.js</code> file comes in play.</p>
+
+<h2>How it works</h2>
+<p>The <code class="inline-code">blog/index.html</code> file has a section where I want to populate a card for each post. This is simple enough to do through <code class="inline-code">blog-loader.js</code> where I fetch the json and map through each post. In <code class="inline-code">index.html</code>, I just need to include a <code class="inline-code">&lt;script src="scripts/blog-loader.js"&gt;&lt;/script&gt;</code>.</p>
+
+<p>Similar logic for <code class="inline-code">post-loader.js</code>:</p>
+<ol>
+<p>  <li value="1">Get the post from the url slug</li></p>
+<p>  <li value="2">Convert md to html</li></p>
+<p>  <li value="3">Fill in parts of the template like the title, metadata, and content.</li></p>
+<p></ol></p>
+<p>This is how I modify the template dynamically:</p>
+
+<p><details class="collapsible"><summary>String RegEx for building html code dynamically</summary><div class="code-container"><div class="code-block"><div class="code-lang">JS</div><pre><code class="language-js">html = template
+    .replace(/(&lt;div id=&quot;affiliation&quot;&gt;)[\s\S]*?(&lt;\/div&gt;)/, &#96;&#36;1&#36;{post.affiliation}&#36;2&#96;)
+    .replace(/(&lt;div id=&quot;funny-antedote&quot;&gt;)[\s\S]*?(&lt;\/div&gt;)/, &#96;&#36;1&#36;{post.antedote}&#36;2&#96;)
+    .replace(/(&lt;div id=&quot;title&quot;&gt;\s*&lt;h1&gt;)[\s\S]*?(&lt;\/h1&gt;\s*&lt;\/div&gt;)/, &#96;&#36;1&#36;{post.title}&#36;2&#96;)
+    .replace(/(&lt;article id=&quot;post-content&quot;&gt;)[\s\S]*?(&lt;\/article&gt;)/, &#96;&#36;1&#36;{content}&#36;2&#96;);</code></pre></div></div></details></p>
+
+<p>So a url like <code class="inline-code">/blog/post/?post=post1</code> would route to the <code class="inline-code">index.html</code> template and then <code class="inline-code">post-loader.js</code> would fill in the details.</p>
+
+<p>Perfect right?</p>
+<h2>NO</h2>
+<p>The issue came because I wanted to scope-creep and make</p>
+<h2>Dynamic Link Previews</h2>
+<p>When Twitter or iMessages generates a link preview for a url, it looks at the <a href="https://ogp.me/" target="_blank">OpenGraph Meta Tags</a> (or <em><a href="https://developer.x.com/en/docs/x-for-websites/cards/overview/markup" target="_blank">Twitter Meta Tags</a></em>) in the HTML like this:</p>
+
+<p><details class="collapsible"><summary>Meta tags</summary><div class="code-container"><div class="code-block"><div class="code-lang">HTML</div><pre><code class="language-html">&lt;title&gt;Abhiram&#39;s Blog Post&lt;/title&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;Abhiram&#39;s Blog&quot; id=&quot;og-title&quot;&gt;
+&lt;meta property=&quot;og:description&quot; content=&quot;Check out Abhiram&#39;s Blog&quot; id=&quot;og-description&quot;&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;https://abhiramtadepalli.github.io/blog/post/&quot; id=&quot;og-url&quot;&gt;
+&lt;meta property=&quot;og:type&quot; content=&quot;article&quot;&gt;
+
+&lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
+&lt;meta name=&quot;twitter:title&quot; content=&quot;Abhiram&#39;s Blog&quot; id=&quot;twitter-title&quot;&gt;
+&lt;meta name=&quot;twitter:description&quot; content=&quot;Check out Abhiram&#39;s Blog&quot; id=&quot;twitter-description&quot;&gt;</code></pre></div></div></details></p>
+<p>These generators run the HTML without JS. So my method of loading post content cannot help here.</p>
+
+<p>This means I have 2 options:</p>
+<ol>
+<p>  <li value="1">Make a general set of meta tags that statically represent a blog post</li></p>
+<p></ol>But where's the fun in that?</p>
+<p>So we go with</p>
+<ol>
+<p>  <li value="2">Find a way <em>(this options requires a bit of explaining)</em></li></p>
+<p></ol></p>
+<h2>The Way</h2>
+<p>If I want a different link preview for each post, I <em>need</em> a different .html file for each post.</p>
+<p>That's not super hard – I just didn't want to duplicate information (like the content of the post) in multiple places while still maintaining an easy workflow for me. But remember how <code class="inline-code">post-loader.js</code> handles dynamic HTML modification? I can use those functions to batch-create HTML's. This way, each page can statically provide the right data to link previews.</p>
+
+<p>Re-architecting the code itself was pretty simple. My new workflow makes me run <code class="inline-code">post-loader</code> as a script every time I update a blog post and it generates the HTML for me.</p>
+
+<h2>Images</h2>
+<p>Scope-creep again. Of course.</p>
+
+<p>Most platforms that render a link preview also include an image attached to it. I had the bright idea of making the preview image the title of the blog in the same font I use on my Blog.</p>
+
+<p>I worked on this before in <a href="https://trends.utdnebula.com/" target="_blank">UTD Trends</a> but never actually got around to implementing it. <a href="https://github.com/UTDNebula/utd-trends/pull/525/files" target="_blank">This feature</a> developed by one of our engineers, however, gave me inspiration. In it, the library <a href="https://html2canvas.hertzen.com/" target="_blank">html2canvas</a> loads the HTML and takes a screenshot. I've done something similar using Puppeteer, so I installed that library and played around.</p>
+
+<p><details class="collapsible"><summary>Puppeteer Screenshot</summary><div class="code-container"><div class="code-block"><div class="code-lang">JS</div><pre><code class="language-js">// Load HTML content
+await page.goto(&#96;file://&#36;{path.resolve(outputPath, &#39;preview.html&#39;)}&#96;, {
+  waitUntil: &#39;networkidle0&#39;
+});
+
+// Take screenshot
+await page.screenshot({ path: path.join(outputPath, &#39;preview.png&#39;) });</code></pre></div></div></details></p>
+
+<p>The next step is to actually create an HTML file just for the preview. Another template. OpenGraph previews are often rendered in 1200x630, so I made a basic template using the same styling as my blog post page.</p>
+
+<p>The final part was actually including this in <code class="inline-code">post-loader.js</code>. I generate an HTML for each post and take a snapshot, then I delete the HTML and pass the png filepath into the meta tag.</p>
+
+<p><details class="collapsible"><summary>Dynamically generated meta tags</summary><div class="code-container"><div class="code-block"><div class="code-lang">HTML</div><pre><code class="language-html">&lt;!-- Default meta tags (will be updated by JavaScript) --&gt;
+&lt;title&gt;The One where I build a Course Name Search | Abhiram&#39;s Blog&lt;/title&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;The One where I build a Course Name Search&quot; id=&quot;og-title&quot;&gt;
+&lt;meta property=&quot;og:description&quot; content=&quot;Nebula Labs &amp;bull; I don&#39;t know what CS 4375 is, but I do know how to type &amp;quot;Machine Learning&amp;quot;&quot; id=&quot;og-description&quot;&gt;
+&lt;meta property=&quot;og:image&quot; content=&quot;https://abhiramtadepalli.github.io/blog/post/course-name-search/preview.png&quot; /&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;https://abhiramtadepalli.github.io/blog/post/course-name-search&quot; id=&quot;og-url&quot;&gt;
+&lt;meta property=&quot;og:type&quot; content=&quot;article&quot;&gt;
+
+&lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
+&lt;meta name=&quot;twitter:image&quot; content=&quot;https://abhiramtadepalli.github.io/blog/post/course-name-search/preview.png&quot; /&gt;
+&lt;meta name=&quot;twitter:title&quot; content=&quot;The One where I build a Course Name Search&quot; id=&quot;twitter-title&quot;&gt;
+&lt;meta name=&quot;twitter:description&quot; content=&quot;yes, I use em dashes. no, I did not have an LLM write this.&quot; id=&quot;twitter-description&quot;&gt;
+&lt;!-- End of meta tags --&gt;</code></pre></div></div></details></p>
+
+<p>If you look at my <a href="https://github.com/AbhiramTadepalli/abhiramtadepalli.github.io" target="_blank">source files</a>, you'll now see  <code class="inline-code">blog/post/index.html</code> &amp; <code class="inline-code">blog/post/preview-template.html</code> templates and <code class="inline-code">blog/post/{name}/index.html</code> &amp; <code class="inline-code">blog/post/{name}/preview.png</code> under each post folder. Neat!</p>
+
+<h2>Why I did this</h2>
+<p>I'm a completionist and I wanted a fully functional Blog Page before I made <a href="https://abhiramtadepalli.github.io/blog/post/course-name-search/" target="_blank">this post</a> public on LinkedIn (my first post!). I'll probably get around to that tomorrow. As I am writing this, however, I just noticed that I never specifically added meta tags for my home and <code class="inline-code">/blog</code> pages. Let me get working on that...</p>
+
+<p>And if you got to this page without seeing a link preview, here's how it looks:</p>
+
+<p><img src="/blog/post/how-to-blog-a-blog/preview.png" style="width: 30rem; margin-top: 1rem;"></img></p>
+
+<p>Neat, right!</p></article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="flex-container-col">
+        <p>&copy; 2025 Abhiram's Portfolio. All rights reserved. Abhiram Tadepalli.</p>
+    </footer>
+</body>
+</html>

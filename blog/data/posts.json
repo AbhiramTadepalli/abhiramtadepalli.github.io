@@ -15,5 +15,15 @@
     "date": "09-2024",
     "mod": "11-28-2025",
     "content": "Trends Autocomplete Blog.md"
+  },
+  "how-to-blog-a-blog": {
+    "title": "I made a blog and so should you",
+    "affiliation": "Web Dev",
+    "date": "12-02-2025",
+    "mod": "12-03-2025",
+    "snippet": "Link Previews galore! How a simple dynamic blog post generator worked — until it didn't.",
+    "antedote": "Tag, you're it!",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "content": "Blog Blog.md"
   }
 }
