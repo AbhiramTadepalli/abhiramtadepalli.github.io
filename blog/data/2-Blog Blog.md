@@ -109,3 +109,4 @@ And if you got to this page without seeing a link preview, here's how it looks:
 <img src="/blog/post/how-to-blog-a-blog/preview.png" style="width: 30rem; max-width: 100%; margin-top: 1rem;" alt="This post's link preview image"></img>
 
 Neat, right!
+> [Back to Abhiram's Blog](/blog/)
