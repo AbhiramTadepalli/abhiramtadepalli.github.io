@@ -59,13 +59,8 @@ When Twitter or iMessages generates a link preview for a url, it looks at the [O
 <meta name="twitter:title" content="Abhiram's Blog" id="twitter-title">
 <meta name="twitter:description" content="Check out Abhiram's Blog" id="twitter-description">
 ```
-These generators run the HTML without JS. So my method of loading post content cannot help here.
-
-This means I have 2 options:
-1) Make a general set of meta tags that statically represent a blog post
-But where's the fun in that?
-So we go with
-2) Find a way *(this options requires a bit of explaining)*
+These generators run the HTML without JS. So my method of loading post content cannot help here. This means I have 2 options: (1) make a general set of meta tags that statically represent a blog post. But where's the fun in that So we go with:
+ (2) Find a way *(this options requires a bit of explaining)*
 
 ## The Way
 If I want a different link preview for each post, I *need* a different .html file for each post.

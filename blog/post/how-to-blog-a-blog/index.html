@@ -157,16 +157,9 @@
 &lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
 &lt;meta name=&quot;twitter:title&quot; content=&quot;Abhiram&#39;s Blog&quot; id=&quot;twitter-title&quot;&gt;
 &lt;meta name=&quot;twitter:description&quot; content=&quot;Check out Abhiram&#39;s Blog&quot; id=&quot;twitter-description&quot;&gt;</code></pre></div></div></details></p>
-<p>These generators run the HTML without JS. So my method of loading post content cannot help here.</p>
+<p>These generators run the HTML without JS. So my method of loading post content cannot help here. This means I have 2 options: (1) make a general set of meta tags that statically represent a blog post. But where's the fun in that So we go with:</p>
+<p> (2) Find a way <em>(this options requires a bit of explaining)</em></p>
 
-<p>This means I have 2 options:</p>
-<ol>
-  <li value="1">Make a general set of meta tags that statically represent a blog post</li>
-</ol>But where's the fun in that?
-<p>So we go with</p>
-<ol>
-  <li value="2">Find a way <em>(this options requires a bit of explaining)</em></li>
-</ol>
 <h2>The Way</h2>
 <p>If I want a different link preview for each post, I <em>need</em> a different .html file for each post.</p>
 <p>That's not super hard – I just didn't want to duplicate information (like the content of the post) in multiple places while still maintaining an easy workflow for me. But remember how <code class="inline-code">post-loader.js</code> handles dynamic HTML modification? I can use those functions to batch-create HTML's. This way, each page can statically provide the right data to link previews.</p>
