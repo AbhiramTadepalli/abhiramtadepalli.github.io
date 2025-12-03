@@ -1,3 +1,14 @@
+## tl;dr -- why are you telling me about a blog
+- Wanted to dynamically populate an HTML template with blog post content upon navigation to that page
+- Did this using a `post-loader.js` script embedded in the HTML
+- To share the blog posts through social media and messaging apps
+  - I need to support link previews
+  - When previews are generated, JS is not run, rendering my previews static
+- Modified the script to create an HTML for every post *(with filled-in OpenGraph/Twitter meta headers)*
+  - This shows a different preview for each post
+- Used [Puppeteer](https://pptr.dev/) locally to capture the preview image
+- Voilà *(if you ignore the data redundancy)*
+~~SUMMARY~~^^
 This past week I worked on getting my blog page up and running. Because my website is pure HTML & CSS (with a handful of JS), I hypothesized that I'd need an HTML file per post. I didn't like the idea of having to format my writing into HTML, so I tried to look for alternatives. What I settled on was 
 ## Dyanmic Post Loading (via JS)
 and this is why it didn't work.
@@ -98,6 +109,9 @@ The final part was actually including this in `post-loader.js`. I generate an HT
 <meta name="twitter:description" content="yes, I use em dashes. no, I did not have an LLM write this." id="twitter-description">
 <!-- End of meta tags -->
 ```
+
+All I have to do now is every time I create a new post, just run the script locally before committing to GitHub.
+
 
 If you look at my [source files](https://github.com/AbhiramTadepalli/abhiramtadepalli.github.io), you'll now see  `blog/post/index.html` & `blog/post/preview-template.html` templates and `blog/post/{name}/index.html` & `blog/post/{name}/preview.png` under each post folder. Neat!
 

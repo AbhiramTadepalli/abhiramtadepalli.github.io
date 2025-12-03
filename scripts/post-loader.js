@@ -31,7 +31,9 @@ async function generateBlogPosts() {
     const markdown = loadMarkdown(post.content);
     
     // Convert to HTML
-    const htmlContent = markdownToHTML(markdown);    
+    const htmlContent = markdownToHTML(markdown, false);
+    // Summary HTML
+    const summaryHTML = markdownToHTML(markdown, true);
 
     // Create folder for the slug
     const slugDir = path.join(baseDir, slug);
@@ -43,7 +45,7 @@ async function generateBlogPosts() {
     generatePreviewImage(post, slugDir)
 
     // Generate complete HTML page
-    const fullHTML = generateHTML(post, htmlContent, slug);
+    const fullHTML = generateHTML(post, htmlContent, summaryHTML, slug);
 
     // Write index.html inside the slug folder
     const outputPath = path.join(slugDir, 'index.html');
@@ -63,7 +65,7 @@ function loadMarkdown(filepath)
 }
 
 /** Injects headers, meta, and post content */
-function generateHTML(post, content, slug)
+function generateHTML(post, content, summary, slug)
 {
     const template = fs.readFileSync('blog/post/index.html', 'utf-8');
     let html = null;
@@ -84,13 +86,14 @@ function generateHTML(post, content, slug)
             <meta name="twitter:description" content="${post.antedote || 'Check out Abhiram\'s Blog'}" id="twitter-description">
             <!-- End of meta tags -->
         `;
-        
+
         html = template
             .replace(/<!-- Default meta tags[\s\S]*?<!-- End of meta tags -->/, metaTags)
             .replace(/(<div id="date">)[\s\S]*?(<\/div>)/, `$1${post.date}$2`)
             .replace(/(<div id="affiliation">)[\s\S]*?(<\/div>)/, `$1${post.affiliation}$2`)
             .replace(/(<div id="funny-antedote">)[\s\S]*?(<\/div>)/, `$1${post.antedote}$2`)
             .replace(/(<div id="title">\s*<h1>)[\s\S]*?(<\/h1>\s*<\/div>)/, `$1${post.title}$2`)
+            .replace(/(<article id="tldr">)[\s\S]*?(<\/article>)/, `$1${summary}$2`)
             .replace(/(<article id="post-content">)[\s\S]*?(<\/article>)/, `$1${content}$2`);
     }
     else {
@@ -135,10 +138,15 @@ async function generatePreviewImage(post, outputPath) {
   console.log(`Generated: ${outputPath}`);
 }
 
-function markdownToHTML(md) {
+function markdownToHTML(md, wantSummary = false) {
   if (!md) return "";
 
   let html = md;
+  if (wantSummary){
+    html = html.split("~~SUMMARY~~^^")[0];
+  } else {
+    html = html.split("~~SUMMARY~~^^")[1];
+  }
 
   // Step 1: Extract and protect fenced code blocks (``````)
   const codeBlocks = [];
@@ -224,7 +232,7 @@ function markdownToHTML(md) {
   html = html.replace(/`(.+?)`/g, '<code class="inline-code">$1</code>');
 
   // Step 11: Paragraphs (wrap remaining non-HTML lines)
-  html = html.replace(/^(?!<[a-z]|___CODE)(.+)$/gm, (match) => {
+  html = html.replace(/^(?!(\s*<)|___CODE)(.+)$/gm, (match) => {
     if (!match.trim()) return match;
     return `<p>${match}</p>`;
   });

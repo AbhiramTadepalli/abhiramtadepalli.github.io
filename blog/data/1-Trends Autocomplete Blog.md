@@ -1,3 +1,10 @@
+## tl;dr -- because who's got time like that?
+- Want to implement searching for a course by name
+- UTD Trends's search engine requires selecting an existing course to proceed
+  - Input validation ensures that either a valid course or professor is typed in the search bar
+- Built graphs mapping course number to name
+- Used distance metrics between course name and user query to rank the autocomplete suggestions with great success
+~~SUMMARY~~^^
 ## The Status Quo
 
 <img src="/blog/data/images/1-Trends ML Autocomplete.png" style="width: 30rem; max-width: 100%; margin-top: 1rem;" alt="Search Autocomplete on UTD Trends for the query 'machine learning cs'"></img>

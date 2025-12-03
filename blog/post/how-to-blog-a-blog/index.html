@@ -92,21 +92,34 @@
             </section>
             <section class="flex-container-row" id="post-body-section">
                 <div id="post-paper">
-                    <div id="tldr">
-                        <h3>How'd you end up here</h3>
-                        <div id="tldr-content"></div>
-                    </div>
-                    <article id="post-content"><p>This past week I worked on getting my blog page up and running. Because my website is pure HTML &amp; CSS (with a handful of JS), I hypothesized that I'd need an HTML file per post. I didn't like the idea of having to format my writing into HTML, so I tried to look for alternatives. What I settled on was </p>
+                    <article id="tldr"><h2>tl;dr -- why are you telling me about a blog</h2>
+<ul>
+  <li>Wanted to dynamically populate an HTML template with blog post content upon navigation to that page</li>
+  <li>Did this using a <code class="inline-code">post-loader.js</code> script embedded in the HTML</li>
+  <li>To share the blog posts through social media and messaging apps</li>
+<ul>
+  <li>I need to support link previews</li>
+  <li>When previews are generated, JS is not run, rendering my previews static</li>
+</ul>
+  <li>Modified the script to create an HTML for every post <em>(with filled-in OpenGraph/Twitter meta headers)</em></li>
+<ul>
+  <li>This shows a different preview for each post</li>
+</ul>
+  <li>Used <a href="https://pptr.dev/" target="_blank">Puppeteer</a> locally to capture the preview image</li>
+  <li>Voilà <em>(if you ignore the data redundancy)</em></li>
+</ul></article>
+                    <article id="post-content">
+<p>This past week I worked on getting my blog page up and running. Because my website is pure HTML &amp; CSS (with a handful of JS), I hypothesized that I'd need an HTML file per post. I didn't like the idea of having to format my writing into HTML, so I tried to look for alternatives. What I settled on was </p>
 <h2>Dyanmic Post Loading (via JS)</h2>
 <p>and this is why it didn't work.</p>
 
 <p>The pipeline I was working with was:</p>
 <ol>
-<p>  <li value="1">Write a markdown file</li></p>
-<p>  <li value="2">Link it's path in a <code class="inline-code">posts.json</code> file</li></p>
-<p>  <li value="3">Use the json file to dynamically populate the blog page with posts</li></p>
-<p>  <li value="4">On click, dynamically (a) convert <code class="inline-code">md -&gt; html</code> and (b) fill in a template HTML file with</li></p>
-<p></ol></p>
+  <li value="1">Write a markdown file</li>
+  <li value="2">Link it's path in a <code class="inline-code">posts.json</code> file</li>
+  <li value="3">Use the json file to dynamically populate the blog page with posts</li>
+  <li value="4">On click, dynamically (a) convert <code class="inline-code">md -&gt; html</code> and (b) fill in a template HTML file with</li>
+</ol>
 <p>Steps 3 and 4b are where our <code class="inline-code">post-loader.js</code> file comes in play.</p>
 
 <h2>How it works</h2>
@@ -114,10 +127,10 @@
 
 <p>Similar logic for <code class="inline-code">post-loader.js</code>:</p>
 <ol>
-<p>  <li value="1">Get the post from the url slug</li></p>
-<p>  <li value="2">Convert md to html</li></p>
-<p>  <li value="3">Fill in parts of the template like the title, metadata, and content.</li></p>
-<p></ol></p>
+  <li value="1">Get the post from the url slug</li>
+  <li value="2">Convert md to html</li>
+  <li value="3">Fill in parts of the template like the title, metadata, and content.</li>
+</ol>
 <p>This is how I modify the template dynamically:</p>
 
 <p><details class="collapsible"><summary>String RegEx for building html code dynamically</summary><div class="code-container"><div class="code-block"><div class="code-lang">JS</div><pre><code class="language-js">html = template
@@ -148,12 +161,12 @@
 
 <p>This means I have 2 options:</p>
 <ol>
-<p>  <li value="1">Make a general set of meta tags that statically represent a blog post</li></p>
-<p></ol>But where's the fun in that?</p>
+  <li value="1">Make a general set of meta tags that statically represent a blog post</li>
+</ol>But where's the fun in that?
 <p>So we go with</p>
 <ol>
-<p>  <li value="2">Find a way <em>(this options requires a bit of explaining)</em></li></p>
-<p></ol></p>
+  <li value="2">Find a way <em>(this options requires a bit of explaining)</em></li>
+</ol>
 <h2>The Way</h2>
 <p>If I want a different link preview for each post, I <em>need</em> a different .html file for each post.</p>
 <p>That's not super hard – I just didn't want to duplicate information (like the content of the post) in multiple places while still maintaining an easy workflow for me. But remember how <code class="inline-code">post-loader.js</code> handles dynamic HTML modification? I can use those functions to batch-create HTML's. This way, each page can statically provide the right data to link previews.</p>
@@ -192,6 +205,9 @@ await page.screenshot({ path: path.join(outputPath, &#39;preview.png&#39;) });</
 &lt;meta name=&quot;twitter:title&quot; content=&quot;The One where I build a Course Name Search&quot; id=&quot;twitter-title&quot;&gt;
 &lt;meta name=&quot;twitter:description&quot; content=&quot;yes, I use em dashes. no, I did not have an LLM write this.&quot; id=&quot;twitter-description&quot;&gt;
 &lt;!-- End of meta tags --&gt;</code></pre></div></div></details></p>
+
+<p>All I have to do now is every time I create a new post, just run the script locally before committing to GitHub.</p>
+
 
 <p>If you look at my <a href="https://github.com/AbhiramTadepalli/abhiramtadepalli.github.io" target="_blank">source files</a>, you'll now see  <code class="inline-code">blog/post/index.html</code> &amp; <code class="inline-code">blog/post/preview-template.html</code> templates and <code class="inline-code">blog/post/{name}/index.html</code> &amp; <code class="inline-code">blog/post/{name}/preview.png</code> under each post folder. Neat!</p>
 

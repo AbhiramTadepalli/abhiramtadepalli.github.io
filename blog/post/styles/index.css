@@ -311,7 +311,7 @@ blockquote {
 
 #tldr {
     align-self: center;
-    padding: 1.5rem;
+    padding: 0.3rem 1rem;
     background: rgba(20, 20, 30, 0.5);
     border-radius: 12px;
     border: 1px solid rgba(93, 173, 226, 0.1);
@@ -564,9 +564,15 @@ a {
         padding: 0;
     }
 
-    li {
-        margin-top: -0.7rem;
-        margin-left: -0.8rem;
+    #tldr li {
+        margin-top: 0.3rem;
+        margin-left: -1.5rem;
+    }
+    #tldr ul ul li {
+        margin-left: -2rem;
+    }
+    #tldr h2::after {
+        max-width: 70vw;;
     }
 
     footer {

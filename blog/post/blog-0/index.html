@@ -92,11 +92,18 @@
             </section>
             <section class="flex-container-row" id="post-body-section">
                 <div id="post-paper">
-                    <div id="tldr">
-                        <h3>How'd you end up here</h3>
-                        <div id="tldr-content"></div>
-                    </div>
-                    <article id="post-content"><h2>The Status Quo</h2>
+                    <article id="tldr"><h2>tl;dr -- because who's got time like that?</h2>
+<ul>
+  <li>Want to implement searching for a course by name</li>
+  <li>UTD Trends's search engine requires selecting an existing course to proceed</li>
+<ul>
+  <li>Input validation ensures that either a valid course or professor is typed in the search bar</li>
+</ul>
+  <li>Built graphs mapping course number to name</li>
+  <li>Used distance metrics between course name and user query to rank the autocomplete suggestions with great success</li>
+</ul></article>
+                    <article id="post-content">
+<h2>The Status Quo</h2>
 
 <p><img src="/blog/data/images/1-Trends ML Autocomplete.png" style="width: 30rem; max-width: 100%; margin-top: 1rem;" alt="Search Autocomplete on UTD Trends for the query 'machine learning cs'"></img></p>
 
@@ -137,11 +144,11 @@
 <p>Let’s jump to the end and work our way backwards. The distance between the user’s query and each autocomplete result is calculated using the following metrics:</p>
 
 <ol>
-<p>  <li value="1">Course Number match (<code class="inline-code">smartNumberMatch</code>)</li></p>
-<p>  <li value="2">Edit Distance between the course name and user’s query words (<code class="inline-code">distanceMetric</code>)</li></p>
-<p>  <li value="3">How much of the <em>query</em> is captured by the title words (<code class="inline-code">smartWordCapture</code>)</li></p>
-<p>  <li value="4">Course Prefix match (<code class="inline-code">prefixPriority</code>)</li></p>
-<p></ol></p>
+  <li value="1">Course Number match (<code class="inline-code">smartNumberMatch</code>)</li>
+  <li value="2">Edit Distance between the course name and user’s query words (<code class="inline-code">distanceMetric</code>)</li>
+  <li value="3">How much of the <em>query</em> is captured by the title words (<code class="inline-code">smartWordCapture</code>)</li>
+  <li value="4">Course Prefix match (<code class="inline-code">prefixPriority</code>)</li>
+</ol>
 <code class="inline-code">distanceMetric</code> and <code class="inline-code">smartWordCapture</code> are contradictory because the former sees how close each course name and the query, whereas the latter measures how close the query is to each course name.
 
 <blockquote><a href="https://github.com/UTDNebula/utd-trends/pull/456" target="_blank">Here’s the Pull Request</a></blockquote>
@@ -322,10 +329,10 @@ const smartWordCapture =
 <p>The code above shows how all the metrics come together into 1 distance number for each course name. <em>More negative is better</em>. Let me spell out the logic:</p>
 
 <ul>
-<p>  <li>If there is a non-zero match for a course number, then ignore the <code class="inline-code">distanceMetric</code> (prioritize the <code class="inline-code">smartNumberMatch</code> higher in our courses domain)</li></p>
-<p>  <li>Double the weight for <code class="inline-code">smartWordCapture</code> because it’s actually a really strong metric for our domain</li></p>
-<p>  <li>Just add <code class="inline-code">prefixPriority</code> and <code class="inline-code">smartNumberMatch</code> :)</li></p>
-<p></ul></p>
+  <li>If there is a non-zero match for a course number, then ignore the <code class="inline-code">distanceMetric</code> (prioritize the <code class="inline-code">smartNumberMatch</code> higher in our courses domain)</li>
+  <li>Double the weight for <code class="inline-code">smartWordCapture</code> because it’s actually a really strong metric for our domain</li>
+  <li>Just add <code class="inline-code">prefixPriority</code> and <code class="inline-code">smartNumberMatch</code> :)</li>
+</ul>
 <p>And there you have it!</p>
 
 <h3>Ranking</h3>
@@ -362,13 +369,13 @@ const resultsWithoutDistance: Result[] =
 <p>There are some problems in terms of the quality of autocompletion. These are caused by the tradeoff between accuracy (suggesting courses based on the query) and context (what the user actually wants). Here are some examples:</p>
 
 <ul>
-<p>  <li>Our favorite “Machine Learning” query does not even show “Introduction to Machine Learning.” The classes it does show (the graduate “Machine Learning”, “Applied Machine Learning”, and “Statistical Machine Learning” are taken less frequently. Some fixes to address this can include:</li></p>
+  <li>Our favorite “Machine Learning” query does not even show “Introduction to Machine Learning.” The classes it does show (the graduate “Machine Learning”, “Applied Machine Learning”, and “Statistical Machine Learning” are taken less frequently. Some fixes to address this can include:</li>
 <ul>
-<p>  <li>Add a metric based on how many students have taken the course (Trends has this data)</li></p>
-<p>  <li>Prioritize undergrad courses slightly higher (need to look at the actual distance scores to see how much to weight this)</li></p>
-<p></ul></p>
-<p>  <li>For “Operating Systems,” there are a lot of different prefixes for the same course (CS, CE, EE, etc). These can be functionally grouped in terms of the cutoff so more unique courses can be included. The UI for this could also be cleaner.</li></p>
-<p></ul></p>
+  <li>Add a metric based on how many students have taken the course (Trends has this data)</li>
+  <li>Prioritize undergrad courses slightly higher (need to look at the actual distance scores to see how much to weight this)</li>
+</ul>
+  <li>For “Operating Systems,” there are a lot of different prefixes for the same course (CS, CE, EE, etc). These can be functionally grouped in terms of the cutoff so more unique courses can be included. The UI for this could also be cleaner.</li>
+</ul>
 <p>We’re addressing these in our ongoing issue for <a href="https://github.com/UTDNebula/utd-trends/issues/517" target="_blank">improvements to the autocomplete</a>.</p>
 
 <h2>So what did we learn</h2>
