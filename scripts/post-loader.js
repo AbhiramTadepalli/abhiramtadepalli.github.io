@@ -122,8 +122,8 @@ async function generatePreviewImage(post, outputPath) {
   
   // Load HTML content
   await page.goto(`file://${path.resolve(outputPath, 'preview.html')}`, {
-  waitUntil: 'networkidle0'
-});
+    waitUntil: 'networkidle0'
+  });
 
   // Take screenshot
   await page.screenshot({ path: path.join(outputPath, 'preview.png') });
@@ -236,12 +236,23 @@ function markdownToHTML(md) {
   // Step 12: Restore code blocks
   codeBlocks.forEach((block, i) => {
     const langAttr = block.lang ? ` class="language-${block.lang.substring(0, block.lang.indexOf("_"))}"` : "";
-    const codeHtml = `<details class="collapsible"><summary>${block.lang.substring(block.lang.indexOf("_") + 1).replaceAll("_", " ").trim()}</summary><div class="code-container"><div class="code-block"><pre><code${langAttr}>${block.code}</code></pre></div></div></details>`;
+    const codeHtml = `<details class="collapsible"><summary>${block.lang.substring(block.lang.indexOf("_") + 1).replaceAll("_", " ").trim()}</summary><div class="code-container"><div class="code-block"><pre><code${langAttr}>${cleanSpecialCharacters(block.code)}</code></pre></div></div></details>`;
     html = html.replace(`~~CODE~BLOCK_${i}~~`, codeHtml);
   });
 
   return html;
 }
 
+/** Use &lt instead of < in the code blocks so as to not trigger html and other languages in the browser rendering */
+function cleanSpecialCharacters(code) {
+  return code
+    .replaceAll('&', '&amp;')   // MUST be first
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;')
+    .replaceAll('`', '&#96;')
+    .replaceAll('$', '&#36;');
+}
 
 generateBlogPosts().catch(console.error);
