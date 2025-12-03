@@ -63,6 +63,12 @@ function updateSidebarPosition(isBlog = false) {
 
 /** tl;dr typing animation */
 window.addEventListener('load', function() {
+    // Animate header in
+    requestAnimationFrame(() => {
+        document.querySelector('#tldr h2').classList.add('visible');
+    });
+
+    // For the text animation
     const tldr = document.querySelector('#tldr');
     const speed = 5;
     
@@ -127,7 +133,9 @@ window.addEventListener('load', function() {
         }
     }
     
-    typeWriter(1, 0); // skip header
+    setTimeout(() => {
+        typeWriter(1, 0); // skip header
+    }, 100); // Wait for a little bit until header starts animating
 });
 
 /** For collapsible code chunks, scrolls into view on close */
