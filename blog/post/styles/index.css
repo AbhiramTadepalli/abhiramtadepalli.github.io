@@ -524,6 +524,15 @@ a {
         font-size: 0.9rem;
     }
 
+    .code-block code {
+        text-wrap: nowrap;
+    }
+    .inline-code {
+        padding: 0.1rem 0.2rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+    }
+
     blockquote {
         padding: 1rem 2rem;
     }
