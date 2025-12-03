@@ -339,4 +339,9 @@ ul {
         width: auto; /* or a specific width */
         text-align: center;
     }
+
+    footer {
+        margin-top: 2vh !important;
+        font-size: 0.7rem;
+    }
 }
