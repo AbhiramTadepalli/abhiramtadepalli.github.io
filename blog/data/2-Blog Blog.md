@@ -1,13 +1,13 @@
 ## tl;dr -- why are you telling me about a blog
 - Wanted to dynamically populate an HTML template with blog post content upon navigation to that page
-- Did this using a `post-loader.js` script embedded in the HTML
+- Did this using a 'post-loader.js' script embedded in the HTML
 - To share the blog posts through social media and messaging apps
   - I need to support link previews
   - When previews are generated, JS is not run, rendering my previews static
-- Modified the script to create an HTML for every post *(with filled-in OpenGraph/Twitter meta headers)*
+- Modified the script to create an HTML for every post (with filled-in OpenGraph/Twitter meta headers)
   - This shows a different preview for each post
-- Used [Puppeteer](https://pptr.dev/) locally to capture the preview image
-- Voilà *(if you ignore the data redundancy)*
+- Used Puppeteer locally to capture the preview image
+- Voilà (if you ignore the data redundancy)
 ~~SUMMARY~~^^
 This past week I worked on getting my blog page up and running. Because my website is pure HTML & CSS (with a handful of JS), I hypothesized that I'd need an HTML file per post. I didn't like the idea of having to format my writing into HTML, so I tried to look for alternatives. What I settled on was 
 ## Dyanmic Post Loading (via JS)
@@ -78,7 +78,7 @@ Scope-creep again. Of course.
 
 Most platforms that render a link preview also include an image attached to it. I had the bright idea of making the preview image the title of the blog in the same font I use on my Blog.
 
-I worked on this before in [UTD Trends](https://trends.utdnebula.com/) but never actually got around to implementing it. [This feature](https://github.com/UTDNebula/utd-trends/pull/525/files) developed by one of our engineers, however, gave me inspiration. In it, the library [html2canvas](https://html2canvas.hertzen.com/) loads the HTML and takes a screenshot. I've done something similar using Puppeteer, so I installed that library and played around.
+I worked on this before in [UTD Trends](https://trends.utdnebula.com/) but never actually got around to implementing it. [This feature](https://github.com/UTDNebula/utd-trends/pull/525/files) developed by one of our engineers, however, gave me inspiration. In it, the library [html2canvas](https://html2canvas.hertzen.com/) loads the HTML and takes a screenshot. I've done something similar using [Puppeteer](https://pptr.dev/), so I installed that library and played around.
 
 ```js_Puppeteer_Screenshot
 // Load HTML content
