@@ -110,20 +110,20 @@
 </ul></article>
                     <article id="post-content">
 <p>This past week I worked on getting my blog page up and running. Because my website is pure HTML &amp; CSS (with a handful of JS), I hypothesized that I'd need an HTML file per post. I didn't like the idea of having to format my writing into HTML, so I tried to look for alternatives. What I settled on was </p>
-<h2>Dyanmic Post Loading (via JS)</h2>
+<h2>Dynamic Post Loading (via JS)</h2>
 <p>and this is why it didn't work.</p>
 
 <p>The pipeline I was working with was:</p>
 <ol>
   <li value="1">Write a markdown file</li>
-  <li value="2">Link it's path in a <code class="inline-code">posts.json</code> file</li>
-  <li value="3">Use the json file to dynamically populate the blog page with posts</li>
+  <li value="2">Link its path in a <code class="inline-code">posts.json</code> file</li>
+  <li value="3">Use the JSON file to dynamically populate the blog page with posts</li>
   <li value="4">On click, dynamically (a) convert <code class="inline-code">md -&gt; html</code> and (b) fill in a template HTML file with</li>
 </ol>
-<p>Steps 3 and 4b are where our <code class="inline-code">post-loader.js</code> file comes in play.</p>
+<p>Steps 3 and 4b are where our <code class="inline-code">post-loader.js</code> file comes into play.</p>
 
 <h2>How it works</h2>
-<p>The <code class="inline-code">blog/index.html</code> file has a section where I want to populate a card for each post. This is simple enough to do through <code class="inline-code">blog-loader.js</code> where I fetch the json and map through each post. In <code class="inline-code">index.html</code>, I just need to include a <code class="inline-code">&lt;script src="scripts/blog-loader.js"&gt;&lt;/script&gt;</code>.</p>
+<p>The <code class="inline-code">blog/index.html</code> file has a section where I want to populate a card for each post. This is simple enough to do through <code class="inline-code">blog-loader.js</code> where I fetch the JSON and map through each post. In <code class="inline-code">index.html</code>, I just need to include a <code class="inline-code">&lt;script src="scripts/blog-loader.js"&gt;&lt;/script&gt;</code>.</p>
 
 <p>Similar logic for <code class="inline-code">post-loader.js</code>:</p>
 <ol>
@@ -141,7 +141,7 @@
 
 <p>So a url like <code class="inline-code">/blog/post/?post=post1</code> would route to the <code class="inline-code">index.html</code> template and then <code class="inline-code">post-loader.js</code> would fill in the details.</p>
 
-<p>Perfect right?</p>
+<p>Perfect, right?</p>
 <h2>NO</h2>
 <p>The issue came because I wanted to scope-creep and make</p>
 <h2>Dynamic Link Previews</h2>
@@ -158,7 +158,7 @@
 &lt;meta name=&quot;twitter:title&quot; content=&quot;Abhiram&#39;s Blog&quot; id=&quot;twitter-title&quot;&gt;
 &lt;meta name=&quot;twitter:description&quot; content=&quot;Check out Abhiram&#39;s Blog&quot; id=&quot;twitter-description&quot;&gt;</code></pre></div></div></details></p>
 <p>These generators run the HTML without JS. So my method of loading post content cannot help here. This means I have 2 options: (1) make a general set of meta tags that statically represent a blog post. But where's the fun in that So we go with:</p>
-<p> (2) Find a way <em>(this options requires a bit of explaining)</em></p>
+<p> (2) Find a way <em>(this option requires a bit of explaining)</em></p>
 
 <h2>The Way</h2>
 <p>If I want a different link preview for each post, I <em>need</em> a different .html file for each post.</p>
@@ -169,9 +169,9 @@
 <h2>Images</h2>
 <p>Scope-creep again. Of course.</p>
 
-<p>Most platforms that render a link preview also include an image attached to it. I had the bright idea of making the preview image the title of the blog in the same font I use on my Blog.</p>
+<p>Most platforms that render a link preview also include an image attached to it. I had the bright idea of making the preview image display the blog title in the same font I use.</p>
 
-<p>I worked on this before in <a href="https://trends.utdnebula.com/" target="_blank">UTD Trends</a> but never actually got around to implementing it. <a href="https://github.com/UTDNebula/utd-trends/pull/525/files" target="_blank">This feature</a> developed by one of our engineers, however, gave me inspiration. In it, the library <a href="https://html2canvas.hertzen.com/" target="_blank">html2canvas</a> loads the HTML and takes a screenshot. I've done something similar using <a href="https://pptr.dev/" target="_blank">Puppeteer</a>, so I installed that library and played around.</p>
+<p>I worked on this before in <a href="https://trends.utdnebula.com/" target="_blank">UTD Trends</a> but never actually got around to implementing it. However, <a href="https://github.com/UTDNebula/utd-trends/pull/525/files" target="_blank">a feature</a> developed by one of our engineers gave me inspiration. In it, the library <a href="https://html2canvas.hertzen.com/" target="_blank">html2canvas</a> loads the HTML and takes a screenshot. I've done something similar using <a href="https://pptr.dev/" target="_blank">Puppeteer</a>, so I installed that library and played around.</p>
 
 <p><details class="collapsible"><summary>Puppeteer Screenshot</summary><div class="code-container"><div class="code-block"><div class="code-lang">JS</div><pre><code class="language-js">// Load HTML content
 await page.goto(&#96;file://&#36;{path.resolve(outputPath, &#39;preview.html&#39;)}&#96;, {
@@ -202,12 +202,12 @@ await page.screenshot({ path: path.join(outputPath, &#39;preview.png&#39;) });</
 <p>All I have to do now is every time I create a new post, just run the script locally before committing to GitHub.</p>
 
 
-<p>If you look at my <a href="https://github.com/AbhiramTadepalli/abhiramtadepalli.github.io" target="_blank">source files</a>, you'll now see  <code class="inline-code">blog/post/index.html</code> &amp; <code class="inline-code">blog/post/preview-template.html</code> templates and <code class="inline-code">blog/post/{name}/index.html</code> &amp; <code class="inline-code">blog/post/{name}/preview.png</code> under each post folder. Neat!</p>
+<p>If you look at my <a href="https://github.com/AbhiramTadepalli/abhiramtadepalli.github.io" target="_blank">source files</a>, you'll now see <code class="inline-code">blog/post/index.html</code> &amp; <code class="inline-code">blog/post/preview-template.html</code> templates and <code class="inline-code">blog/post/{name}/index.html</code> &amp; <code class="inline-code">blog/post/{name}/preview.png</code> under each post folder. Neat!</p>
 
 <h2>Why I did this</h2>
 <p>I'm a completionist and I wanted a fully functional Blog Page before I made <a href="https://abhiramtadepalli.github.io/blog/post/course-name-search/" target="_blank">this post</a> public on LinkedIn (my first post!). I'll probably get around to that tomorrow. As I am writing this, however, I just noticed that I never specifically added meta tags for my home and <code class="inline-code">/blog</code> pages. Let me get working on that...</p>
 
-<p>And if you got to this page without seeing a link preview, here's how it looks:</p>
+<p>And if you reached this page without seeing a link preview, here’s what it looks like:</p>
 
 <p><img src="/blog/post/how-to-blog-a-blog/preview.png" style="width: 30rem; max-width: 100%; margin-top: 1rem;" alt="This post's link preview image"></img></p>
 

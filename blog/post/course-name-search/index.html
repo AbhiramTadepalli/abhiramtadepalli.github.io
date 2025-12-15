@@ -94,7 +94,7 @@
                 <div id="post-paper">
                     <article id="tldr"><h2>tl;dr -- because who's got time like that?</h2>
 <ul>
-  <li>Want to implement searching for a course by name</li>
+  <li>Wanted to implement searching for a course by name</li>
   <li>UTD Trends's search engine requires selecting an existing course to proceed</li>
 <ul>
   <li>Input validation ensures that either a valid course or professor is typed in the search bar</li>
@@ -123,7 +123,7 @@
 
 <p>For starters, we would need a way to detect that the user is searching for a course name. Since course number and professor name searches were already working well, we don’t want to interfere with those.</p>
 
-<p>Next, storing entire course names in an autocomplete graph takes up space, and a few megabytes can really impact performance (even if we cache it) because of the graph traversals. Typing and edits occur really quickly and the autocomplete should be just as fast if not faster than the user.</p>
+<p>Next, storing entire course names in an autocomplete graph takes up space, and a few megabytes can really impact performance (even if we cache it) because of the graph traversals. Typing and edits occur really quickly and the autocomplete should be just as fast — if not faster — than the user.</p>
 
 <p>Finally, the actual text matching is complex. Sure we could use a library, but where’s the fun in that? Additionally, the text students will search for has shared characteristics – we can make assumptions on behalf of the user to optimize and return better/more-accurate results the way users intend.</p>
 
@@ -242,7 +242,7 @@ function findSimilarity(word: string, target: string): number {
 
 <h3>Course Number Match</h3>
 
-<p>checks first how many of the digits match in sequence, so CS CS 433x ranks higher than CS 43x3. This makes sense for our domain because a lot of courses have the same first 2 digits, and misspellings tend to occur in the latter 2 digits (because they are harder to remember). After this, the overall similarity is found through their edit distances in <code class="inline-code">findSimilarity</code>.</p>
+<p>checks first how many of the digits match in sequence, so CS 433x ranks higher than CS 43x3. This makes sense for our domain because a lot of courses have the same first 2 digits, and misspellings tend to occur in the latter 2 digits (because they are harder to remember). After this, the overall similarity is found through their edit distances in <code class="inline-code">findSimilarity</code>.</p>
 
 <p><details class="collapsible"><summary>smartNumberMatch code</summary><div class="code-container"><div class="code-block"><div class="code-lang">TS</div><pre><code class="language-ts">// boosts it if the course number matches (fuzzy - allows spelling mistakes)
 const smartNumberMatch =
@@ -286,7 +286,7 @@ const distanceMetric =
 
 <h3>Word Capture</h3>
 
-<p>matching title to each query. For each query word, it marks the highest similarity to any title word and returns the <code class="inline-code">bestScore</code> for that query word via a piecewise. 100% word captures are ranked the highest.</p>
+<p>matching title to each query. For each query word, it finds the most similar title word and assigns a <code class="inline-code">bestScore</code> using a piecewise scale. 100% word captures are ranked the highest.</p>
 
 <p><details class="collapsible"><summary>smartWordCapture code</summary><div class="code-container"><div class="code-block"><div class="code-lang">TS</div><pre><code class="language-ts">// How much of the query is captured by the title words
 const smartWordCapture = 
@@ -326,7 +326,7 @@ const smartWordCapture =
   title: title,
   result: result,
 };</code></pre></div></div></details></p>
-<p>The code above shows how all the metrics come together into 1 distance number for each course name. <em>More negative is better</em>. Let me spell out the logic:</p>
+<p>The code above shows how all the metrics come together into one distance number for each course name. <em>More negative is better</em>. Let me spell out the logic:</p>
 
 <ul>
   <li>If there is a non-zero match for a course number, then ignore the <code class="inline-code">distanceMetric</code> (prioritize the <code class="inline-code">smartNumberMatch</code> higher in our courses domain)</li>
@@ -339,9 +339,9 @@ const smartWordCapture =
 
 <p>Ranking itself is self explanatory. One quirk is that we wanted to limit how many results are shown, because as you scroll the quality gets comically worse. Especially when you are searching for courses with short names.</p>
 
-<p>A simple static cutoff number won’t cut it. Also autocomplete or searching in search engines like Google tend to narrow the suggestions as your query gets closer to a match.</p>
+<p>A fixed numerical cutoff doesn't scale well. Also autocomplete or searching in search engines like Google tend to narrow the suggestions as your query gets closer to a match.</p>
 
-<p>It was at this moment that I remembered all of my struggles in AP Stats and CS 3341; one word came to my mind: Standard Deviation.</p>
+<p>It was at this moment that I remembered all of my struggles in AP Stats and CS 3341. One word came to my mind: Standard Deviation.</p>
 
 <p><details class="collapsible"><summary>SD Cutoff</summary><div class="code-container"><div class="code-block"><div class="code-lang">TS</div><pre><code class="language-ts">// calculate cutoff for 1 standard deviation
 const cut = results[Math.floor(0)].distance;
@@ -378,7 +378,7 @@ const resultsWithoutDistance: Result[] =
 </ul>
 <p>We’re addressing these in our ongoing issue for <a href="https://github.com/UTDNebula/utd-trends/issues/517" target="_blank">improvements to the autocomplete</a>.</p>
 
-<h2>So what did we learn</h2>
+<h2>So what did we learn?</h2>
 
 <p>This was a fun project to work on during the summer. I guess this whole post was about my learning, but I really did have to research how Google used to pagerank, read some papers, and play around with weights. Sometimes the results got worse before they got better, and I had to pick a lot of representative benchmark queries to measure performance. What we have now is acceptable, and it works if the user knows how to use it. Improvements are necessary though, so I’ll let you know when we get to that.</p>
 
