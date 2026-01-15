@@ -127,6 +127,11 @@ html {
   margin: 0 1vw;
 }
 
+.badge-link {
+    display: contents; 
+    text-decoration: none;
+}
+
 .icon-badge {
     height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
