@@ -113,7 +113,7 @@ html {
 }
 
 #affiliations {
-    height: 80px;
+    height: 7vw;
     width: 100%;
     gap: 1.6vw;
     justify-content: flex-start;
@@ -132,7 +132,8 @@ html {
 }
 
 .icon-org {
-    border-radius: 50px;
+    border-radius: 100px;
+    height: 80%;
 }
 
 
@@ -428,12 +429,21 @@ ul {
     }
 
     #affiliations {
-        height: 13vw;
+        height: 16vw;
         width: 100%;
         gap: 1.6vw;
         justify-content: flex-start;
         margin-inline-start: 3%;
         margin-bottom: 1vh;
+    }
+
+    .icon-badge {
+        height: 100%;
+    }
+
+    .icon-org {
+        border-radius: 100px;
+        height: 70%;
     }
 
     
