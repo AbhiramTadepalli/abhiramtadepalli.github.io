@@ -1,7 +1,7 @@
 const fs = require('fs');
 const posts = require('../blog/data/posts.json');
 
-const baseUrl = 'https://abhiramtadepalli.github.io';
+const baseUrl = 'https://abhiramtadepalli.com';
 const today = new Date().toISOString().split('T')[0];
 const sitemapPath = 'sitemap.xml';
 
