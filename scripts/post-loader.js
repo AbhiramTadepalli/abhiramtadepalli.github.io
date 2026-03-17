@@ -76,14 +76,15 @@ function generateHTML(post, content, summary, slug)
             <title>${post.title} | Abhiram's Blog</title>
             <meta property="og:title" content="${post.title}" id="og-title">
             <meta property="og:description" content="${post.affiliation + " &bull; " + post.snippet || 'Check out Abhiram\'s Blog'}" id="og-description">
-            <meta property="og:image" content="https://abhiramtadepalli.github.io/blog/post/${slug}/preview.png" />
-            <meta property="og:url" content="https://abhiramtadepalli.github.io/blog/post/${slug}" id="og-url">
+            <meta property="og:image" content="https://abhiramtadepalli.com/blog/post/${slug}/preview.png" />
+            <meta property="og:url" content="https://abhiramtadepalli.com/blog/post/${slug}" id="og-url">
             <meta property="og:type" content="article">
             
             <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:image" content="https://abhiramtadepalli.github.io/blog/post/${slug}/preview.png" />
+            <meta name="twitter:image" content="https://abhiramtadepalli.com/blog/post/${slug}/preview.png" />
             <meta name="twitter:title" content="${post.title}" id="twitter-title">
             <meta name="twitter:description" content="${post.antedote || 'Check out Abhiram\'s Blog'}" id="twitter-description">
+            <link rel="canonical" href="https://abhiramtadepalli.com/blog/post/${slug}" />
             <!-- End of meta tags -->
         `;
 

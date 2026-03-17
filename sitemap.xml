@@ -1,93 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://abhiramtadepalli.github.io/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/blog/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/blog/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/blog/post/0</loc>
+    <loc>https://abhiramtadepalli.com/blog/post/0</loc>
     <lastmod>2025-12-3</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/blog/post/course-name-search</loc>
+    <loc>https://abhiramtadepalli.com/blog/post/course-name-search</loc>
     <lastmod>2025-11-29</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/blog/post/how-to-blog-a-blog</loc>
+    <loc>https://abhiramtadepalli.com/blog/post/how-to-blog-a-blog</loc>
     <lastmod>2025-12-03</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/projects/ais-inno-lab/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/projects/ais-inno-lab/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/projects/candl-ctfs/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/projects/candl-ctfs/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/projects/degree-requirements-parser/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/projects/degree-requirements-parser/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/projects/echo-911-github/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/projects/echo-911-github/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/projects/hackutd-github/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/projects/hackutd-github/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/projects/ml-parking-predictor/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/projects/ml-parking-predictor/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/projects/syssec-lab/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/projects/syssec-lab/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/projects/utd-trends-github/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/projects/utd-trends-github/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/projects/utd-trends-website/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/projects/utd-trends-website/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/organizations/acm-hackutd-website/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/projects/youtravel-capstone-project/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/organizations/ais-inno-lab-website/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/organizations/acm-hackutd-website/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/organizations/nebula-labs-website/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/organizations/acm-website/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://abhiramtadepalli.github.io/certifications/aws-certified-cloud-practitioner/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <loc>https://abhiramtadepalli.com/organizations/ais-inno-lab-website/</loc>
+    <lastmod>2026-03-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://abhiramtadepalli.com/organizations/nebula-labs-website/</loc>
+    <lastmod>2026-03-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://abhiramtadepalli.com/certifications/aws-certified-cloud-practitioner/</loc>
+    <lastmod>2026-03-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://abhiramtadepalli.com/certifications/gcp-cloud-digital-leader/</loc>
+    <lastmod>2026-03-17</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
