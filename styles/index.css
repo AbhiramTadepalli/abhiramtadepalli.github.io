@@ -661,5 +661,26 @@ ul {
     footer {
         /* margin-top: 20vh !important; */
         font-size: 0.7rem;
+        margin-bottom: 10px;
     }
+}
+
+.utd-cs-webring-icon {
+  width: 35px;
+  height: auto;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.utd-cs-webring-icon:hover {
+  opacity: 1;
+}
+
+.utd-cs-webring-arrow {
+    color: #3d99dc;
+    text-decoration: none;
+}
+
+.bottom-nothing {
+    height: 8px
 }
