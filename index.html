@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="styles\index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script>
-        getListItemsFromList(list)
+        function getListItemsFromList(list)
         {
             list.split(",").map((value) => <li>value</li>);
         }
@@ -199,6 +199,14 @@
 
     <footer class="flex-container-col">
         <p>&copy; 2025 Abhiram's Portfolio. All rights reserved. Abhiram Tadepalli.</p>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <a href="https://cs.utdring.com/#abhiramtadepalli.com?nav=prev" class="utd-cs-webring-arrow">←</a>
+            <a href="https://cs.utdring.com/#abhiramtadepalli.com" target="">
+                <img src="/assets/brand-icons/utd-icon-light-blue.svg" alt="CS Webring" class="utd-cs-webring-icon"/>
+            </a>
+            <a href="https://cs.utdring.com/#abhiramtadepalli.com?nav=next" class="utd-cs-webring-arrow">→</a>
+        </div>
+        <div class="bottom-nothing"></div>
     </footer>
 </body>
 </html>
